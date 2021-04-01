@@ -1,3 +1,24 @@
+#ingreso{
+  float: right;
+  width: 300px;
+  border-style: outset;
+  padding: 10px;
+  margin-right: 50px;
+  margin-top: 150px;
+  text-align: center;
+}
+
+#boton{
+  border-radius: 4px;
+  padding: 10px 100px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #27bae7;
+
+}
+
+#caja{
+  padding: 10px 50px;
+}
 .App {
   text-align: center;
 }
