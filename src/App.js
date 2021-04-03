@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import imgone from './logo.jpg';
+
 
 import './App.css';
 
@@ -15,19 +15,11 @@ function Ingreso(){
   </div>)
 }
 
-function Imagen(){
-  return(<div id="imagen">
-    <div id= "logo" >
-    
-    </div>
-   
-    
-  </div>)
-}
+
 
 function App() {
   return (
-    <div ><Ingreso/><Imagen/></div>
+    <div ><Ingreso/></div>
   );
 }
 
