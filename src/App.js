@@ -1,26 +1,29 @@
+import React from "react";
 import logo from './logo.svg';
-
-
 import './App.css';
-
-function Ingreso(){
-  return(<div id="ingreso">
-    <form>
-        <input id="caja" type="text" placeholder="Nombre"/>
-        <input id="caja" type="text" placeholder="Correo"/>
-        <input id="caja" type="text" placeholder="Contraseña"/>
-        <p><button id="boton1" onclick="Registrarse" >registrarse</button></p>
-        <p><button id="boton2" onclick="iniciar">Iniciar Sesion</button></p>
-      </form>
-  </div>)
-}
+import {Login, Register} from "./components/login/index";
 
 
-
-function App() {
-  return (
-    <div ><Ingreso/></div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      isLogginActive: true,
+    }
+  }
+  render(){
+    const {isLogginActive}=this.state;
+    return (
+      <div className="App">
+        <div className="login">
+          <div className="container">
+           {!isLogginActive && <Login containerRef={(ref)=>this.current=ref}/>}
+           {isLogginActive && <Register containerRef={(ref)=>this.current=ref} />}
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
