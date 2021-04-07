@@ -1,0 +1,74 @@
+.social_app{
+    display:block;
+    background: #e9e7ea;
+    content: center;
+
+}
+.tittle >div{
+    color:#7cd5d1;
+    vertical-align: middle;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+    font-size: 20px;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 0;
+}
+
+.content{
+    display:block;
+    padding: 2%;
+}
+
+.content > div{
+    padding: 20px;
+    display: block;
+    justify-content:center;
+    margin:auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background: #ffffff;
+}
+.customer{
+    display: inline-block;
+    margin:10px;
+    padding:5px;
+    width: 30%;
+    
+
+}
+.cakeC{
+    display:block;
+    padding:auto;
+    height:80%;
+    max-width:65%;
+    justify-content:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cake{
+    max-width: 100%;
+    max-height:100%;
+    border-radius: 5%;
+    box-shadow: 2px 2px 5px rgb(0, 0, 0);
+    
+}
+.photoC{
+    display:inline;
+    height:50px;
+    right:70px;
+}
+.photo{
+    max-width: 50px;
+    max-height:70px;
+    border-radius: 50%;
+}
+
+.infoC{
+    display: inline-block;
+    padding:5px;
+    text-size-adjust: 50px;
+}
+p{
+    margin:0;
+}
