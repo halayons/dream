@@ -1,6 +1,6 @@
 import React from "react";
 
-export class Login extends React.Component {
+export class ForgotPassword extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,7 +17,7 @@ export class Login extends React.Component {
 
     renderLogin = async () => {
         try {
-            let res = await fetch("http://localhost:8000/accounts/login/")
+            let res = await fetch("http://localhost:8000/accounts/password/reset/")
             let html = await res.text();
 
             let parser = new DOMParser();
@@ -45,4 +45,5 @@ export class Login extends React.Component {
             </div>
         )
     }
+
 }

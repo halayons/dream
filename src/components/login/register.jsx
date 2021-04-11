@@ -2,24 +2,48 @@ import React from "react";
 
 export class Register extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+
+        this.state = {
+            test: null,
+        }
     }
 
-    render() {
-        return <div className="registro" ref={this.props.containerRef}>
-            
-            
-            <div className="form">
-             <input id="caja" type="text" placeholder="Nombre"/>
-        <input id="caja" type="text" placeholder="Correo"/>
-        <input id="caja" type="text" placeholder="Contraseña"/>
-        <p><button id="boton1" onclick="Registrarse" >registrarse</button></p>
-        <p><button id="boton2" onclick="inicio()">Iniciar Sesion</button></p>
+    componentDidMount() {
+        this.renderLogin()
+    }
 
-            
-          </div>
-        </div>
+
+    renderLogin = async () => {
+        try {
+            let res = await fetch("http://localhost:8000/accounts/signup/")
+            let html = await res.text();
+
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(html, "text/html");
+
+            this.setState({
+                'test': doc.body.innerHTML
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+    render() {
+        console.log(window.location.pathname)
+        return (
+            <div className="App">
+                <div className="login">
+                    <div className="container">
+                        <div className="content" dangerouslySetInnerHTML={{ __html: this.state.test }}></div>
+
+                    </div>
+                </div>
+            </div>
+        )
     }
 
 }

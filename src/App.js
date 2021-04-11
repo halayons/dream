@@ -1,18 +1,16 @@
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
-import { Login, Register } from "./components/login/index";
+import { LoginScreen } from "./components/login/index";
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLogginActive: true,
-    }
+
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     this.renderLogin()
   }
 
@@ -31,23 +29,15 @@ class App extends React.Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  }*/
 
 
   render() {
-    const { isLogginActive } = this.state;
-
     return (
       <div className="App">
-        <div className="login">
-          <div className="container">
-            <div className="content" dangerouslySetInnerHTML={{ __html: this.state.test}}></div>
-          </div>
-        </div>
+        <LoginScreen></LoginScreen>
       </div>
     )
-
-
   }
 }
 
