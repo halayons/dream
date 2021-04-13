@@ -1,8 +1,9 @@
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
-import { LoginScreen } from "./components/login/index";
 
+import { LoginScreen } from "./components/login/index";
+import Estadisticas from "./components/landing_page/estadistica";
 
 class App extends React.Component {
   constructor(props) {
