@@ -11,7 +11,7 @@ export class LandingPage extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="landingPage">
                 <Estadisticas></Estadisticas>
                 <Social></Social>
                 <Footer></Footer>

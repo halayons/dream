@@ -1,4 +1,6 @@
 import React from "react";
+import { BsPeopleFill } from "react-icons/ai";
+
 
 export class Estadisticas extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ export class Estadisticas extends React.Component {
     event.preventDefault();
   }
 
-  componentDidMount = async() => {
+  componentDidMount = async () => {
     let users = await fetch("http://localhost:8000/stats/users/");
     let interactions = await fetch("http://localhost:8000/stats/interactions/");
     let post = await fetch("http://localhost:8000/stats/posts/");
@@ -25,28 +27,31 @@ export class Estadisticas extends React.Component {
 
     console.log(usersJS)
     this.setState({
-      users : usersJS,
-      interactions : interactionsJS,
-      post : postJS
+      users: usersJS,
+      interactions: interactionsJS,
+      post: postJS
     });
   }
 
   render() {
     return (
       <div className="estadisticas" >
-        <label>
-          {this.state.users}
-        </label>
-
-
-        <label>
-          {this.state.post}
-        </label>
-
-
-        <label>
-          {this.state.interactions}
-        </label>
+        < div className="estadisticasUsers">
+          <BsPeopleFill></BsPeopleFill>
+          <label>
+            Tenemos {this.state.users} usuarios
+          </label>
+        </div>
+        < div className="estadisticasPost">
+          <label>
+            Nuestra comunidad ha creado {this.state.post} posts
+          </label>
+        </div>
+        < div className="estadisticasInteractions">
+          <label>
+            Hemos recibido {this.state.interactions} interacciones
+          </label>
+        </div>
       </div>
     );
   }

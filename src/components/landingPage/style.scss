@@ -151,3 +151,9 @@ td {
     margin: auto;
    font-size:  12px;
 }
+
+.estadisticas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
