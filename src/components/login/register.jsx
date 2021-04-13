@@ -12,6 +12,7 @@ export class Register extends React.Component {
 
     componentDidMount() {
         this.renderLogin()
+        window.addEventListener('submit', this.register)
     }
 
 
@@ -29,6 +30,38 @@ export class Register extends React.Component {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    register = async (event) => {
+        event.preventDefault();
+        let email = document.getElementsByTagName('input').namedItem('email').value
+        let user = document.getElementsByTagName('input').namedItem('username').value
+        let pass1 = document.getElementsByTagName('input').namedItem('password1').value
+        let pass2 = document.getElementsByTagName('input').namedItem('password2').value
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            credentials: "include",
+            body : JSON.stringify({"email" : email, "username" : user, "password1" : pass1, "password2" : pass2})
+       };
+
+        let response = await fetch('http://localhost:8000/users/api/auth/registration/', requestOptions)
+        if (response.statusText === 'OK'){
+            let usr = await fetch('http://localhost:8000/users/api/auth/user/', {credentials: "include"})
+            let js = await usr.json()
+
+            console.log("usuario: " + JSON.stringify(js))
+        } else{
+            let js = await response.json()
+            if(response.status === 400){
+                console.log(js)
+            } else if(response.status === 403){
+                console.log("sesion ya iniciada " + JSON.stringify(js))
+            } else {
+                console.log("otro error: "  + JSON.stringify(js) + JSON.stringify(response))
+            }
+        }    
     }
 
 
