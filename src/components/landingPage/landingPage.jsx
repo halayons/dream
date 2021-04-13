@@ -1,5 +1,5 @@
 import React from "react";
-import {Estadisticas, Social} from "./index";
+import {Estadisticas, Social, Footer} from "./index";
 
 
 export class LandingPage extends React.Component {
@@ -14,6 +14,7 @@ export class LandingPage extends React.Component {
             <div>
                 <Estadisticas></Estadisticas>
                 <Social></Social>
+                <Footer></Footer>
             </div>
         )
     }
