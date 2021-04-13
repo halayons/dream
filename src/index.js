@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Footer_app from './Footer';
 import App from './App';
+import Social_app from './social';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+ // <React.StrictMode>
+    <Social_app />
+  //</React.StrictMode>,
+  ,document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

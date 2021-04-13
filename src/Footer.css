@@ -1,0 +1,49 @@
+:root{
+    --color-principal:#7cd5d1;
+}
+
+.footer{
+    background:var(--color-principal);
+   
+}
+.principalF{
+   padding:10px;
+}
+
+.areaW{
+    display: block;
+    padding: 10px;
+    width:90%;
+    background:var(--color-principal);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.widget{
+    display: inline-block;
+    width:20%;
+    padding: 10px;
+    
+    font-size: 10px;
+    text-align: left;
+   
+}
+.logo{
+    width: 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.copyright-bar{
+    background:#36393f;
+    color: #FFFFFF;
+    text-align: center;
+    
+}
+.copyright{
+    margin: auto;
+   font-size:  12px;
+}
