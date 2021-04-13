@@ -15,11 +15,19 @@ export class LoginScreen extends React.Component {
                 <div className="imageContainer">
                 </div>
                 <div className="accountContainer">
-                    <card className="login">
+                    <div className="loginSelect">
                         {window.location.pathname == "/accounts/login/" && <Login></Login>}
                         {window.location.pathname == "/accounts/signup/" && <Register></Register>}
                         {window.location.pathname == "/accounts/password/reset/" && <ForgotPassword></ForgotPassword>}
-                    </card>
+                    </div>
+                    <div className="socialButtons">
+                        <form action="" method="post">
+                            <input className="facebook" type="submit" value="Facebook"></input>
+                        </form>
+                        <form action="" method="post">
+                            <input className="google" type="submit" value="Google"></input>
+                        </form>
+                    </div>
                 </div>
             </div>
         )

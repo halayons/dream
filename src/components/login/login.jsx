@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export class Login extends React.Component {
 
     constructor(props) {
@@ -39,7 +40,6 @@ export class Login extends React.Component {
                 <div className="login">
                     <div className="container">
                         <div className="content" dangerouslySetInnerHTML={{ __html: this.state.test }}></div>
-
                     </div>
                 </div>
             </div>

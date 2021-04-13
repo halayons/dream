@@ -79,18 +79,89 @@ a[title="Facebook"]{
 }
 
 .imageContainer{
-    width: 70%;
+    width: 65%;
     height: 100vh;
-    background-color: black;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
+    background-image: url("fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .accountContainer{
-    width: 30%;
+    width: 35%;
     height: 100vh;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F2EFF1;
+}
+
+.socialButtons{
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+  padding: 5px;
+}
+
+.loginSelect{
+  height: 400px;
+  width: 500px;
+  background-color: #ffffff;
+  opacity: 0.95;
+  padding: 10px;
+  position: relative;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px #BAB1B1;
+}
+
+input{
+  background: #ECECEC;
+  border-radius: 6px;
+  border: none;
+  height: 50px;
+  width: 380px;
+  align-self: center;
+  justify-content: center;
+}
+
+input[type="checkbox"]{
+  height: 20px;
+  width: 20px;
+  margin: 0%;
+  align-self: center;
+  justify-content: center;
+}
+
+::placeholder {
+  color: #7CD5D0;
+  padding: 3%;
+}
+
+label[for=id_password]{
+  display: none;
+}
+
+label[for=id_login]{
+  display: none;
+}
+
+label{
+  font-size: 15px;
+  align-content: flex-start;
+  justify-self: left;
+}
+
+strong{
+  display: none}
+
+.socialaccount_ballot{
+  display: none;
+}
+
+li:nth-child(1){
+  display: none;
+}
+
+marker{
+  display: none;
 }
