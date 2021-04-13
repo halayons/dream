@@ -69,7 +69,7 @@ export class Register extends React.Component {
         console.log(window.location.pathname)
         return (
             <div className="App">
-                <div className="login">
+                <div className="register">
                     <div className="container">
                         <div className="content" dangerouslySetInnerHTML={{ __html: this.state.test }}></div>
 
@@ -78,5 +78,4 @@ export class Register extends React.Component {
             </div>
         )
     }
-
 }

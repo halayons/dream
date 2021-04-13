@@ -36,7 +36,7 @@ export class ForgotPassword extends React.Component {
         console.log(window.location.pathname)
         return (
             <div className="App">
-                <div className="login">
+                <div className="forgotPassword">
                     <div className="container">
                         <div className="content" dangerouslySetInnerHTML={{ __html: this.state.test }}></div>
 
