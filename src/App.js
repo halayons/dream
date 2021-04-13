@@ -35,7 +35,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <LoginScreen></LoginScreen>
+         {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
+         {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
+         {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
       </div>
     )
   }
