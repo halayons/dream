@@ -2,6 +2,7 @@ import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import {Login, Register} from "./components/login/index";
+import Estadisticas from "./components/landing_page/estadistica";
 
 
 class App extends React.Component {
@@ -18,7 +19,7 @@ class App extends React.Component {
         <div className="login">
           <div className="container">
            {!isLogginActive && <Login containerRef={(ref)=>this.current=ref}/>}
-           {isLogginActive && <Register containerRef={(ref)=>this.current=ref} />}
+           {isLogginActive && <Estadisticas containerRef={(ref)=>this.current=ref} />}
           </div>
         </div>
       </div>
