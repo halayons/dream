@@ -1,11 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
 
-<<<<<<< HEAD
-
-=======
-import axios from 'axios'
->>>>>>> dfa0e379e740781aab28b9c1383dbc0fc2455142
 export class Login extends React.Component {
 
     constructor(props) {
