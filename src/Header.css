@@ -1,0 +1,58 @@
+.jumbotron-header{
+    background-color: #7cd5d0;
+    background-size: 100% 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    position:static;
+}
+
+.btn{
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-register{
+    background-color: #9556cc;
+    color: white;
+    padding: 10px 60px;
+    font-size: 15px;
+    border: 0px solid #6dd3ce;
+  }
+.btn-register:hover{
+    background-color:  #007bb6;
+    color: white;
+    padding: 13px 65px;
+  }
+.btn-login{
+    background-color: #7cd5d0;
+    color: white;
+    padding: 10px 70px;
+    font-size: 15px;
+    border: 1px solid #6dd3ce;
+}
+.btn-login:hover{
+    background-color:  #007bb6;
+    color: white; 
+    padding: 13px 63px;
+}
+.btn-start{
+    background-color: #9556cc;
+    color: white;
+    padding: 8px 130px;
+    font-size: 15px;
+    opacity: 1;
+    margin-top: 50px;
+   
+}
+.btn-start:hover{
+    background-color:  #007bb6;
+    color: white;
+    padding: 13px 150px;
+    
+}
+.img-logo {
+ 
+    max-width: 70px;
+    margin-left: 20px;
+  }
