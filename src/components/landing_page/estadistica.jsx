@@ -4,41 +4,49 @@ class Estadisticas extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.input = React.createRef();
-    this.state = {users:" ", interactions:" ", post:" "}
+    this.state = { users: " ", interactions: " ", post: " " }
   }
 
   handleSubmit(event) {
     alert('A name was submitted: ' + this.input.current.value);
     event.preventDefault();
   }
-   
- componentDidMount()
-{
-    fetch("http://localhost:8000/stats/users/").then(res=>res.text()).
-          then(res=>this.state.users=res).catch(err=>console.log(err));
-    fetch("http://localhost:8000/stats/interactions/").then(res=>res.text()).
-         then(res=>this.state.interactions=res).catch(err=>console.log(err));
-    fetch("http://localhost:8000/stats/post/").then(res=>res.text()).
-          then(res=>this.state.post=res).catch(err=>console.log(err));
-}
+
+  componentDidMount = async() => {
+    let users = await fetch("http://localhost:8000/stats/users/");
+    let interactions = await fetch("http://localhost:8000/stats/interactions/");
+    let post = await fetch("http://localhost:8000/stats/posts/");
+
+    let usersJS = await users.text();
+    let interactionsJS = await interactions.text()
+    let postJS = await post.text();
+
+
+    console.log(usersJS)
+    this.setState({
+      users : usersJS,
+      interactions : interactionsJS,
+      post : postJS
+    });
+  }
 
   render() {
     return (
       <div className="estadisticas" >
-        <label value={this.state.users}>
-          Usuarios
+        <label>
+          {this.state.users}
         </label>
-        
-        
-       <label value={this.state.post}>
-          Post
+
+
+        <label>
+          {this.state.post}
         </label>
-        
-        
-        <label value={this.state.interactiona}>
-          Interaction
+
+
+        <label>
+          {this.state.interactions}
         </label>
-        </div>
+      </div>
     );
   }
 }
