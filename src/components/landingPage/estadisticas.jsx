@@ -1,10 +1,11 @@
 import React from "react";
-class Estadisticas extends React.Component {
+
+export class Estadisticas extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.input = React.createRef();
-    this.state = { users: " ", interactions: " ", post: " " }
+    this.state = { users: "test", interactions: "test1", post: "test2" }
   }
 
   handleSubmit(event) {

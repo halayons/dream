@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import { LoginScreen } from "./components/login/index";
-import Estadisticas from "./components/landing_page/estadistica";
+import { LandingPage } from "./components/landingPage/index";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class App extends React.Component {
          {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
+         {window.location.pathname == "/" && <LandingPage></LandingPage>}
       </div>
     )
   }
