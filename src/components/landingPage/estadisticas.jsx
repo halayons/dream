@@ -1,5 +1,8 @@
 import React from "react";
-import { BsPeopleFill } from "react-icons/ai";
+import { FcConferenceCall } from "react-icons/fc";
+import { FcEditImage } from "react-icons/fc";
+import { FcComboChart } from "react-icons/fc";
+
 
 
 export class Estadisticas extends React.Component {
@@ -37,17 +40,19 @@ export class Estadisticas extends React.Component {
     return (
       <div className="estadisticas" >
         < div className="estadisticasUsers">
-          <BsPeopleFill></BsPeopleFill>
+           <h1><FcConferenceCall></FcConferenceCall></h1> 
           <label>
             Tenemos {this.state.users} usuarios
           </label>
         </div>
         < div className="estadisticasPost">
+          <h1><FcEditImage></FcEditImage></h1>
           <label>
             Nuestra comunidad ha creado {this.state.post} posts
           </label>
         </div>
         < div className="estadisticasInteractions">
+          <h1><FcComboChart></FcComboChart></h1>
           <label>
             Hemos recibido {this.state.interactions} interacciones
           </label>
