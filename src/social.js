@@ -5,7 +5,6 @@ import logo from './logo.svg';
 import like from './like.png';
 import React from 'react';
 
-const url ="http://localhost:8000/social/";
 
 class Social_app extends React.Component{
     constructor(props){
@@ -28,7 +27,7 @@ class Social_app extends React.Component{
            <img src={"http://localhost:8000/" +this.funtion(e.foto)}  className ="cake"></img>
         </div>
         <div className ="photoC">
-           <img src ={imagen2} className ="photo"/>
+           <img src ={"media/posts/users/"+ e.usuario+".jpg"} className ="photo"/>
         </div>
 
          <div className="infoC">
@@ -66,17 +65,13 @@ class Social_app extends React.Component{
         if (this.state.data.length > 0) {
             return (
                 <div className ="social_app">
-    
-                <div className = "tittle">
-                    <div><h1>Dream Cakers</h1></div>
-                </div>
-                <div className ="content">
-                    <div>
-                        {this.state.data.map(e=>this.usuarios(e))} 
+                    <div className ="content">
+                        <div>
+                            {this.state.data.map(e=>this.usuarios(e))} 
+                        </div>
                     </div>
-                </div>
                 
-            </div>
+                </div>
             )
             } else {
                   return <p className="text-center">Cargando empleados...</p>
