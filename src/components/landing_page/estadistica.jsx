@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.scss";
 class Estadisticas extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,7 @@ class Estadisticas extends React.Component {
     event.preventDefault();
   }
 
-  componentDidMount = async() => {
+   componentDidMount = async() => {
     let users = await fetch("http://localhost:8000/stats/users/");
     let interactions = await fetch("http://localhost:8000/stats/interactions/");
     let post = await fetch("http://localhost:8000/stats/posts/");
@@ -28,24 +29,31 @@ class Estadisticas extends React.Component {
       interactions : interactionsJS,
       post : postJS
     });
-  }
+  } 
 
   render() {
     return (
       <div className="estadisticas" >
-        <label>
-          {this.state.users}
-        </label>
+        <div className="izq">
+        <h1><label >
+          {this.state.users} 
+          users
+        </label></h1>
+        </div>
 
+         <div className="cent">
+        <h1><label>
+          {this.state.post} 
+          post
+        </label></h1>
+        </div>
 
-        <label>
-          {this.state.post}
-        </label>
-
-
-        <label>
-          {this.state.interactions}
-        </label>
+        <div className="der">
+        <h1><label>
+           {this.state.interactions} 
+          interactions
+        </label></h1>
+        </div>
       </div>
     );
   }
