@@ -1,25 +1,49 @@
+import React from "react";
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { LoginScreen } from "./components/login/index";
+import { LandingPage } from "./components/landingPage/index";
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  /*componentDidMount() {
+    this.renderLogin()
+  }
+
+
+  renderLogin = async () => {
+    try {
+      let res = await fetch("http://localhost:8000/accounts/login/")
+      let html = await res.text();
+
+      let parser = new DOMParser();
+      let doc = parser.parseFromString(html, "text/html");
+
+      this.setState({
+        'test': doc.body.innerHTML
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }*/
+
+
+  render() {
+    return (
+      <div className="App">
+         {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
+         {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
+         {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
+         {window.location.pathname == "/" && <LandingPage></LandingPage>}
+      </div>
+    )
+  }
 }
 
 export default App;

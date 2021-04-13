@@ -1,0 +1,299 @@
+:root{
+    --color-principal:#7cd5d1;
+}
+
+.social_app{
+    display:block;
+    background: #e9e7ea;
+    content: center;
+}
+.tittle >div{
+    color:var(--color-principal);
+    vertical-align: middle;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+    font-size: 20px;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 0;
+}
+
+.content{
+    display:block;
+    padding: 2%;
+}
+
+.content > div{
+    padding: 20px;
+    display: block;
+    justify-content:center;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.customer{
+    position: relative;
+    display: inline-block;
+    margin:10px;
+    padding:10px;
+    width: 28%;
+    background: #e9e7eabf;
+    box-shadow: 1px 2px 4px rgba(122, 119, 119, 0.618);
+    border-radius: 2%;
+    text-align: center;
+    transition: .4s;
+
+}
+.customer:hover{
+    padding: 15px;;
+}
+.cakeC{
+    display:block;
+    padding:auto;
+    height:80%;
+    max-width:65%;
+    justify-content:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cake{
+    height:240px;
+    border-radius: 0%;
+    
+    
+}
+.photoC{
+   position: absolute;
+   top: 210px;
+   left: 50px;
+    height:50px;
+    right:70px;
+    text-align: center;
+}
+.photo{
+    max-width: 70px;
+    max-height:90px;
+    border-radius: 50%;
+    border:10px 30px 50px ;
+}
+
+.infoC{
+    display: inline-block;
+    padding-top:25px;
+    font-size: 12px;
+    text-align: left;
+}
+ p{
+   
+    font-weight: bold;
+    display: inline;
+}
+td {
+    align-items: center;
+    display: inline-block;
+    padding: 2px;
+    vertical-align: middle;
+}
+.counterLikes>p{
+   font-weight: normal;
+   margin: auto;
+}
+   
+
+.likes{
+    width: 30px;
+    
+}
+
+.footer{
+    background:var(--color-principal);
+   
+}
+.principalF{
+   padding:10px;
+}
+
+.areaW{
+    display: block;
+    padding: 10px;
+    width:90%;
+    background:var(--color-principal);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.widget{
+    display: inline-block;
+    width:20%;
+    padding: 10px;
+    
+    font-size: 10px;
+    text-align: left;
+   
+}
+.logo{
+    width: 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.copyright-bar{
+    background:#36393f;
+    color: #FFFFFF;
+    text-align: center;
+    
+}
+.copyright{
+    margin: auto;
+   font-size:  12px;
+}
+
+.estadisticas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+
+// BANNER
+
+.img-logo {
+    padding: 1px;
+    width: 63px;
+  }
+.img-carousel{
+    padding: 1px;
+    width: 200px;
+}
+.carousel-item{
+    height: 30rem;
+    background:rgb(0, 0, 0);
+    color: white;
+    background-position:center;
+    background-size:auto;
+}
+.overlay-text{
+    color: white;
+    position:absolute; 
+    top:100px; 
+    Left:50px;
+    font-weight: lighter;
+}
+.normal-text{
+
+    color: #9556cc;
+    font-weight: bold;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+
+}
+.normal-img{
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35px;
+    width:150px;
+
+}
+.overlay-image{
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    top:0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    // background-image: url("./cake3.png");
+}
+
+.btn{
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-start{
+    background-color: #9556cc;
+    color: white;
+    padding: 8px 130px;
+    font-size: 15px;
+    opacity: 1;
+    margin-top: 50px;
+    border: 0px;
+   
+}
+.btn-start:hover{
+    background-color:  #007bb6;
+    color: white;
+    padding: 13px 150px;
+    
+}
+
+// HEADER
+
+.jumbotron-header{
+    background-color: #7cd5d0;
+    background-size: 100% 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    position:static;
+}
+
+.btn{
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-register{
+    background-color: #9556cc;
+    color: white;
+    padding: 10px 60px;
+    font-size: 15px;
+    border: 0px solid #6dd3ce;
+  }
+.btn-register:hover{
+    background-color:  #007bb6;
+    color: white;
+    padding: 13px 65px;
+  }
+.btn-login{
+    background-color: #7cd5d0;
+    color: white;
+    padding: 10px 70px;
+    font-size: 15px;
+    border: 1px solid #6dd3ce;
+}
+.btn-login:hover{
+    background-color:  #007bb6;
+    color: white; 
+    padding: 13px 63px;
+}
+.btn-start{
+    background-color: #9556cc;
+    color: white;
+    padding: 8px 130px;
+    font-size: 15px;
+    opacity: 1;
+    margin-top: 50px;
+   
+}
+.btn-start:hover{
+    background-color:  #007bb6;
+    color: white;
+    padding: 13px 150px;
+    
+}
+.img-logo {
+ 
+    max-width: 70px;
+    margin-left: 20px;
+  }
