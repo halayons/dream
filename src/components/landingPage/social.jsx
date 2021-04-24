@@ -14,11 +14,11 @@ export class Social extends React.Component {
     }
     funtion(a) {
         var l = a.length;
-        var ll = a.substring(13, l)
+        var ll = a.substring(1, l)
         return ll;
     }
     fecha(a) {
-        return a.substring(0, 9);
+        return a;
     }
     usuarios(e) {
         return (<div className="customer">
@@ -32,17 +32,17 @@ export class Social extends React.Component {
             <div className="infoC">
                 <td>
                     <div className="nameC">
-                        <p> usuario:</p>
+                        <p> usuario: </p>
                         {e.usuario}
                     </div>
                     <div className="date">
-                        <p> fecha:</p>{this.fecha(e.published_date)}
+                        <p> fecha: </p>{this.fecha(e.published_date)}
                     </div>
                 </td>
 
                 <td>
                     <div className="counterLikes">
-                        <img src={like} className="likes"></img><p>{e.likes}</p>
+                        <img src={like} className="likes"></img><p> {e.likes}</p>
                     </div>
                 </td>
             </div>
