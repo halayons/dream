@@ -21,7 +21,9 @@ export class Banner extends React.Component {
     }
 
       promos = ({ promos }) => {
+          
         return (
+            
             <div>
                 
                 <div>
@@ -37,12 +39,27 @@ export class Banner extends React.Component {
                     <div className="carousel-inner">
                         <div>
                             <div className="carousel-item active">
-                                <div id="opacity_div"></div>
-                                <div className="overlay-image"> </div>
+                                <div id="opacity_div "></div>
+                                
+                                <div className="row h-100 "> 
+                                <div className=" col-sm-12 text-center my-auto" >
+                                    <h2>Crea tu Pastel</h2> 
+                                    <p>1.) ¡Registrate! </p>
+                                    <p>2.) ¡Elige la crema! </p>
+                                    <p>3.) ¡Selecciona el tipo de torta! </p>
+                                    <p>4.) ¡Ponle el relleno! </p>
+                                    <p>5.) ¡Decoralo a tu antojo! </p>
+
+
+                                    <button type="button" className="btn-start mx-auto d-md-block"> COMENZAR </button>
+
+                                </div >
+                                </div>
                                 <div className="carousel-caption d-none d-md-block" >
                                     <h3>Conoce nuestras promociones</h3>
                                 </div>
                             </div>
+                            
                             {promos.map((promo) => (
                                 <div className="carousel-item">
                                     <div id="opacity_div"></div>
@@ -61,18 +78,7 @@ export class Banner extends React.Component {
                 </div>
 
 
-                <div className="overlay-text col-md-6 justify-content-center " >
-                    <h2>Crea tu Pastel</h2>
-                    <p>1.) ¡Registrate!</p>
-                    <p>2.) ¡Elige la crema! </p>
-                    <p>3.) ¡Selecciona el tipo de torta!</p>
-                    <p>4.) ¡Ponle el relleno!</p>
-                    <p>5.) ¡Decoralo a tu antojo!</p>
-
-
-                    <button type="button" className="btn-start mx-auto d-md-block"> COMENZAR </button>
-
-                </div >
+                
             </div >
 
             </div >
