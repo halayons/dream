@@ -37,7 +37,7 @@
     display: inline-block;
     margin:10px;
     padding:10px;
-    width: 28%;
+    min-width: 28%;
     background: #e9e7eabf;
     box-shadow: 1px 2px 4px rgba(122, 119, 119, 0.618);
     border-radius: 2%;
@@ -46,26 +46,28 @@
 
 }
 .customer:hover{
-    padding: 15px;;
+    //padding: 12px;
+    background: #7cd5d178;
+    min-width: 30%;
+    box-shadow: 1px 2px 4px rgba(19, 17, 17, 0.618);
 }
 .cakeC{
     display:block;
     padding:auto;
     height:80%;
-    max-width:65%;
+    width:20em;
     justify-content:center;
     margin-left: auto;
     margin-right: auto;
 }
 .cake{
-    height:240px;
-    border-radius: 0%;
-    
-    
+    //width:10em;
+    height: 10em;
+    border-radius: 0%;   
 }
 .photoC{
    position: absolute;
-   top: 210px;
+   top: 130px;
    left: 50px;
     height:50px;
     right:70px;

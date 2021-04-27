@@ -26,7 +26,7 @@ export class Social extends React.Component {
                 <img src={"http://localhost:8000/" + this.funtion(e.foto)} className="cake"></img>
             </div>
             <div className="photoC">
-                <img src={"media/posts/users/" + e.usuario + ".jpg"} className="photo" />
+                <img src={"media/users/" + e.usuario + ".jpg"} className="photo" />
             </div>
 
             <div className="infoC">
