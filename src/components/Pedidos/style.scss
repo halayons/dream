@@ -1,0 +1,42 @@
+
+.pastel{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 10em;
+    height:5em;
+    background:rgb(237, 232, 208);
+    border-radius: 0 0 10% 10% ;
+    
+}
+.contentP{
+    position: relative;
+    align-items: center;
+    width: 30em;
+    height:50em;
+    margin: 15px;
+    
+}
+.pastelT{
+    position: absolute;
+    top: 7%;
+    left: 10%;
+    width: 10em;
+    height:3em;
+    background:yellowgreen;
+    border-radius:   80% ;
+    border-bottom: solid 1px;
+    
+}
+.pastelB{
+    position: absolute;
+    top: 16%;
+    left: 10%;
+    width: 10em;
+    height:3em;
+    background:yellowgreen;
+    border-radius:   80% ;
+    border-bottom: solid 1px;
+    
+    
+}

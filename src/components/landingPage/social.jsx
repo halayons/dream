@@ -1,6 +1,4 @@
-import imagen1 from '../../static/images/cake.jpg';
-import imagen2 from '../../static/images/cara.jpg';
-import logo from '../../logo.svg';
+
 import like from '../../static/images/like.png';
 import React from 'react';
 
