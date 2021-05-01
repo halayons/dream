@@ -1,42 +1,62 @@
+:root{
+   --color-pastel:#aa2fba;
+   --textura-pastel:url("https://www.transparenttextures.com/patterns/wave-grid.png");
+   --zise-pastel:3em;
+}
+
+
+.pastelT{
+    position: absolute;
+    top: 0%;
+    left: 15%;
+    width: 10em;
+    height:var(--zise-pastel);
+    background-color:var( --color-pastel);
+    background-image: var(--textura-pastel);
+    border-radius:   80% ;
+    border-bottom: solid 1px;
+    transition: 0.5s;
+}
+.pastel:hover ~ div{
+    --zise-pastel:3.4em;
+}
 
 .pastel{
     position: absolute;
     top: 10%;
-    left: 10%;
+    left: 15%;
     width: 10em;
     height:5em;
-    background:rgb(237, 232, 208);
+    background-color:var( --color-pastel);
+    background-image: var(--textura-pastel);
     border-radius: 0 0 10% 10% ;
     
 }
-.contentP{
-    position: relative;
-    align-items: center;
-    width: 30em;
-    height:50em;
-    margin: 15px;
-    
-}
-.pastelT{
-    position: absolute;
-    top: 7%;
-    left: 10%;
-    width: 10em;
-    height:3em;
-    background:yellowgreen;
-    border-radius:   80% ;
-    border-bottom: solid 1px;
-    
-}
 .pastelB{
-    position: absolute;
-    top: 16%;
-    left: 10%;
+    position:absolute;
+    top: 30%;
+    left: 15%;
     width: 10em;
-    height:3em;
-    background:yellowgreen;
+    height:var(--zise-pastel);
+    background-color:var( --color-pastel);
+    background-image: var(--textura-pastel);
     border-radius:   80% ;
     border-bottom: solid 1px;
+    transition: 0.5s;
     
     
+}
+
+
+.draw{
+    position: relative;
+    padding: 5px;
+    margin-top: 5em;
+    min-height: 15em;
+    min-width: 50%;
+    min-width: 70%;
+    margin-left: auto;
+}
+.opciones{
+    margin: 5px;
 }
