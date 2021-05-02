@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import {Dropdown,DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 import "./style.scss";
+import {SliderPicker} from 'react-color';
 
 
 export default class Pedido extends React.Component {
@@ -13,7 +13,8 @@ export default class Pedido extends React.Component {
                 Cobertura: 'Sin cubierta',
                 Color: '#FFFFFF',
                 Porciones: '1',
-                Tematica:''
+                Tematica:'',
+                Forma:'Redondo'
         };
     }
 
@@ -57,31 +58,35 @@ export default class Pedido extends React.Component {
     
     componentDidMount() {
         fetch('http://localhost:8000/pasteles/', {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(this.state)
         })
-     }
+    }
      
+     handleChangeComplete = (color) => {
+        this.setState({ Color: color.hex });
+    };
      
     render() {
         let color =this.state.Color   
         document.documentElement.style.setProperty('--color-pastel',color);
         
         this.actualizar()
-        return (
-            <div className ="container  d-flex ">
+
+ return (
+            <div className ="container  d-flex  justify-content-center ">
                 
-                    <div className= "col-sm-6">
+                    <div className= "col-sm-3 " >
                         <Pastel></Pastel>
                     </div>
-                    <div className ="opciones  col-sm-6">
+                    <div className ="opciones  col-sm-3">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                     Masa
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -96,7 +101,7 @@ export default class Pedido extends React.Component {
 
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                     Relleno
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -113,7 +118,7 @@ export default class Pedido extends React.Component {
 
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                     Cubierta
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -128,35 +133,22 @@ export default class Pedido extends React.Component {
                         </div> 
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                     Porciones
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item"   onClick= {this.seleccionP} id="1-35 ">1-35 </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionP} id="35-60">35-60 </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionP} id="60-100"> 60-100</a></li>
+                                    <li><a class="dropdown-item"   onClick= {this.seleccionP} id="15 ">1-35 </a></li>
+                                    <li><a class="dropdown-item" onClick= {this.seleccionP} id="2">35-60 </a></li>
+                                    <li><a class="dropdown-item" onClick= {this.seleccionP} id="3"> 60-100</a></li>
                                 </ul>
                             </div>
                             
                         </div> 
 
-                        <div style ={{margin:5+'px'}}>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-                                    Color
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" onClick= {this.seleccionColor} id="#ba2f2f">Rojo </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionColor} id="#7cd5d1">verde</a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionColor} id="#2f82ba">Azul</a></li>
-                                </ul>
-                            </div>
-                            
-                        </div> 
                         
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                     Tematica
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -167,8 +159,17 @@ export default class Pedido extends React.Component {
                                     <li><a class="dropdown-item" onClick= {this.seleccionT} id="Casual"> Casual </a></li>
                                 </ul>
                             </div>
+                           
                             {console.log(this.state )}
                         </div> 
+
+
+                        <div style ={{margin:10+'px', width:10+'em'}}>
+                        <SliderPicker color = {this.state.Color}
+                        onChangeComplete ={this.handleChangeComplete}>
+
+                        </SliderPicker>
+                        </div>
                                                     
                     </div>
                     
@@ -184,7 +185,7 @@ export  class Pastel extends React.Component{
     render(){
         return(
             
-                <div className ='draw'> 
+                <div className ='draw '> 
                     
                     <div className="pastel " ></div>
                     <div className="pastelT tapas"></div>
@@ -194,3 +195,4 @@ export  class Pastel extends React.Component{
         )
     }
 }
+
