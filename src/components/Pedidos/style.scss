@@ -2,12 +2,13 @@
    --color-pastel:#FFFFFF;
    --textura-pastel:url("https://www.transparenttextures.com/patterns/wave-grid.png");
    --zise-pastel:3em;
+   --zise-pastel2:2em;
 }
 
 
 .pastelT{
     position: absolute;
-    top: 0%;
+    top: 45%;
     left: 15%;
     width: 10em;
     height:var(--zise-pastel);
@@ -19,14 +20,15 @@
 }
 .pastel:hover ~ div{
     --zise-pastel:3.4em;
+    --zise-pastel2:2.4em;
 }
 
 .pastel{
     position: absolute;
-    top: 10%;
+    top: 55%;
     left: 15%;
     width: 10em;
-    height:5em;
+    height:4em;
     background-color:var( --color-pastel);
     background-image: var(--textura-pastel);
     border-radius: 0 0 10% 10% ;
@@ -34,7 +36,7 @@
 }
 .pastelB{
     position:absolute;
-    top: 30%;
+    top: 70%;
     left: 15%;
     width: 10em;
     height:var(--zise-pastel);
@@ -50,13 +52,47 @@
 
 .draw{
     position: relative;
-    padding: 5px;
-    margin-top: 5em;
     min-height: 15em;
-    min-width: 50%;
-    min-width: 70%;
-    margin-left: auto;
+    width: 250px;
+    
+    
 }
 .opciones{
-    margin: 5px;
+    text-align: center;
+    clear: both;
+
 }
+.Dtwo{
+    position: relative;
+    min-height: 8.5em;
+    width: 250px;
+    
+}
+
+
+.pastelTtwo{
+    position: absolute;
+    top: 50%;
+    left: 23%;
+    width: 7.5em;
+    height:var(--zise-pastel2);
+}
+
+.pasteltwo{
+    position: absolute;
+    top: 64%;
+    left: 23%;
+    width: 7.5em;
+    height:2em;
+   }
+.pastelBtwo{
+    position:absolute;
+    top: 82%;
+    left: 23%;
+    width: 7.5em;
+    height:var(--zise-pastel2);
+    }
+.pasteltwo:hover ~ div{
+     --zise-pastel2:2.4em;
+}
+    

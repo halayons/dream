@@ -18,10 +18,6 @@ export default class Pedido extends React.Component {
         };
     }
 
-    
-    
-
-
     actualizar(){
         let chocolate ='url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")';
         let vainilla ='url("https://www.transparenttextures.com/patterns/asfalt-dark.png")';
@@ -77,12 +73,10 @@ export default class Pedido extends React.Component {
         
         this.actualizar()
 
- return (
+        return (
             <div className ="container  d-flex  justify-content-center ">
                 
-                    <div className= "col-sm-3 " >
-                        <Pastel></Pastel>
-                    </div>
+                    
                     <div className ="opciones  col-sm-3">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
@@ -115,7 +109,6 @@ export default class Pedido extends React.Component {
                             </div>
                             
                         </div>
-
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
                                 <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
@@ -144,8 +137,6 @@ export default class Pedido extends React.Component {
                             </div>
                             
                         </div> 
-
-                        
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
                                 <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
@@ -162,15 +153,20 @@ export default class Pedido extends React.Component {
                            
                             {console.log(this.state )}
                         </div> 
-
-
-                        <div style ={{margin:10+'px', width:10+'em'}}>
-                        <SliderPicker color = {this.state.Color}
-                        onChangeComplete ={this.handleChangeComplete}>
-
-                        </SliderPicker>
+                        <div style ={{margin:10+'px', width:10.5+'em',marginLeft:'auto',marginRight:'auto'}}>
+                            <SliderPicker color = {this.state.Color}
+                            onChangeComplete ={this.handleChangeComplete}>
+                            </SliderPicker>
                         </div>
-                                                    
+                        
+                    </div>
+                    <div className= "col-sm-3 " >
+                        <Pastel></Pastel>
+                    </div>
+                    <div className="col-sm-3" style ={{marginTop:10+'px'}}>
+                        <Mensaje></Mensaje>
+                        <Cform></Cform>  
+                        
                     </div>
                     
             </div>
@@ -185,13 +181,95 @@ export  class Pastel extends React.Component{
     render(){
         return(
             
-                <div className ='draw '> 
-                    
-                    <div className="pastel " ></div>
-                    <div className="pastelT tapas"></div>
+                <div className ='draw'> 
+                    <div className="pastel col-sm-12" ></div>
                     <div className="pastelB tapas"></div>
+                    <div className="pastelT tapas"></div>
+                    <div className ='Dtwo '> 
+                        <div className="pastel pasteltwo col-sm-12 " ></div>
+                        <div className="pastelB pastelBtwo tapas "></div>
+                        <div className="pastelT pastelTtwo tapas "></div>
+                    </div>
                 </div>
             
+        )
+    }
+}
+export class Mensaje extends React.Component{
+    render(){
+        return(
+            <form className ="" style ={{border:'#17a2b8', color:'#17a2b8'}}>
+                <div className="form-row">
+                    <label for ="mensaje">Mensaje</label>
+                    <textarea type="text" className="form-control" id ="mensaje "placeholder="Mensaje" rows="2.5"></textarea>
+                </div>
+                <div className="form-row">
+                    <label for ="observaciones">Observaciones</label>
+                    <textarea type ="text" className="form-control" id ="observaciones" placeholder ="Observaciones" rows="3"></textarea>
+                </div>
+            </form>
+         )
+    }
+}
+
+export class Cform extends React.Component{
+    render(){
+        return(
+            <div class="formulario" style ={{marginTop:10+'px'}} >
+                <a href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</a>
+                <div className="modal fade" id="emergente">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type ="button" className="close" data-dismiss="modal" aria-hidden="true"> </button>
+                                <h3 className="modal-title center">Cotizacion</h3>
+                            </div>
+                            <div className="modal-body">
+                                 <Formulario></Formulario>
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-outline-info" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-info" data-dismiss="modal">Solicitar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+export class Formulario extends React.Component{
+    render(){
+        return(
+            <form className ="container">
+                <div className="col-sm-12 form-row">
+                    <div className=" form-group">
+                        <label for="nombre">Nombre y apellido</label>
+                        <input type = "text" class= "form-control" id="nombre" placeholder="Ingrese su nombre"></input>
+                    </div>
+                </div>
+                
+                <div className="col-sm-12 form-row">
+                    <div className="form-group">
+                        <label for ="email">Email</label>
+                        <input type ="Email" className=" col-sm-12 form-control" id ="email" placeholder="Email"></input>
+                    </div>
+                </div>
+                <div className=" col-sm-12 form-row">
+                    <div className="col-sm-6 form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type ="text" className =" col-sm-12 form-control" id ="telefono" placeholder ="Telefono"></input>
+                    </div>
+                    <div className ="col-sm-6 form-group">
+                        <label for ="direccion" >Dirección</label>
+                        <input type ="text"className ="col-sm-11  form-control" for ="direccion" placeholder ="Direccion"></input>
+                    </div>
+                </div>
+                
+                <label for ="comentario">Cometario</label>
+                <textarea id="comentario" className ="form-control" rows ="3"></textarea>
+            </form>
         )
     }
 }
