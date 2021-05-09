@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
 import {SliderPicker} from 'react-color';
+
 
 
 export default class Pedido extends React.Component {
@@ -25,24 +26,21 @@ export default class Pedido extends React.Component {
         let velvet =  'url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png")';
         let textura = "";
 
-        if(this.state.Masa == 'RedVelvet'){
+        if(this.state.Masa === 'RedVelvet'){
             textura = velvet;
         }
-        else if(this.state.Masa == 'Tres Leches'){
+        else if(this.state.Masa === 'Tres Leches'){
             textura = leches;
         }
-        else if(this.state.Masa == 'Vainilla'){
+        else if(this.state.Masa === 'Vainilla'){
             textura = vainilla;
         }
-        else if(this.state.Masa == 'Chocolate'){
+        else if(this.state.Masa === 'Chocolate'){
             textura = chocolate;
         }
-        
         document.documentElement.style.setProperty('--textura-pastel',textura);
-
     }
-
-    
+    seleccionF =(event)=> {this.setState({Forma:event.target.id}) }
     seleccionM =(event)=> {this.setState({Masa:event.target.id}) }
     seleccionR =(event)=> {this.setState({Relleno:event.target.id})}
     seleccionC =(event)=> {this.setState({Cobertura:event.target.id})}
@@ -66,11 +64,12 @@ export default class Pedido extends React.Component {
      handleChangeComplete = (color) => {
         this.setState({ Color: color.hex });
     };
+  
      
     render() {
-        let color =this.state.Color   
+        let color =this.state.Color;   
+        const f =this.state.Forma;
         document.documentElement.style.setProperty('--color-pastel',color);
-        
         this.actualizar()
 
         return (
@@ -78,6 +77,18 @@ export default class Pedido extends React.Component {
                 
                     
                     <div className ="opciones  col-sm-3">
+                        <div style ={{margin:5+'px'}}>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                    Forma
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item"   onClick= {this.seleccionF} id="Redondo" selected>Redondo</a></li>
+                                    <li><a class="dropdown-item" onClick= {this.seleccionF} id="Cuadrado"> Cuadrado</a></li>
+                                </ul>
+                            </div>
+                            
+                        </div>
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
                                 <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
@@ -160,14 +171,15 @@ export default class Pedido extends React.Component {
                         </div>
                         
                     </div>
-                    <div className= "col-sm-3 " >
-                        <Pastel></Pastel>
+                    <div className= "col-sm-3" >
+                       {f=='Redondo' ?(<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
                     <div className="col-sm-3" style ={{marginTop:10+'px'}}>
                         <Mensaje></Mensaje>
                         <Cform></Cform>  
                         
                     </div>
+                   
                     
             </div>
                
@@ -195,13 +207,36 @@ export  class Pastel extends React.Component{
         )
     }
 }
+export  class PastelC extends React.Component{
+
+    
+
+    render(){
+     
+        return(
+            <div class="contenedor">
+
+                    <div class="cubo">
+                      <div class="uno"></div>
+                      <div class="dos"></div>
+                      <div class="tres"></div>
+                      <div class="cuatro"></div>
+                      <div class="cinco"></div>
+                      <div class="seis"></div>
+                  </div>
+                  </div>
+                
+        )    
+    
+}
+}
 export class Mensaje extends React.Component{
     render(){
         return(
             <form className ="" style ={{border:'#17a2b8', color:'#17a2b8'}}>
                 <div className="form-row">
                     <label for ="mensaje">Mensaje</label>
-                    <textarea type="text" className="form-control" id ="mensaje "placeholder="Mensaje" rows="2.5"></textarea>
+                    <textarea type="text" className="form-control" id ="mensaje "placeholder="Mensaje" rows="3"></textarea>
                 </div>
                 <div className="form-row">
                     <label for ="observaciones">Observaciones</label>
@@ -211,7 +246,6 @@ export class Mensaje extends React.Component{
          )
     }
 }
-
 export class Cform extends React.Component{
     render(){
         return(
