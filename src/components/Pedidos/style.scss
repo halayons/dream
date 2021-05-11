@@ -98,20 +98,19 @@
      
 
 .contenedor{
-    text-align: left;
+    text-align: center;
     margin:auto;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     perspective: 2000px;
     perspective-origin: 0px -1000px;
 }
 
 .cubo {
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin-top: 100px;
-    margin-right: 50px;
+    width: 130px;
+    height: 130px;
+    margin-top: 130px;
     transform-style:preserve-3d;
     transform: rotateY(-20deg);
     //animation:girar 5s infinite linear;
@@ -136,8 +135,9 @@
     height: 50%;
     background-color:var( --color-pastel);
     background-image: var(--textura-pastel);
-    transform: translateZ(100px); 
+    transform: translateZ(65px); 
     transition: 0.5s;
+    
 }
 .dos{
     position: absolute;
@@ -145,8 +145,9 @@
     height: 50%;
     background-color:var( --color-pastel);
     background-image: var(--textura-pastel);
-    transform: translateX(100px) rotateY(90deg);
+    transform: translateX(65px) rotateY(90deg);
     transition: 0.5s;
+    
 
 }
 .tres{
@@ -155,8 +156,9 @@
     height: 50%;
     background-color:var( --color-pastel);
     background-image: var(--textura-pastel);
-    transform: translateZ(-100px);
+    transform: translateZ(-65px);
     transition: 0.5s;
+    
 }
 
 .cuatro{
@@ -165,8 +167,9 @@
     height: 50%;
     background-color:var( --color-pastel);
     background-image: var(--textura-pastel);
-    transform: translateX(-100px) rotateY(90deg);
+    transform: translateX(-65px) rotateY(90deg);
     transition: 0.5s;
+   
 
 }
 
@@ -176,9 +179,9 @@
     height: 100%;
     background-color:var( --color-pastel);
     background-image: var(--textura-pastel);
-    transform: translateY(-100px) rotateX(90deg);
+    transform: translateY(-65px) rotateX(90deg);
     transition: 0.5s;
-
+   
 }
 
 .seis{
@@ -187,9 +190,9 @@
     height: 100%;
     background-color:var( --color-pastel);
     background-image: var(--textura-pastel);
-    transform: translateY(-100px) rotateX(90deg);
+    transform: translateY(0px) rotateX(90deg);
     transition: 0.5s;
-
+ 
 }
 
 
