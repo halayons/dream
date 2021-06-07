@@ -11,6 +11,10 @@ export class Banner extends React.Component {
         promos: []
     }
 
+    pedido(){
+        window.location.pathname = "/accounts/pedido/"
+    }
+
     componentDidMount() {
         fetch('http://127.0.0.1:8000/photos/')
         .then(res => res.json())
@@ -51,8 +55,8 @@ export class Banner extends React.Component {
                                     <p>5.) ¡Decoralo a tu antojo! </p>
 
 
-                                    <button type="button" className="btn-start mx-auto d-md-block"> COMENZAR </button>
-
+                                    <button type="button" className="btn-start mx-auto d-md-block" onClick={this.pedido}> COMENZAR </button>
+                                    
                                 </div >
                                 </div>
                                 <div className="carousel-caption d-none d-md-block" >

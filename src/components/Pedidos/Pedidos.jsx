@@ -15,9 +15,12 @@ export default class Pedido extends React.Component {
                 Color: '#FFFFFF',
                 Porciones: '1',
                 Tematica:'',
-                Forma:'Redondo'
+                Forma:'Redondo',
+                Mensaje:'',
+                Observaciones:''
         };
     }
+
 
     actualizar(){
         let chocolate ='url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")';
@@ -40,17 +43,22 @@ export default class Pedido extends React.Component {
         }
         document.documentElement.style.setProperty('--textura-pastel',textura);
     }
+    
     seleccionF =(event)=> {this.setState({Forma:event.target.id}) }
     seleccionM =(event)=> {this.setState({Masa:event.target.id}) }
     seleccionR =(event)=> {this.setState({Relleno:event.target.id})}
     seleccionC =(event)=> {this.setState({Cobertura:event.target.id})}
     seleccionP =(event)=> {this.setState({Porciones:event.target.id})}
     seleccionT =(event)=> {this.setState({Tematica:event.target.id})}
-    seleccionColor =(event)=> {
-        this.setState({Color:event.target.id}); }
-
+    seleccionColor =(event)=> {this.setState({Color:event.target.id});}
+    getData=(info)=>{
+        this.setState({Mensaje:info.Men})
+        this.setState({Observaciones:info.Obs})
+    }
     
     componentDidMount() {
+       
+        
         fetch('http://localhost:8000/pasteles/', {
             method: 'POST',
             headers: {
@@ -60,22 +68,30 @@ export default class Pedido extends React.Component {
             body: JSON.stringify(this.state)
         })
     }
+
+    
      
      handleChangeComplete = (color) => {
         this.setState({ Color: color.hex });
     };
-  
+    userExist=()=>{
+        fetch('http://127.0.0.1:8000/users/api/auth/user/', { method: 'GET' })
+            .then((response) => response.json())
+            .then(responseJson => { console.log(responseJson) }
+            );
+    }
      
     render() {
         let color =this.state.Color;   
         const f =this.state.Forma;
         document.documentElement.style.setProperty('--color-pastel',color);
         this.actualizar()
+        
 
         return (
             <div className ="container  d-flex  justify-content-center ">
                 
-                    
+                                   
                     <div className ="opciones  col-sm-3">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
@@ -175,9 +191,7 @@ export default class Pedido extends React.Component {
                        {f=='Redondo' ?(<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
                     <div className="col-sm-3" style ={{marginTop:10+'px'}}>
-                        <Mensaje></Mensaje>
-                        <Cform></Cform>  
-                        
+                        <Mensaje getData={this.getData} ></Mensaje> 
                     </div>
                    
                     
@@ -208,9 +222,6 @@ export  class Pastel extends React.Component{
     }
 }
 export  class PastelC extends React.Component{
-
-    
-
     render(){
      
         return(
@@ -230,19 +241,74 @@ export  class PastelC extends React.Component{
     
 }
 }
+
+
 export class Mensaje extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            Men:'',
+            Obs:'',
+            log:'1'
+        };
+    }
+    getM=(e)=>{
+       this.setState({Men: e.target.value})
+    }
+    getO=(e)=>{
+        this.setState({Obs: e.target.value})
+     }
+    userExist=()=>{
+        console.log("el usuario existe?=")
+        fetch('http://127.0.0.1:8000/users/api/auth/user/', { method: 'GET' })
+            .then((response) => response.json())
+            .then(responseJson => { console.log(responseJson) }
+            );
+    }
+    
+   
     render(){
+        const f =this.state.log;
+        const {getData}= this.props
         return(
+        <div>
             <form className ="" style ={{border:'#17a2b8', color:'#17a2b8'}}>
                 <div className="form-row">
                     <label for ="mensaje">Mensaje</label>
-                    <textarea type="text" className="form-control" id ="mensaje "placeholder="Mensaje" rows="3"></textarea>
+                    <textarea value={this.state.Men}  onChange={this.getM} type="text" className="form-control" ref={this.mensaje} id ="mensaje "placeholder="Mensaje" rows="3"></textarea>
                 </div>
                 <div className="form-row">
                     <label for ="observaciones">Observaciones</label>
-                    <textarea type ="text" className="form-control" id ="observaciones" placeholder ="Observaciones" rows="3"></textarea>
+                    <textarea value={this.state.Obs}  onChange={this.getO} type ="text" className="form-control" ref={this.observaciones}id ="observaciones" placeholder ="Observaciones" rows="3"></textarea>
                 </div>
             </form>
+
+            <div class="formulario" style ={{marginTop:10+'px'}} >
+                <button type="button" onClick={()=>getData(this.state),this.userExist} href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
+
+                <div className="modal fade" id="emergente">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type ="button" className="close" data-dismiss="modal" aria-hidden="true"> </button>
+                                <h3 className="modal-title center">Cotizacion</h3>
+                            </div>
+                            <div className="modal-body">
+                            {f=='1' ?(<Pastel></Pastel>) : ( <Formulario></Formulario>)}
+                                
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-outline-info" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-info" data-dismiss="modal">Solicitar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+        
          )
     }
 }
@@ -250,7 +316,8 @@ export class Cform extends React.Component{
     render(){
         return(
             <div class="formulario" style ={{marginTop:10+'px'}} >
-                <a href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</a>
+                <button type="button" onClick ="getText()"   href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
+
                 <div className="modal fade" id="emergente">
                     <div className="modal-dialog">
                         <div className="modal-content">
