@@ -1,6 +1,8 @@
 import React from "react";
 import { Login, Register, ForgotPassword, ImageContainer } from "./index";
 import { Button } from 'react-bootstrap';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 
 export class LoginScreen extends React.Component {
@@ -33,6 +35,16 @@ export class LoginScreen extends React.Component {
     }
 
     render() {
+        const responseFacebook = (response) => {
+            console.log(response);
+          }
+       const componentClicked=()=>{
+            alert('Evento onClick');
+        }
+        const responseGoogle= (response) => {
+            console.log(response);
+            console.log(response.profileObj);
+          }
         console.log(window.location.pathname)
         return (
             <div className="loginScreen">
@@ -46,10 +58,25 @@ export class LoginScreen extends React.Component {
                     </div>
                     <div className="socialButtons">
                         {/* <form action="" method="post"> */}
-                        <Button className="facebook" onClick={this.facebook} tittle="Facebook">Facebook</Button>
+                        <FacebookLogin
+                        appId="942968703190705"
+                        autoLoad
+                        icon="fa-facebook" 
+                        callback={responseFacebook}
+                        
+                        render={renderProps => (
+                            <button className="facebook"  onClick={renderProps.onClick}>Facebook</button>
+                          )} />
                         {/* </form>
                         <form action="" method="post"> */}
-                        <Button className="google" onClick={this.google} tittle="Google">Google</Button>
+                        <GoogleLogin
+    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    buttonText="Iniciar con Google"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />
+                        
                         {/* </form> */}
                     </div>
                 </div>

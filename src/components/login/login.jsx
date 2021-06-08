@@ -1,7 +1,9 @@
 import React from "react";
 import Cookies from 'js-cookie';
+import { useState } from 'react';
 
 export class Login extends React.Component {
+
 
     constructor(props) {
         super(props);
@@ -68,10 +70,24 @@ export class Login extends React.Component {
     }
 
     render() {
+       
         return (
             <div className="App">
                 <div className="login">
                     <div className="container">
+                        <form>
+      <label><br />
+        <p>Usuario</p><br />
+        <input type="text" />
+      </label>
+      <label>
+        <p>Contraseña</p><br />
+        <input type="password" /><br />
+      </label>
+      <div>
+      <br /><button type="submit">Iniciar Sesión</button>
+      </div>
+    </form>
                         <div className="content" dangerouslySetInnerHTML={{ __html: this.state.test }}></div>
                     </div>
                 </div>
