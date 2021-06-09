@@ -21,6 +21,7 @@ export  class Pedido extends React.Component {
         };
     }
 
+
     actualizar(){
         let chocolate ='url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")';
         let vainilla ='url("https://www.transparenttextures.com/patterns/asfalt-dark.png")';
@@ -56,6 +57,8 @@ export  class Pedido extends React.Component {
     }
     
     componentDidMount() {
+       
+        
         fetch('http://localhost:8000/pasteles/', {
             method: 'POST',
             headers: {
@@ -65,22 +68,30 @@ export  class Pedido extends React.Component {
             body: JSON.stringify(this.state)
         })
     }
+
+    
      
      handleChangeComplete = (color) => {
         this.setState({ Color: color.hex });
     };
-    
+    userExist=()=>{
+        fetch('http://127.0.0.1:8000/users/api/auth/user/', { method: 'GET' })
+            .then((response) => response.json())
+            .then(responseJson => { console.log(responseJson) }
+            );
+    }
      
     render() {
         let color =this.state.Color;   
         const f =this.state.Forma;
         document.documentElement.style.setProperty('--color-pastel',color);
         this.actualizar()
+        
 
         return (
                 <div className ="container  d-flex  justify-content-center ">
                 
-                    
+                                   
                     <div className ="opciones  col-sm-3">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
@@ -230,6 +241,8 @@ export  class PastelC extends React.Component{
     
 }
 }
+
+
 export class Mensaje extends React.Component{
     constructor(props) {
         super(props);

@@ -13,7 +13,7 @@ export class Banner extends React.Component {
             promos: [],
            
         };  
-        let b =1;
+        
     }
     
     componentDidMount() {
@@ -103,8 +103,6 @@ export class Banner extends React.Component {
     
 
     render() {
-        const f =this.b;
-        console.log("el valor de f"+ f)
         return (
             
             f==1 ?(<this.promos promos={this.state.promos} />) : (<Pedido></Pedido>)
