@@ -21,17 +21,17 @@ export class Social extends React.Component {
     usuarios(e) {
         return (<div className="customer">
             <div className="cakeC">
-                <img src={"http://localhost:8000/" + this.funtion(e.foto)} className="cake"></img>
+                <img src={e.foto} className="cake"></img>
             </div>
             <div className="photoC">
-                <img src={"media/users/" + e.usuario + ".jpg"} className="photo" />
+                <img src={e.usuario.foto} className="photo" />
             </div>
 
             <div className="infoC">
                 <td>
                     <div className="nameC">
                         <p> usuario: </p>
-                        {e.usuario}
+                        {e.usuario.full_name}
                     </div>
                     <div className="date">
                         <p> fecha: </p>{this.fecha(e.published_date)}
@@ -52,7 +52,7 @@ export class Social extends React.Component {
 
     componentDidMount = () => {
 
-        fetch('http://localhost:8000/social/', { method: 'GET' })
+        fetch('http://localhost:8000/social/all_posts/-likes/3', { method: 'GET' })
             .then((response) => response.json())
             .then(responseJson => { this.setState({ data: responseJson }) }
             );
