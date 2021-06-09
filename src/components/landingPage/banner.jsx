@@ -1,4 +1,5 @@
 import React from 'react';
+import Pedido from '../Pedidos/Pedidos';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../../node_modules/bootstrap/dist/js/bootstrap.min";
 import "../../../node_modules/popper.js/dist/umd/popper.min";
@@ -6,21 +7,31 @@ import "../../../node_modules/jquery/dist/jquery.slim.min";
 
 
 export class Banner extends React.Component {
-
-    state = {
-        promos: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            promos: [],
+           
+        };  
+        let b =1;
     }
-
+    
     componentDidMount() {
         fetch('http://127.0.0.1:8000/photos/')
         .then(res => res.json())
         .then((data) => {
           this.setState({ promos: data })
         })
-        .catch(console.log)
+        .catch(console.log("error a l onterner imagenes del banner"))
     }
+    realizarPedido(){
+        console.log("cambiando pestaña");
+        window.location.pathname ="/crearPastel/";    
+    }
+    
 
       promos = ({ promos }) => {
+        
           
         return (
             
@@ -51,7 +62,10 @@ export class Banner extends React.Component {
                                     <p>5.) ¡Decoralo a tu antojo! </p>
 
 
-                                    <button type="button" className="btn-start mx-auto d-md-block"> COMENZAR </button>
+                                    <button type="button" className="btn-start mx-auto d-md-block" id="comenzar" onClick={this.realizarPedido} > COMENZAR </button>
+                                    
+                                    
+                                    
 
                                 </div >
                                 </div>
@@ -89,10 +103,13 @@ export class Banner extends React.Component {
     
 
     render() {
-        return ( <this.promos promos={this.state.promos} />
-
-
-
+        const f =this.b;
+        console.log("el valor de f"+ f)
+        return (
+            
+            f==1 ?(<this.promos promos={this.state.promos} />) : (<Pedido></Pedido>)
+             
+            
         )
     }
 }

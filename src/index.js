@@ -7,7 +7,7 @@ import Pedido from './components/Pedidos/Pedidos';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Pedido></Pedido>
+    <App></App>
 
   </React.StrictMode>,
   document.getElementById('root')
