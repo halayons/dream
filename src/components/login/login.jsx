@@ -46,7 +46,7 @@ export class Login extends React.Component {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             credentials: "include",
-            body : JSON.stringify({"username" : user, "password" : pass})
+            body : JSON.stringify({"email" : user, "password" : pass})
        };
 
         let response = await fetch('http://localhost:8000/users/api/auth/login/', requestOptions)
