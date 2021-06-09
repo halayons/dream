@@ -74,6 +74,7 @@ export  class Pedido extends React.Component {
      handleChangeComplete = (color) => {
         this.setState({ Color: color.hex });
     };
+
     userExist=()=>{
         fetch('http://127.0.0.1:8000/users/api/auth/user/', { method: 'GET' })
             .then((response) => response.json())

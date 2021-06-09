@@ -105,7 +105,7 @@ export class Banner extends React.Component {
     render() {
         return (
             
-            f==1 ?(<this.promos promos={this.state.promos} />) : (<Pedido></Pedido>)
+       <this.promos promos={this.state.promos} />
              
             
         )

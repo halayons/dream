@@ -4,7 +4,7 @@ import './App.css';
 
 import { LoginScreen } from "./components/login/index";
 import { LandingPage } from "./components/landingPage/index";
-import {Pedido} from "./components/Pedidos/Pedidos/"
+import {Pedido} from "./components/Pedidos/Pedidos"
 
 
 class App extends React.Component {
