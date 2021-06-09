@@ -2,10 +2,26 @@ import React from 'react';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
 import {SliderPicker} from 'react-color';
+import { Social, Footer, Header} from "../landingPage/index";
+import {Login} from '../login/login'
 
 
+export class Pedido extends React.Component{
+    
+    render()    {
+        return(
+            <div>
+                <Header></Header>
+                <Index></Index>
+                <Social></Social>
+                <Footer></Footer>
+            </div>
+    
+        )
+    }
+}
 
-export  class Pedido extends React.Component {
+export  class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,8 +71,8 @@ export  class Pedido extends React.Component {
         this.setState({Mensaje:info.Men})
         this.setState({Observaciones:info.Obs})
     }
-    
-    componentDidMount() {
+   
+    postearPastel() {
        
         
         fetch('http://localhost:8000/pasteles/', {
@@ -75,12 +91,7 @@ export  class Pedido extends React.Component {
         this.setState({ Color: color.hex });
     };
 
-    userExist=()=>{
-        fetch('http://127.0.0.1:8000/users/api/auth/user/', { method: 'GET' })
-            .then((response) => response.json())
-            .then(responseJson => { console.log(responseJson) }
-            );
-    }
+    
      
     render() {
         let color =this.state.Color;   
@@ -90,6 +101,8 @@ export  class Pedido extends React.Component {
         
 
         return (
+            
+
                 <div className ="container  d-flex  justify-content-center ">
                 
                                    
@@ -192,7 +205,7 @@ export  class Pedido extends React.Component {
                        {f=='Redondo' ?(<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
                     <div className="col-sm-3" style ={{marginTop:10+'px'}}>
-                        <Mensaje getData={this.getData} ></Mensaje> 
+                        <Mensaje getData={this.getData}    PASTEL={this.state} ></Mensaje> 
                     </div>
                    
                     
@@ -259,19 +272,42 @@ export class Mensaje extends React.Component{
     getO=(e)=>{
         this.setState({Obs: e.target.value})
      }
-    userExist=()=>{
-        console.log("el usuario existe?=")
-        fetch('http://127.0.0.1:8000/users/api/auth/user/', { method: 'GET' })
+     componentDidMount = () => {
+
+        let requestOptions ={
+            method: 'GET',
+            //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
+            credentials:'include'
+         
+        };
+        console.log("el usuario automatico=")
+        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
             .then((response) => response.json())
-            .then(responseJson => { console.log(responseJson) }
+            .then(responseJson => { console.log("email:"+responseJson.email); if(responseJson.email!=undefined){this.setState({log:'0'})} }
             );
     }
+    userExist = () => {
+
+        let requestOptions ={
+            method: 'GET',
+            //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
+            credentials:'include'
+         
+        };
+        console.log("el usuario automatico=")
+        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
+            .then((response) => response.json())
+            .then(responseJson => { console.log("email:"+responseJson.email); if(responseJson.email!=undefined){this.setState({log:'0'})} }
+            );
+    }
+   
     
    
     render(){
         const f =this.state.log;
-        const {getData}= this.props
+        const {getData}= this.props;
         return(
+            
         <div>
             <form className ="" style ={{border:'#17a2b8', color:'#17a2b8'}}>
                 <div className="form-row">
@@ -295,7 +331,7 @@ export class Mensaje extends React.Component{
                                 <h3 className="modal-title center">Cotizacion</h3>
                             </div>
                             <div className="modal-body">
-                            {f=='1' ?(<Pastel></Pastel>) : ( <Formulario></Formulario>)}
+                            {f=='1' ?(<Login></Login>) : ( <Formulario PASTEL={this.props.PASTEL} COMENTARIO={this.state.Obs}></Formulario>)}
                                 
                             </div>
 
@@ -313,64 +349,48 @@ export class Mensaje extends React.Component{
          )
     }
 }
-export class Cform extends React.Component{
-    render(){
-        return(
-            <div class="formulario" style ={{marginTop:10+'px'}} >
-                <button type="button" onClick ="getText()"   href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
 
-                <div className="modal fade" id="emergente">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button type ="button" className="close" data-dismiss="modal" aria-hidden="true"> </button>
-                                <h3 className="modal-title center">Cotizacion</h3>
-                            </div>
-                            <div className="modal-body">
-                                 <Formulario></Formulario>
-                            </div>
-
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-info" data-dismiss="modal">Cerrar</button>
-                                <button type="button" className="btn btn-info" data-dismiss="modal">Solicitar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
 export class Formulario extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+                Foto:'',
+                Direccion: 'Sin direccion',
+                Costo: 'No calculado',
+                Aceptado: 'False',
+                Domiciliario:'False',
+                Estado: '1',
+                Comentario: this.props.COMENTARIO,    
+                Pastel: this.props.PASTEL,
+                Usiario:''
+        };
+    }
     render(){
         return(
             <form className ="container">
                 <div className="col-sm-12 form-row">
                     <div className=" form-group">
-                        <label for="nombre">Nombre y apellido</label>
+                        <label for="nombre">    </label>
                         <input type = "text" class= "form-control" id="nombre" placeholder="Ingrese su nombre"></input>
                     </div>
                 </div>
                 
-                <div className="col-sm-12 form-row">
-                    <div className="form-group">
-                        <label for ="email">Email</label>
-                        <input type ="Email" className=" col-sm-12 form-control" id ="email" placeholder="Email"></input>
-                    </div>
-                </div>
+                
                 <div className=" col-sm-12 form-row">
-                    <div className="col-sm-6 form-group">
-                        <label for="telefono">Telefono</label>
-                        <input type ="text" className =" col-sm-12 form-control" id ="telefono" placeholder ="Telefono"></input>
-                    </div>
+                    
                     <div className ="col-sm-6 form-group">
                         <label for ="direccion" >Dirección</label>
                         <input type ="text"className ="col-sm-11  form-control" for ="direccion" placeholder ="Direccion"></input>
+                    </div>
+                    <div className="col-sm-6 form-group">
+                        <label for="domicilio">Domicilio</label>
+                        <input type ="text" className =" col-sm-12 form-control" id ="domicilio" ></input>
                     </div>
                 </div>
                 
                 <label for ="comentario">Cometario</label>
                 <textarea id="comentario" className ="form-control" rows ="3"></textarea>
+                
             </form>
         )
     }

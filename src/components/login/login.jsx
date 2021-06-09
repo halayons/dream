@@ -42,12 +42,12 @@ export class Login extends React.Component {
         let user = document.getElementsByTagName('input').namedItem('username').value
         let pass = document.getElementsByTagName('input').namedItem('password').value
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json'},
-            credentials: "include",
-            body : JSON.stringify({"username" : user, "password" : pass})
-       };
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                credentials: "include",
+                body : JSON.stringify({"email" : user, "password" : pass})
+        };
 
         let response = await fetch('http://localhost:8000/users/api/auth/login/', requestOptions)
         if (response.statusText === 'OK'){
