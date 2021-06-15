@@ -421,7 +421,7 @@ export class Formulario extends React.Component{
                 domiciliario:true,
                 estado: '1',
                 comentario: '',    
-                pastel:'',
+                pasteles:'',
                 user:''
         };
     }
@@ -429,15 +429,29 @@ export class Formulario extends React.Component{
     postearPedido(e) {
         this.obtenerDatos();
         console.log("vamos a postear")
+        console.log(this.state)
+
+        let form_data = new FormData()
+        form_data.append('foto', this.state.foto)
+        form_data.append('direccion', this.state.direccion)
+        form_data.append('costo', this.state.costo)
+        form_data.append('aceptado', this.state.aceptado)
+        form_data.append('domiciliario', this.state.domiciliario)
+        form_data.append('estado', this.state.estado)
+        form_data.append('comentario', this.state.comentario)
+        form_data.append('pasteles', this.state.pasteles)
+        form_data.append('user', this.state.user)
+
         fetch('http://localhost:8000/crear_pedido/', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                // 'Content-Type': 'multipart/form-data',
                 'X-CSRFToken':Cookies.get('csrftoken')
                 
             },
             credentials:'include',
-            body: JSON.stringify(this.state)
+            body: form_data
+            // body: JSON.stringify(this.state)
         }).then((response) => response.json())
         .catch(error => console.error('Error:', error))
         .then(response =>( console.log(response))  );
@@ -456,7 +470,7 @@ export class Formulario extends React.Component{
         if (getDomicilio=="No"){
             getDomicilio=false;
         }else{ getDomicilio=true}
-        this.setState({foto:getFile,direccion:getDireccion, domiciliario:getDomicilio, pastel:datos.pastel, comentario:datos.Obs, user:datos.user});
+        this.setState({foto:getFile,direccion:getDireccion, domiciliario:getDomicilio, pasteles:datos.pastel.split(' ')[1], comentario:datos.Obs, user:datos.user});
         console.log("se obtivieron los datos")
         //event.preventDefault();
         //event.stopPropagation();
@@ -491,8 +505,8 @@ export class Formulario extends React.Component{
                         </select>
                 </div>
                     
-                <button className="btn btn-dark" onClick={this.postearPedido.bind(this)}>Enviar</button>
-                <button className="btn btn-dark" onClick={this.ver}>ver estado</button>
+                <button className="btn btn-dark" onClick={this.postearPedido.bind(this)} onChange={this.handleChange}>Enviar</button>
+                <button className="btn btn-dark" onClick={this.ver} onChange={this.handleChange}>ver estado</button>
 
                 
                
