@@ -1,5 +1,5 @@
 
-import like from '../../static/images/like.png';
+import like from '../../static/images/like.svg';
 import React from 'react';
 
 
@@ -27,22 +27,15 @@ export class Social extends React.Component {
                 <img src={e.usuario.foto} className="photo" />
             </div>
 
-            <div className="infoC">
-                <td>
-                    <div className="nameC">
-                        <p> usuario: </p>
-                        {e.usuario.full_name}
-                    </div>
-                    <div className="date">
-                        <p> fecha: </p>{this.fecha(e.published_date)}
-                    </div>
-                </td>
-
-                <td>
-                    <div className="counterLikes">
-                        <img src={like} className="likes"></img><p> {e.likes}</p>
-                    </div>
-                </td>
+            <div className="infoC ">
+                
+                <div className="nameC">
+                  <h4 style={{margin:0}}> {e.usuario.full_name}</h4> 
+                </div>
+                <div className="counterLikes info-customer">
+                    {this.fecha(e.published_date)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;   <img src={like} className="likes"></img><span>{e.likes}</span>
+                </div>
+               
             </div>
 
 

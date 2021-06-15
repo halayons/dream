@@ -1,35 +1,21 @@
-import logo from '../../static/images/logo.png';
 import React from 'react';
-
+import face from '../../static/images/face.png';
+import insta from '../../static/images/Instagram.png';
+import tel from '../../static/images/Telefono.png';
+import what from '../../static/images/whatsap.png';
 export class Footer extends React.Component {
 
 
     render() {
         return (
             <div className="footer">
-                <div clasName="principalF">
-                    <div className="areaW">
-                        <div className="widget">
-                            <img src={logo} className="logo" />
-                        </div>
-
-                        <div className="widget">
-                            <spam>DreamCake</spam><br></br>
-                            <spam>Bogota | Colombia</spam><br></br>
-                            <spam>correo: dreamcake@unal.edu.co</spam><br></br>
-                            <spam>tel: (+57) 3133473579 </spam><br></br>
-                            <spam>dir: crr 6 este# 2--</spam><br></br>
-                            <span>barrio:</span>
-                        </div>
-
-                        <div className="widget">
-                            <img src={logo} className="logo" />
-                        </div>
-
-                        <div className="widget">
-                            <img src={logo} className="logo" />
-                        </div>
-                    </div>
+                <div className="principalF">
+                    <a href="https://www.facebook.com/DreamCakeOFICIAL1/"><img src={face} alt="" ></img></a>
+                    <img src={what} alt="" ></img>
+                    <img src={tel} alt="" ></img>
+                    <img src={insta} alt="" ></img>
+                    
+                    
                 </div>
 
                 <div className="copyright-bar">
