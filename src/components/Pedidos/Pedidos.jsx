@@ -427,9 +427,6 @@ export class Formulario extends React.Component{
     }
    
     postearPedido(e) {
-        this.obtenerDatos();
-        console.log("vamos a postear")
-        console.log(this.state)
 
         let form_data = new FormData()
         form_data.append('foto', this.state.foto)
