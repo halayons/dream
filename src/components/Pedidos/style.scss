@@ -5,7 +5,8 @@
     --zise-pastel2:2em;
  }
  .container{
-     padding-top:1rem ;
+     padding:1.5rem ;
+     margin:0 auto;
  }
  
  .pastelT{
@@ -53,8 +54,11 @@
  
  
  .draw{
+     display:inline-block;
      position: relative;
      min-height: 15em;
+     width: 15rem;
+     min-width:7rem;
      width: 250px;
      
      

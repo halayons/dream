@@ -113,10 +113,10 @@ export  class Index extends React.Component {
         return (
             
 
-                <div className ="container  d-flex  justify-content-center ">
+            <div className ="container row  d-flex justify-content-center ">
                 
                                    
-                    <div className ="opciones  col-sm-3">
+                    <div className ="opciones col-lg-4  col-sm-4 col-xs-6">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
                                 <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
@@ -187,22 +187,7 @@ export  class Index extends React.Component {
                             </div>
                             
                         </div> 
-                        <div style ={{margin:5+'px'}}>
-                            <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-                                    Tematica
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Matrimonio ">Matrimonio </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Grado ">Grado </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Cumpleaños"> Cumpleaños </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Comunion"> Comunion </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Casual"> Casual </a></li>
-                                </ul>
-                            </div>
-                           
-                            {console.log(this.state )}
-                        </div> 
+                        
                         <div style ={{margin:10+'px', width:10.5+'em',marginLeft:'auto',marginRight:'auto'}}>
                             <SliderPicker color = {this.state.color}
                             onChangeComplete ={this.handleChangeComplete}>
@@ -210,10 +195,10 @@ export  class Index extends React.Component {
                         </div>
                         
                     </div>
-                    <div className= "col-sm-3" >
+                    <div className= " col-lg-4 col-sm-4 col-xs-6 justify-content-center" >
                        {f=='CI' ?(<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
-                    <div className="col-sm-3" style ={{marginTop:10+'px'}}>
+                    <div className=" col-lg-4  col-sm-4 col-xs-3" style ={{marginTop:10+'px'}}>
                         <Mensaje getData={this.getData}   Pastel={this.state} ></Mensaje> 
                         
                     </div>
@@ -361,7 +346,7 @@ export class Mensaje extends Index{
             body: JSON.stringify(this.props.Pastel)
         }).then((response) => response.json())
         .catch(error => console.error('Error:', error))
-        .then(response =>( console.log("Pastel "+response.data.id), this.setState({pastel:"Pastel "+response.data.id}))  );
+        .then(response =>( console.log("Pastel "+response.data.id), this.setState({pastel:response.data.id}))  );
       }
     }
     
@@ -377,11 +362,11 @@ export class Mensaje extends Index{
             <form className ="" style ={{border:'#17a2b8', color:'#17a2b8'}}>
                 <div className="form-row">
                     <label for ="mensaje">Mensaje</label>
-                    <textarea value={this.state.Men}  onChange={this.getM} type="text" className="form-control" ref={this.mensaje} id ="mensaje "placeholder="Mensaje" rows="3"></textarea>
+                    <textarea required value={this.state.Men}  onChange={this.getM} type="text" className="form-control" ref={this.mensaje} id ="mensaje "placeholder="Mensaje" rows="2"></textarea>
                 </div>
                 <div className="form-row">
-                    <label for ="observaciones">Observaciones</label>
-                    <textarea value={this.state.Obs}  onChange={this.getO} type ="text" className="form-control" ref={this.observaciones}id ="observaciones" placeholder ="Observaciones" rows="3"></textarea>
+                    <label for ="observaciones">Comentarios</label>
+                    <textarea required value={this.state.Obs}  onChange={this.getO} type ="text" className="form-control" ref={this.observaciones}id ="observaciones" placeholder ="Comentarios sobre el pedido" rows="3"></textarea>
                 </div>
             </form>
 
@@ -427,17 +412,20 @@ export class Formulario extends React.Component{
     }
    
     postearPedido(e) {
+       
 
-        let form_data = new FormData()
-        form_data.append('foto', this.state.foto)
-        form_data.append('direccion', this.state.direccion)
-        form_data.append('costo', this.state.costo)
-        form_data.append('aceptado', this.state.aceptado)
-        form_data.append('domiciliario', this.state.domiciliario)
-        form_data.append('estado', this.state.estado)
-        form_data.append('comentario', this.state.comentario)
-        form_data.append('pasteles', this.state.pasteles)
-        form_data.append('user', this.state.user)
+        let form_data = new FormData();
+        form_data.append('foto', this.state.foto);
+        form_data.append('direccion', this.state.direccion);
+        form_data.append('costo', this.state.costo);
+        form_data.append('aceptado', this.state.aceptado);
+        form_data.append('domiciliario', this.state.domiciliario);
+        form_data.append('estado', this.state.estado);
+        form_data.append('comentario', this.state.comentario);
+        form_data.append('pasteles', this.state.pasteles);
+        form_data.append('user', this.state.user);
+        
+        console.log("--------------")
 
         fetch('http://localhost:8000/crear_pedido/', {
             method: 'POST',
@@ -454,55 +442,51 @@ export class Formulario extends React.Component{
         .then(response =>( console.log(response))  );
 
         console.log("se posteo el pastel")
-      //.then(responseJson =>  console.log("respueta del postera Pedido",responseJson));
-      e.preventDefault();
-      e.stopPropagation();
+
+       
     }
-    obtenerDatos(event){
+    obtenerDatos(){
         console.log("vamoas a obtener los datos")
         var {datos}=this.props;
-        var getDireccion = document.getElementById('direccion').value;
-        var getFile = document.getElementById('file').files[0];
-        var getDomicilio=document.getElementById('domicilio').value;
-        if (getDomicilio=="No"){
-            getDomicilio=false;
-        }else{ getDomicilio=true}
-        this.setState({foto:getFile,direccion:getDireccion, domiciliario:getDomicilio, pasteles:datos.pastel.split(' ')[1], comentario:datos.Obs, user:datos.user});
+        console.log(datos);
+        this.setState({ pasteles:datos.pastel, comentario:datos.Obs, user:datos.user});
         console.log("se obtivieron los datos")
-        //event.preventDefault();
-        //event.stopPropagation();
     }
-    ver=()=>console.log(this.state);
+    enviar(e){
+        this.obtenerDatos();
+        this.postearPedido();
+        e.preventDefault();
+        e.stopPropagation();
+    }
     
+    ver=()=>console.log(this.state);
     
 
     render(){
-        
-        const {datos}=this.props;
-            
+
         return(
             <form className ="container">
                 <div className=" form-row">
                     <div className=" form-group">
                         <label for="direccion"> Dirección </label>
-                        <input type = "text" class= "form-control" id="direccion" placeholder="Ingrese dirección" ></input>
+                        <input type = "text" class= "form-control" id="direccion" required onChange={(e)=>{this.setState({direccion:e.target.value});this.obtenerDatos()}} placeholder="Ingrese dirección" ></input>
                     </div>
                 </div>
                 <div className="form-group">
                     <label for="file"><span>Foto</span></label>
-                    <input type ="file" className="col-sm "  id="file"  accept="image/*"></input>
+                    <input type ="file" className="col-sm "  id="file" onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*"></input>
                     <div id="draw"></div>
                     
                 </div>
                 <div className ="form-group">
                     <label for ="domicilio" > ¿Desea domicilio?</label><br />
-                        <select name="domicilio"  id="domicilio">
-                            <option selected value="Si">Si</option>
-                            <option  value="No" >No</option>
+                        <select name="domicilio"  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
+                            <option selected value={true}>Si</option>
+                            <option  value={false} >No</option>
                         </select>
                 </div>
                     
-                <button className="btn btn-dark" onClick={this.postearPedido.bind(this)} onChange={this.handleChange}>Enviar</button>
+                <button  className="btn btn-dark" id="enviar" onClick={this.enviar.bind(this)}>Enviar</button>
                 <button className="btn btn-dark" onClick={this.ver} onChange={this.handleChange}>ver estado</button>
 
                 

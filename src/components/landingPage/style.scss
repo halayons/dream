@@ -105,7 +105,7 @@
    margin:0 auto;
    text-align: center;
 }
-.principalF>img{
+.principalF>a>img{
     margin:0.5rem 1rem;
 }
 
@@ -140,11 +140,11 @@
     background:#36393f;
     color: #FFFFFF;
     text-align: center;
-    
+    padding: 5px;
 }
 .copyright{
     margin: auto;
-   font-size:  12px;
+    font-size:  12px;
 }
 
 .estadisticas{
@@ -254,23 +254,25 @@
     padding: 10px 60px;
     font-size: 15px;
     border: 0px solid #6dd3ce;
+    transition: 0.5s;
   }
 .btn-register:hover{
     background-color:  #007bb6;
     color: white;
-    padding: 13px 65px;
+    padding: 11px 62px;
   }
 .btn-login{
     background-color: #7cd5d0;
     color: white;
     padding: 10px 70px;
     font-size: 15px;
-    border: 1px solid #6dd3ce;
+    border: 1px solid #6dd3ce; 
+    transition: 0.5s;
 }
 .btn-login:hover{
     background-color:  #007bb6;
     color: white; 
-    padding: 13px 63px;
+    padding: 11px 72px;
 }
 .btn-start{
     background-color: #9556cc;
@@ -288,7 +290,7 @@
     
 }
 .img-logo {
- 
-    max-width: 70px;
-    margin-left: 20px;
+    width: 4.5rem;
+    min-width: 3rem;
+    margin-left: 5rem;
   }
