@@ -51,26 +51,54 @@ export  class Index extends React.Component {
         let velvet =  'url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png")';
         let textura = "";
 
-        if(this.state.Masa === 'RedVelvet'){
+        if(this.state.masa === 'RV'){
             textura = velvet;
         }
-        else if(this.state.Masa === 'Tres Leches'){
+        else if(this.state.masa === 'TL'){
             textura = leches;
         }
-        else if(this.state.Masa === 'Vainilla'){
+        else if(this.state.masa === 'VA'){
             textura = vainilla;
         }
-        else if(this.state.Masa === 'Chocolate'){
+        else if(this.state.masa === 'CH'){
             textura = chocolate;
         }
         document.documentElement.style.setProperty('--textura-pastel',textura);
+
+
+
     }
     
-    seleccionF =(event)=> {this.setState({forma:event.target.id}) }
-    seleccionM =(event)=> {this.setState({masa:event.target.id}) }
-    seleccionR =(event)=> {this.setState({relleno:event.target.id})}
-    seleccionC =(event)=> {this.setState({cobertura:event.target.id})}
-    seleccionP =(event)=> {this.setState({porciones:parseInt(event.target.id)})}
+    seleccionF =(event)=> {
+        this.setState({forma:event.target.id});
+        let btn = document.getElementById('dropdownMenuForma');
+        btn.textContent=event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+     }
+    seleccionM =(event)=> {
+        this.setState({masa:event.target.id});
+        var btn = document.getElementById('dropdownMenuMasa');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+     }
+    seleccionR =(event)=> {
+        this.setState({relleno:event.target.id});
+        var btn = document.getElementById('dropdownMenuRelleno');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+    }
+    seleccionC =(event)=> {
+        this.setState({cobertura:event.target.id});
+        var btn = document.getElementById('dropdownMenuCubierta');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+    }
+    seleccionP =(event)=> {
+        this.setState({porciones:parseInt(event.target.id)});
+        var btn = document.getElementById('dropdownMenuPorciones');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+    }
     //seleccionT =(event)=> {this.setState({Tematica:event.target.id})}
     seleccionColor =(event)=> {this.setState({color:event.target.id});}
     getData=(info)=>{
@@ -113,13 +141,13 @@ export  class Index extends React.Component {
         return (
             
 
-            <div className ="container row  d-flex justify-content-center ">
+            <div className ="container row d-flex f-wrap justify-content-center ">
                 
                                    
-                    <div className ="opciones col-lg-4  col-sm-4 col-xs-6">
+                    <div className ="opciones col-lg-4  col-sm-6 ">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuForma" data-toggle="dropdown" aria-expanded="false">
                                     Forma
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -131,7 +159,7 @@ export  class Index extends React.Component {
                         </div>
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuMasa" data-toggle="dropdown" aria-expanded="false">
                                     Masa
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -146,7 +174,7 @@ export  class Index extends React.Component {
 
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuRelleno" data-toggle="dropdown" aria-expanded="false">
                                     Relleno
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -161,7 +189,7 @@ export  class Index extends React.Component {
                         </div>
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuCubierta" data-toggle="dropdown" aria-expanded="false">
                                     Cubierta
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -176,7 +204,7 @@ export  class Index extends React.Component {
                         </div> 
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuPorciones" data-toggle="dropdown" aria-expanded="false">
                                     Porciones
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -195,10 +223,10 @@ export  class Index extends React.Component {
                         </div>
                         
                     </div>
-                    <div className= " col-lg-4 col-sm-4 col-xs-6 justify-content-center" >
+                    <div className= " col-lg-4 col-sm-6 justify-content-center" >
                        {f=='CI' ?(<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
-                    <div className=" col-lg-4  col-sm-4 col-xs-3" style ={{marginTop:10+'px'}}>
+                    <div className=" col-lg-4  col-sm-12 " style ={{marginTop:10+'px'}}>
                         <Mensaje getData={this.getData}   Pastel={this.state} ></Mensaje> 
                         
                     </div>
@@ -425,7 +453,7 @@ export class Formulario extends React.Component{
         form_data.append('pasteles', this.state.pasteles);
         form_data.append('user', this.state.user);
         
-        console.log("--------------")
+        
 
         fetch('http://localhost:8000/crear_pedido/', {
             method: 'POST',
