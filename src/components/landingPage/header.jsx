@@ -21,7 +21,9 @@ export class Header extends React.Component{
             <div className="jumbotron-header"> 
                <div className="row">
                    <div className="col-md-8">
-                   <img src= {logo} className="img-logo" ></img>
+                        <a href="/" className="navbar-brand">
+                            <img src= {logo} className="img-logo" ></img>
+                        </a>
                    </div>
                    <div className="col-md-4 ver">
                        <button type="button" className="btn-register" onClick={this.registrarse}>Registrarse</button>

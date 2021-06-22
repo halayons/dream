@@ -28,8 +28,8 @@ export  class Index extends React.Component {
         super(props);
         this.state = {
                 masa: 'TL',
-                relleno: 'CP',
-                cobertura: 'CR',
+                relleno: '',
+                cobertura: '',
                 color: '#FFFFFF',
                 porciones: 1,
                 forma:'CI',    
@@ -50,6 +50,8 @@ export  class Index extends React.Component {
         let leches = ' url("https://www.transparenttextures.com/patterns/ravenna.png")';
         let velvet =  'url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png")';
         let textura = "";
+        let color = "";
+        let colorCubierta = "";
 
         if(this.state.masa === 'RV'){
             textura = velvet;
@@ -65,7 +67,27 @@ export  class Index extends React.Component {
         }
         document.documentElement.style.setProperty('--textura-pastel',textura);
 
+        if(this.state.relleno === 'AQ'){
+            color = "#995c2e";
+        }
+        else if(this.state.relleno === 'NU'){
+            color = "#69391d";
+        }
+        else if(this.state.relleno === 'ML'){
+            color = "#5c0c15b5";
+        }
+        else if(this.state.relleno === 'CP'){
+            color = "#e4cc8ba1";
+        }
+        document.documentElement.style.setProperty('--color-pastel2',color);
 
+        if(this.state.cobertura === 'FD'){
+            colorCubierta = "#39caf7";
+        }
+        else if(this.state.cobertura === 'CR'){
+            colorCubierta = "#e0d8cd";
+        }
+        document.documentElement.style.setProperty('--color-pastel3',colorCubierta);
 
     }
     
@@ -144,7 +166,7 @@ export  class Index extends React.Component {
             <div className ="container row d-flex f-wrap justify-content-center ">
                 
                                    
-                    <div className ="opciones col-lg-4  col-sm-6 ">
+                    <div className ="opciones col-lg-3  col-sm-6 ">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
                                 <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuForma" data-toggle="dropdown" aria-expanded="false">
@@ -223,8 +245,9 @@ export  class Index extends React.Component {
                         </div>
                         
                     </div>
-                    <div className= " col-lg-4 col-sm-6 justify-content-center" >
-                       {f=='CI' ?(<Pastel></Pastel>) : (<PastelC></PastelC>)}
+                    <div className= " col-lg-4 col-sm-6 " >
+                        
+                       {f=='CI' ?(<Pastel2></Pastel2>,<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
                     <div className=" col-lg-4  col-sm-12 " style ={{marginTop:10+'px'}}>
                         <Mensaje getData={this.getData}   Pastel={this.state} ></Mensaje> 
@@ -245,14 +268,21 @@ export  class Pastel extends React.Component{
         return(
             
                 <div className ='draw'> 
-                    <div className="pastel col-sm-12" ></div>
-                    <div className="pastelB tapas"></div>
-                    <div className="pastelT tapas"></div>
-                    <div className ='Dtwo '> 
-                        <div className="pastel pasteltwo col-sm-12 " ></div>
-                        <div className="pastelB pastelBtwo tapas "></div>
-                        <div className="pastelT pastelTtwo tapas "></div>
+                    <div className="bandeja"></div>
+                    <div className="pastel " > </div>
+                    <div className="pastelB tapas">
+                        <div className="pastel pasteltwo " ></div>
+                        <div className="pastelT pastelTtwo"></div>
+                        <div className="pastelB pastelBtwo"></div>
                     </div>
+                    <div className="pastelT tapas"></div>
+                    <div className="pastelCubierta1 cubierta"></div>
+                    <div className="pastelCubierta2 cubierta"></div>
+                    <div className="pastelCubierta3 cubierta"></div>
+                    <div className="pastelCubierta4 "></div>
+                    <div className="pastelCubierta5 "></div>
+                    <div className="pastelTCubierta "></div>
+                    
                 </div>
             
         )
@@ -277,6 +307,21 @@ export  class PastelC extends React.Component{
         )    
     
 }
+}
+export class Pastel2 extends React.Component{
+    
+    render(){
+        
+
+        return(
+            <div>
+                <canvas className="canvas"></canvas>
+                <input type="color" id ="color"/> 
+                <input type="range" id ="grosor"  min="1" max="5" value="1"/>
+            </div>
+
+        );
+    }
 }
 export class LoginOrRegister extends React.Component{
     render(){
