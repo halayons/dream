@@ -14,7 +14,7 @@ export class ModPedido extends React.Component{
     render()    {
         return(
             <div>
-                <Header state = {true}/>
+                <Header></Header>
                 <Index></Index>
                 <Footer></Footer>
             </div>
@@ -66,7 +66,8 @@ export  class Index extends React.Component {
         document.documentElement.style.setProperty('--textura-pastel',textura);
     }
         
-    componentDidMount(){    
+    componentDidMount(){   
+        let userInfo =  null;
         fetch('http://localhost:8000/users/api/auth/user/',{
             method: 'GET',
             credentials:'include',
@@ -75,7 +76,8 @@ export  class Index extends React.Component {
         }).then((response) => response.json())
             .then(responseJson => { 
                 console.log('Esta es la info del usuario');
-                console.log(responseJson)})
+                userInfo = responseJson
+                console.log(userInfo)})
             .catch(error => console.error('Error:', error));    
             
         

@@ -252,9 +252,10 @@
     background-color: #9556cc;
     color: white;
     padding: 10px 60px;
+    margin-top: 3%;
     font-size: 15px;
     border: 0px solid #6dd3ce;
-    transition: 0.5s;
+    transition: 0.5s;    
   }
 .btn-register:hover{
     background-color:  #007bb6;
@@ -262,12 +263,13 @@
     padding: 11px 62px;
   }
 .btn-login{
-    background-color: #7cd5d0;
+    background-color: #1291b8;
     color: white;
-    padding: 10px 70px;
+    padding: 10px 60px;
+    margin-top: 3%;
     font-size: 15px;
     border: 1px solid #6dd3ce; 
-    transition: 0.5s;
+    transition: 0.5s;    
 }
 .btn-login:hover{
     background-color:  #007bb6;
