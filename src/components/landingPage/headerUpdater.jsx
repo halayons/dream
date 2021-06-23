@@ -31,6 +31,7 @@ export class HeaderUpdater extends React.Component{
 
     
     render(){    
+        //var user_name = this.state.userInfo.short_name;
         console.log('isNull?'+this.state.userInfo == null);    
         if (this.state.userInfo == null || this.state.userInfo.hasOwnProperty('detail')){
             console.log('IF');  
@@ -46,7 +47,8 @@ export class HeaderUpdater extends React.Component{
             console.log('ELSE');   
             return(       
                 <div className="user-header">
-                    <img src= {this.state.userInfo.foto} className="img-user" ></img>
+                    <input type="image" className="img-user" src={this.state.userInfo.foto}/>
+                    <h2 className="btname-user">{this.state.userInfo.short_name}</h2>
                 </div>   
             );                                
         }
