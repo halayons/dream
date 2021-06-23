@@ -78,8 +78,12 @@ input[type=checkbox]{
 input[type=text], input[type=password],input[type=email]{
   background: #ECECEC;
   border-radius: 6px;
+  border-style: solid;
+  border: 3px solid rgba(12, 12, 12, 0.904);
+  
+  margin-bottom: 10px;
   border: none;
-  height: 50px;
+  height: 40px;
   width: 380px;
   align-self: center;
   justify-content: center;
@@ -87,6 +91,16 @@ input[type=text], input[type=password],input[type=email]{
   padding-left:3%;
 }
 
+button{
+  background: #ECECEC;
+  border-radius: 6px;
+  border: none;
+  height: 40px;
+  width: 380px;
+  align-self: center;
+  justify-content: center;
+  padding-left:3%;
+}
 input[type=text]:focus-visible, input[type=password]:focus-visible,
 input[type=email]:focus-visible{
   color: #7CD5D0;
@@ -98,7 +112,8 @@ input[type=submit]{
   background: #7CD5D0;
   color: white;
   border-radius: 6px;
-  border: none;
+  border-style: solid;
+  border: 3px solid rgb(37, 192, 240);
   height: 50px;
   width: 380px;
   align-self: center;
@@ -126,3 +141,77 @@ label{
 *:focus {
   outline: none;
 }
+
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modal-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #0c0a0a;
+    align-items: center;
+    margin: 50px auto;
+    width: 467px;
+    height: 400px;
+    width: fit-content;
+    height: fit-content;
+    max-width: 30%;
+    max-height: 100%;
+    border: 1px solid #ccc;
+    padding: 40px 60px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+
+.modal-content {
+  background-color: #0a0a0a;
+  margin: 50px auto;
+  width: fit-content;
+  height: fit-content;
+  max-width: 30%;
+  max-height: 100%;
+  border-style: outset;
+  border: 3px solid rgb(37, 192, 240);
+  padding: 40px 60px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+      animation: dropdwn ease-in-out 700ms;
+}
+
+@keyframes dropdwn {
+  0% {
+      opacity: 0;
+      margin-top: -250px;
+  }
+  25% {
+      opacity: 0.25;
+      margin-top: -200px;
+  }
+  50% {
+      opacity: 0.5;
+      margin-top: -100px;
+  }
+  75% {
+      opacity: 0.75;
+      margin-top: -50px;
+  }
+  100% {
+      opacity: 1;
+      margin-top: 0px;
+  }
+}
+
