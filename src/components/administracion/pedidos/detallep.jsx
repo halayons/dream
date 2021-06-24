@@ -1,7 +1,5 @@
 import React from "react";
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import logo from '../../static/images/logo.png';
+import logo from '../../../static/images/logo.png';
 
 export class Detallep extends React.Component {
 
