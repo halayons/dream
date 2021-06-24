@@ -1,0 +1,25 @@
+.posts{
+
+}
+
+.post{
+	border:1px solid black;
+	width: 100%;
+}
+
+.comment-box{
+
+}
+
+.foto{
+	width: 200px;
+	height: 200px;
+	padding: 15px;
+	overflow: hidden;
+}
+
+.foto img{
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
+}
