@@ -83,7 +83,7 @@ export class Register extends React.Component {
                         />
                         <FacebookLogin
                             appId="942968703190705"
-                            autoLoad
+                            autoLoad={false}
                             icon="fa-facebook"
                             callback={responseFacebook}
 

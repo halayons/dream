@@ -90,7 +90,7 @@ class Login extends Component {
           />
           <FacebookLogin
             appId="942968703190705"
-            autoLoad
+            autoLoad={false}
             icon="fa-facebook"
             callback={responseFacebook}
 
