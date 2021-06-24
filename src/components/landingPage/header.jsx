@@ -30,7 +30,7 @@ export class Header extends React.Component{
 
     render(){
         return(
-        <header>
+            <header>
             <div class="jumbotron-header"> 
                <div class="row">
                    <div class="col-md-8">
