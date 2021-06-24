@@ -6,11 +6,7 @@ import { LoginScreen } from "./components/login/index";
 import { LandingPage } from "./components/landingPage/index";
 import { Pedido } from "./components/Pedidos/Pedidos"
 import { Social } from "./components/social/index"
-<<<<<<< HEAD
 import { Admin } from "./components/administracion/admin"
-=======
-import { Test } from "./components/AyM/test"
->>>>>>> AyM
 
 
 class App extends React.Component {
