@@ -25,7 +25,6 @@ export class Banner extends React.Component {
         .catch(console.log("error a l onterner imagenes del banner"))
     }
     realizarPedido(){
-        console.log("cambiando pestaña");
         window.location.pathname ="/crearPastel/";    
     }
     
