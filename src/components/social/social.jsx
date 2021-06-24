@@ -2,6 +2,7 @@ import './style.scss';
 import React from 'react';
 import { Feed } from './feed';
 import { CreatePost } from './createPost';
+import { Footer, Header } from '../landingPage';
 
 
 export class Social extends React.Component {
@@ -49,8 +50,10 @@ export class Social extends React.Component {
 	render() {
 		return (
 			<div>
+				<Header></Header>
 				<CreatePost update={this.update} />
 				<Feed posts={this.state.posts} />
+				<Footer></Footer>
 			</div>
 		);
 	}
