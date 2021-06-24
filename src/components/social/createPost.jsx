@@ -103,7 +103,7 @@ export class CreatePost extends React.Component {
 		}
 
 		return (
-			<div>
+			<div className="container">
 				<label>Crear Post</label><br />
 				<label>pastel: </label>
 				<select value={this.state.option} onChange = {this.handleSelect}>

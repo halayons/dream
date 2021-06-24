@@ -66,19 +66,36 @@ export class Post extends React.Component {
 
 	render() {
 		return (
-			<div class = "post">
-				<p>post: {this.props.post.id}</p>
-				<div class = "foto">
-					<img src = {this.props.post.foto}></img>
-				</div>
-				<div class = "comment-box">
-					<label>{this.state.comments.length} Comentarios: </label>
-					{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}
-				</div>
-				<div>
-					<input type="text" placeholder = "Escribe un comentario" value={this.state.comentario}  name="comentario" onChange={this.onInputchange}/>
-					<button onClick = {this.createComment}>comentar</button>
-				</div>
+			<div class="row justify-content-center post bg-light" >
+					<div class = "card col-lg-4 col-sm-8">
+						
+							<p>post: {this.props.post.id}</p>
+							
+							<img clasName=" img-post" src = {this.props.post.foto}></img>
+						<div className="card-body form">
+							
+							
+							<div className= "comments">
+								<span class ="badge badge-primary " type ="button" data-toggle="collapse" data-target="#comentarios" aria-expanded="false" aria-controls="">Cometarios </span> 
+							</div>
+
+							<div className="form-row d-flex">
+									<label htmlFor="comentario">Comentar</label>
+									<input className="form-control col-sm-10" type="text" id="comentario"  placeholder = "Escribe un comentario" value={this.state.comentario}  name="comentario" onChange={this.onInputchange}/>
+									<spam type="button" className=" form-control btn btn-info col-sm-2 btnComentar"  onClick = {this.createComment}>✔</spam>
+								
+							</div>
+							<hr />
+
+							
+							<div class="row">
+									<div class="collapse multi-collapse col-sm-6 " id ="comentarios">
+								
+										{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}
+									</div>
+								</div>
+						</div>
+					</div>
 			</div>
 		);
 	}
