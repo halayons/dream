@@ -7,6 +7,8 @@ import { Footer, Header } from '../landingPage';
 
 export class Social extends React.Component {
 
+	ws = new WebSocket("ws://localhost:8000/postWS/")
+
 	constructor() {
 		super();
 
@@ -32,6 +34,11 @@ export class Social extends React.Component {
 
 	componentDidMount() {
 		this.loadPosts()
+
+		this.ws.onopen = evt => this.send(); 
+		this.ws.onclose = evt => window.location.reload(); 
+		this.ws.onmessage = evt => this.loadPosts();
+		this.ws.onerror = evt => console.log(JSON.stringify(evt)); 
 	}
 
 	loadPosts() {
@@ -47,7 +54,15 @@ export class Social extends React.Component {
 		this.loadPosts()
 	}
 
+	send(){
+		this.ws.send(JSON.stringify({
+			action: "subscribe_to_post_activity",
+			request_id: new Date().getTime(),
+		}))
+	}
+
 	render() {
+		
 		return (
 			<div>
 				<Header></Header>
