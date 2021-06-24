@@ -8,6 +8,7 @@ import {Register} from '../login/register'
 import Cookies from 'js-cookie';
 import textura from '../../media/img/texturaCobertura.jpg';
 import { event, get } from 'jquery';
+import { ResponsiveEmbed } from 'react-bootstrap';
 
 
 export class Pedido extends React.Component{
@@ -33,7 +34,7 @@ export  class Index extends React.Component {
                 cobertura: '',
                 color: '#6610f200',
                 porciones: 1,
-                forma:'CW',    
+                forma:'CI',    
                 mensaje:'',
                 status_pastel:true,
                 num_pisos:1,
@@ -264,6 +265,9 @@ export  class Index extends React.Component {
                         
                     </div>
                    
+                    <div className="boxLoader" id="boxLoader">
+                        <div className="loader"></div>
+                    </div>
                     
             </div>
                
@@ -398,60 +402,68 @@ export class Mensaje extends Index{
             method: 'GET',
             //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
             credentials:'include'
-         
         };
+        let load = document.getElementById('boxLoader');
+
         
-        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
+        if(this.state.user===''){
+            fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
             .then((response) => response.json())
-            .then(responseJson => {  if(responseJson.email!=undefined){this.setState({log:'0',user:responseJson.email})} }
+            .then(responseJson => {  
+                console.log("estamos comprobando si se inicio una sesion"); 
+                load.style.visibility = 'visible';
+
+            
+                if(responseJson.email!=undefined){
+                   
+                    console.log("efectivamente hay una cuenta")
+                    this.setState({log:'0',user:responseJson.email})
+                    load.style.visibility = 'hidden';
+                } else{
+                    console.log("no hay cuentas iniciadas");
+                    load.style.visibility = 'hidden';
+                }
+            }
             );
+        }
     }
     continuar =()=>{
         
     }
-    userExist = () => {
-        console.log("userExist")
-        if ( Cookies.get('csrftoken')!= undefined){
-            this.setState({user:1});
+    postear = () => {
+        this.componentDidMount();
+        if(this.state.user!=''){
+            this.postearPastel();
+        }else{
+           <LoginOrRegister></LoginOrRegister>
         }
-       
-        /* let requestOptions ={
-            method: 'GET',
-            //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
-            credentials:'include'
-         
-        };
-        console.log("el usuario automatico=")
-        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
-            .then((response) => response.json())
-            .then(responseJson => { console.log("email:"+responseJson.email); if(responseJson.email!=undefined){this.setState({log:'0'})} }
-            ); */
-            
     }
     postearPastel(e) {
-        if(this.state.user === ''){
-            console.log("no se ha iniciado sesion");
-            console.log(this.state.user)
-        }
-        else if(this.state.pastel ==-1){
+        let load = document.getElementById('boxLoader');
+        load.style.visibility = 'visible';
+        
+
+        if(this.state.pastel ==-1){
             fetch('http://localhost:8000/crear_pastel/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken':Cookies.get('csrftoken')
-                    
                 },
                 credentials:'include',
                 body: JSON.stringify(this.props.Pastel)
             }).then((response) => response.json())
-            .catch(error => (
-                alert('Error:', error),
-                e.preventDefault()))
-            .then(response =>( console.log("Pastel "+response.data.id), this.setState({pastel:response.data.id}))  );
+            .then(response =>{
+                if(response.id != undefined){
+                    this.setState({pastel:response.id})
+                }else{
+                    alert("por favor llene todos los campos, de lo contrario el pedido no se realizara con exito")
+                }
+                  
+            });
         }
+        load.style.visibility = 'hidden';
     }
-    
-   
     
    
     render(){
@@ -473,7 +485,9 @@ export class Mensaje extends Index{
 
             <div class="formulario" style ={{marginTop:10+'px'}} >
                 
-                <button type="button" onClick={()=>getData(this.state),this.userExist,this.postearPastel.bind(this)} href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
+                <button type="button" onClick={()=>getData(this.state),this.postear.bind(this)} href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
+                
+                
                 <div className="modal fade" id="emergente">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -484,7 +498,7 @@ export class Mensaje extends Index{
                             </div>
 
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-info" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -514,7 +528,6 @@ export class Formulario extends React.Component{
     }
    
     postearPedido(e) {
-       
 
         let form_data = new FormData();
         form_data.append('foto', this.state.foto);
@@ -540,20 +553,26 @@ export class Formulario extends React.Component{
             body: form_data
             // body: JSON.stringify(this.state)
         }).then((response) => response.json())
-        .catch(error => console.error('Error:', error))
-        .then(response =>( console.log(response))  );
+        .then(response =>{
+            if (response.idpedido!=-1){
+                
+                alert("se posteo correctamente")
+                window.location.pathname ="/";    
+            }else{
+                alert(" NO se posteo correctamente")
+            }
+            console.log(response)
+        });
 
-        console.log("se posteo el pastel")
+        
 
        
     }
     obtenerDatos(){
-        console.log("vamoas a obtener los datos")
-        var {datos}=this.props;
+       var {datos}=this.props;
         console.log(datos);
         this.setState({ pasteles:datos.pastel, comentario:datos.Obs, user:datos.user});
-        console.log("se obtivieron los datos")
-    }
+      }
     enviar(e){
         this.obtenerDatos();
         this.postearPedido();
@@ -588,7 +607,7 @@ export class Formulario extends React.Component{
                         </select>
                 </div>
                     
-                <button  className="btn btn-dark" id="enviar" onClick={(this.enviar.bind(this),this.ver)}>Enviar</button>
+                <button  className="btn btn-dark" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
                 <button className="btn btn-dark" onClick={this.ver} >ver estado</button>
 
                 
@@ -598,5 +617,32 @@ export class Formulario extends React.Component{
 
         )
     }
+}
+export class MensajeModal extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            mensaje:this.props.mensaje
+        };
+    }
+    render(){ 
+      return(
+          
+        <div className="modal fade show" id="emergente2"  style="display: block; padding-right: 22px;" aria-modal="true" role="dialog">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                
+                <div className="modal-body">
+                    <p>{this.state.mensaje}</p>
+                </div>
+
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-outline-info"  data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      );
+  }
 }
 
