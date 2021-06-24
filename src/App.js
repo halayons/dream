@@ -6,6 +6,7 @@ import { LoginScreen } from "./components/login/index";
 import { LandingPage } from "./components/landingPage/index";
 import { Pedido } from "./components/Pedidos/Pedidos"
 import { Social } from "./components/social/index"
+import { Admin } from "./components/administracion/admin"
 
 
 class App extends React.Component {
@@ -45,6 +46,7 @@ class App extends React.Component {
          {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
          {window.location.pathname == "/" && <LandingPage></LandingPage>}
          {window.location.pathname == "/social" && <Social></Social>}
+         {window.location.pathname == "/admin" && <Admin></Admin>}
       </div>
     )
   }
