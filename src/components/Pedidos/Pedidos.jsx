@@ -6,7 +6,9 @@ import { Social, Footer, Header} from "../landingPage/index";
 import {Login} from '../login/login'
 import {Register} from '../login/register'
 import Cookies from 'js-cookie';
+import textura from '../../media/img/texturaCobertura.jpg';
 import { event, get } from 'jquery';
+import { ResponsiveEmbed } from 'react-bootstrap';
 
 
 export class Pedido extends React.Component{
@@ -28,9 +30,9 @@ export  class Index extends React.Component {
         super(props);
         this.state = {
                 masa: 'TL',
-                relleno: 'CP',
-                cobertura: 'CR',
-                color: '#FFFFFF',
+                relleno: '',
+                cobertura: '',
+                color: '#6610f200',
                 porciones: 1,
                 forma:'CI',    
                 mensaje:'',
@@ -50,33 +52,85 @@ export  class Index extends React.Component {
         let leches = ' url("https://www.transparenttextures.com/patterns/ravenna.png")';
         let velvet =  'url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png")';
         let textura = "";
+        let color = "";
+        let colorCubierta = "";
 
-        if(this.state.Masa === 'RedVelvet'){
+        if(this.state.masa === 'RV'){
             textura = velvet;
         }
-        else if(this.state.Masa === 'Tres Leches'){
+        else if(this.state.masa === 'TL'){
             textura = leches;
         }
-        else if(this.state.Masa === 'Vainilla'){
+        else if(this.state.masa === 'VA'){
             textura = vainilla;
         }
-        else if(this.state.Masa === 'Chocolate'){
+        else if(this.state.masa === 'CH'){
             textura = chocolate;
         }
         document.documentElement.style.setProperty('--textura-pastel',textura);
+
+        if(this.state.relleno === 'AQ'){
+            color = "#995c2e";
+        }
+        else if(this.state.relleno === 'NU'){
+            color = "#69391d";
+        }
+        else if(this.state.relleno === 'ML'){
+            color = "#5c0c15b5";
+        }
+        else if(this.state.relleno === 'CP'){
+            color = "#e4cc8ba1";
+        }
+        document.documentElement.style.setProperty('--color-pastel2',color);
+
+        if(this.state.cobertura === 'FD'){
+            colorCubierta = "#39caf7";
+        }
+        else if(this.state.cobertura === 'CR'){
+            colorCubierta = "#e0d8cd";
+        }
+        document.documentElement.style.setProperty('--color-pastel3',colorCubierta);
+
     }
     
-    seleccionF =(event)=> {this.setState({forma:event.target.id}) }
-    seleccionM =(event)=> {this.setState({masa:event.target.id}) }
-    seleccionR =(event)=> {this.setState({relleno:event.target.id})}
-    seleccionC =(event)=> {this.setState({cobertura:event.target.id})}
-    seleccionP =(event)=> {this.setState({porciones:parseInt(event.target.id)})}
+    seleccionF =(event)=> {
+        this.setState({forma:event.target.id});
+        let btn = document.getElementById('dropdownMenuForma');
+        btn.textContent=event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+     }
+    seleccionM =(event)=> {
+        this.setState({masa:event.target.id});
+        var btn = document.getElementById('dropdownMenuMasa');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+     }
+    seleccionR =(event)=> {
+        this.setState({relleno:event.target.id});
+        var btn = document.getElementById('dropdownMenuRelleno');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+    }
+    seleccionC =(event)=> {
+        this.setState({cobertura:event.target.id});
+        var btn = document.getElementById('dropdownMenuCubierta');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+    }
+    seleccionP =(event)=> {
+        this.setState({porciones:parseInt(event.target.id)});
+        var btn = document.getElementById('dropdownMenuPorciones');
+        btn.textContent =event.target.textContent;
+        btn.style.setProperty('background','#17a2b859')
+    }
     //seleccionT =(event)=> {this.setState({Tematica:event.target.id})}
     seleccionColor =(event)=> {this.setState({color:event.target.id});}
     getData=(info)=>{
-        this.setState({Mensaje:info.Men})
-        this.setState({Observaciones:info.Obs})
+        this.setState({Mensaje:info.Men});
+        this.setState({Observaciones:info.Obs});
+        return this.state;
     }
+   
    
     postearPastel() {
         console.log("vamos a postear el pastel");
@@ -106,23 +160,30 @@ export  class Index extends React.Component {
     render() {
         let color =this.state.color;   
         const f =this.state.forma;
-        document.documentElement.style.setProperty('--color-pastel',color);
+        if(this.state.cobertura =="FD"){
+            document.documentElement.style.setProperty('--color-pastel',color);
+            document.documentElement.style.setProperty('--textura-pastel2','');
+        }else if(this.state.cobertura =="CR"){
+            document.documentElement.style.setProperty('--color-pastel','#eee8c9');
+            document.documentElement.style.setProperty('--textura-pastel2',"url(http://www.transparenttextures.com/patterns/zig-zag.png)");
+        }
+        
         this.actualizar()
         
 
         return (
             
 
-                <div className ="container  d-flex  justify-content-center ">
+            <div className ="container row d-flex f-wrap justify-content-center ">
                 
                                    
-                    <div className ="opciones  col-sm-3">
+                    <div className ="opciones col-lg-3  col-sm-6 ">
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuForma" data-toggle="dropdown" aria-expanded="false">
                                     Forma
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" required>
                                     <li><a class="dropdown-item"   onClick= {this.seleccionF} id="CI" selected>Redondo</a></li>
                                     <li><a class="dropdown-item" onClick= {this.seleccionF} id="CU"> Cuadrado</a></li>
                                 </ul>
@@ -131,7 +192,7 @@ export  class Index extends React.Component {
                         </div>
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuMasa" data-toggle="dropdown" aria-expanded="false">
                                     Masa
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -146,7 +207,7 @@ export  class Index extends React.Component {
 
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuRelleno" data-toggle="dropdown" aria-expanded="false">
                                     Relleno
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -161,7 +222,7 @@ export  class Index extends React.Component {
                         </div>
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuCubierta" data-toggle="dropdown" aria-expanded="false">
                                     Cubierta
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -176,7 +237,7 @@ export  class Index extends React.Component {
                         </div> 
                         <div style ={{margin:5+'px'}}>
                             <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuPorciones" data-toggle="dropdown" aria-expanded="false">
                                     Porciones
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -187,22 +248,7 @@ export  class Index extends React.Component {
                             </div>
                             
                         </div> 
-                        <div style ={{margin:5+'px'}}>
-                            <div class="dropdown">
-                                <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-                                    Tematica
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Matrimonio ">Matrimonio </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Grado ">Grado </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Cumpleaños"> Cumpleaños </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Comunion"> Comunion </a></li>
-                                    <li><a class="dropdown-item" onClick= {this.seleccionT} id="Casual"> Casual </a></li>
-                                </ul>
-                            </div>
-                           
-                            {console.log(this.state )}
-                        </div> 
+                        
                         <div style ={{margin:10+'px', width:10.5+'em',marginLeft:'auto',marginRight:'auto'}}>
                             <SliderPicker color = {this.state.color}
                             onChangeComplete ={this.handleChangeComplete}>
@@ -210,14 +256,18 @@ export  class Index extends React.Component {
                         </div>
                         
                     </div>
-                    <div className= "col-sm-3" >
-                       {f=='CI' ?(<Pastel></Pastel>) : (<PastelC></PastelC>)}
+                    <div className= " col-lg-4 col-sm-6 " >
+                        
+                       {f=='CI' ?(<Pastel2></Pastel2>,<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
-                    <div className="col-sm-3" style ={{marginTop:10+'px'}}>
-                        <Mensaje getData={this.getData}   Pastel={this.state} ></Mensaje> 
+                    <div className=" col-lg-4  col-sm-12 " style ={{marginTop:10+'px'}}>
+                        <Mensaje getData={this.getData}  Pastel={this.state} ></Mensaje> 
                         
                     </div>
                    
+                    <div className="boxLoader" id="boxLoader">
+                        <div className="loader"></div>
+                    </div>
                     
             </div>
                
@@ -232,14 +282,21 @@ export  class Pastel extends React.Component{
         return(
             
                 <div className ='draw'> 
-                    <div className="pastel col-sm-12" ></div>
-                    <div className="pastelB tapas"></div>
-                    <div className="pastelT tapas"></div>
-                    <div className ='Dtwo '> 
-                        <div className="pastel pasteltwo col-sm-12 " ></div>
-                        <div className="pastelB pastelBtwo tapas "></div>
-                        <div className="pastelT pastelTtwo tapas "></div>
+                    <div className="bandeja"></div>
+                    <div className="pastel " > </div>
+                    <div className="pastelB tapas">
+                        <div className="pastel pasteltwo " ></div>
+                        <div className="pastelT pastelTtwo"></div>
+                        <div className="pastelB pastelBtwo"></div>
                     </div>
+                    <div className="pastelT tapas"></div>
+                    <div className="pastelCubierta1 "></div>
+                    <div className="pastelCubierta1 "></div>
+                    <div className="pastelCubierta2 "></div>
+                    <div className="pastelCubierta4 "></div>
+                    <div className="pastelCubierta3 "></div>
+                    <div className="pastelCubierta5 "></div>
+                    
                 </div>
             
         )
@@ -249,21 +306,41 @@ export  class PastelC extends React.Component{
     render(){
      
         return(
-            <div class="contenedor">
+            <div class="draw">
+                <div className="bandejaCuadrada"></div>
+                <div className="sideUpRelleno caraRelleno"></div>
+                <div className="sideRightRelleno caraRelleno "></div>
+                <div className="sideFrontRelleno caraRelleno"></div> 
 
-                    <div class="cubo">
-                      <div class="uno"></div>
-                      <div class="dos"></div>
-                      <div class="tres"></div>
-                      <div class="cuatro"></div>
-                      <div class="cinco"></div>
-                      <div class="seis"></div>
-                  </div>
-                  </div>
+                <div className="sideUp caraMasa"></div>
+                <div className="sideRight caraMasa"></div>
+                <div className="sideFront caraMasa"></div>
+
+
+                <div className="cubiertaFront cubierta"></div>
+                <div className="cubiertaUp cubierta"></div>
+                <div className="cubiertaUp2 cubierta"></div>
+                    
+            </div>
                 
         )    
     
 }
+}
+export class Pastel2 extends React.Component{
+    
+    render(){
+        
+
+        return(
+            <div>
+                <canvas className="canvas"></canvas>
+                <input type="color" id ="color"/> 
+                <input type="range" id ="grosor"  min="1" max="5" value="1"/>
+            </div>
+
+        );
+    }
 }
 export class LoginOrRegister extends React.Component{
     render(){
@@ -325,47 +402,68 @@ export class Mensaje extends Index{
             method: 'GET',
             //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
             credentials:'include'
-         
         };
+        let load = document.getElementById('boxLoader');
+
         
-        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
+        if(this.state.user===''){
+            fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
             .then((response) => response.json())
-            .then(responseJson => {  if(responseJson.email!=undefined){this.setState({log:'0',user:responseJson.email})} }
-            );
-    }
-    userExist = () => {
+            .then(responseJson => {  
+                console.log("estamos comprobando si se inicio una sesion"); 
+                load.style.visibility = 'visible';
 
-        let requestOptions ={
-            method: 'GET',
-            //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
-            credentials:'include'
-         
-        };
-        console.log("el usuario automatico=")
-        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
-            .then((response) => response.json())
-            .then(responseJson => { console.log("email:"+responseJson.email); if(responseJson.email!=undefined){this.setState({log:'0'})} }
+            
+                if(responseJson.email!=undefined){
+                   
+                    console.log("efectivamente hay una cuenta")
+                    this.setState({log:'0',user:responseJson.email})
+                    load.style.visibility = 'hidden';
+                } else{
+                    console.log("no hay cuentas iniciadas");
+                    load.style.visibility = 'hidden';
+                }
+            }
             );
+        }
     }
-    postearPastel() {
+    continuar =()=>{
+        
+    }
+    postear = () => {
+        this.componentDidMount();
+        if(this.state.user!=''){
+            this.postearPastel();
+        }else{
+           <LoginOrRegister></LoginOrRegister>
+        }
+    }
+    postearPastel(e) {
+        let load = document.getElementById('boxLoader');
+        load.style.visibility = 'visible';
+        
 
-      if (this.state.pastel == -1){
-        fetch('http://localhost:8000/crear_pastel/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken':Cookies.get('csrftoken')
-                
-            },
-            credentials:'include',
-            body: JSON.stringify(this.props.Pastel)
-        }).then((response) => response.json())
-        .catch(error => console.error('Error:', error))
-        .then(response =>( console.log("Pastel "+response.data.id), this.setState({pastel:"Pastel "+response.data.id}))  );
-      }
+        if(this.state.pastel ==-1){
+            fetch('http://localhost:8000/crear_pastel/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken':Cookies.get('csrftoken')
+                },
+                credentials:'include',
+                body: JSON.stringify(this.props.Pastel)
+            }).then((response) => response.json())
+            .then(response =>{
+                if(response.id != undefined){
+                    this.setState({pastel:response.id})
+                }else{
+                    alert("por favor llene todos los campos, de lo contrario el pedido no se realizara con exito")
+                }
+                  
+            });
+        }
+        load.style.visibility = 'hidden';
     }
-    
-   
     
    
     render(){
@@ -377,16 +475,19 @@ export class Mensaje extends Index{
             <form className ="" style ={{border:'#17a2b8', color:'#17a2b8'}}>
                 <div className="form-row">
                     <label for ="mensaje">Mensaje</label>
-                    <textarea value={this.state.Men}  onChange={this.getM} type="text" className="form-control" ref={this.mensaje} id ="mensaje "placeholder="Mensaje" rows="3"></textarea>
+                    <textarea required value={this.state.Men}  onChange={this.getM} type="text" className="form-control" ref={this.mensaje} id ="mensaje "placeholder="Mensaje" rows="2"></textarea>
                 </div>
                 <div className="form-row">
-                    <label for ="observaciones">Observaciones</label>
-                    <textarea value={this.state.Obs}  onChange={this.getO} type ="text" className="form-control" ref={this.observaciones}id ="observaciones" placeholder ="Observaciones" rows="3"></textarea>
+                    <label for ="observaciones">Comentarios</label>
+                    <textarea required value={this.state.Obs}  onChange={this.getO} type ="text" className="form-control" ref={this.observaciones}id ="observaciones" placeholder ="Comentarios sobre el pedido" rows="3"></textarea>
                 </div>
             </form>
 
             <div class="formulario" style ={{marginTop:10+'px'}} >
-                <button type="button" onClick={()=>getData(this.state),this.userExist,this.postearPastel.bind(this)} href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
+                
+                <button type="button" onClick={()=>getData(this.state),this.postear.bind(this)} href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
+                
+                
                 <div className="modal fade" id="emergente">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -397,7 +498,7 @@ export class Mensaje extends Index{
                             </div>
 
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-info" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -427,20 +528,19 @@ export class Formulario extends React.Component{
     }
    
     postearPedido(e) {
-        this.obtenerDatos();
-        console.log("vamos a postear")
-        console.log(this.state)
 
-        let form_data = new FormData()
-        form_data.append('foto', this.state.foto)
-        form_data.append('direccion', this.state.direccion)
-        form_data.append('costo', this.state.costo)
-        form_data.append('aceptado', this.state.aceptado)
-        form_data.append('domiciliario', this.state.domiciliario)
-        form_data.append('estado', this.state.estado)
-        form_data.append('comentario', this.state.comentario)
-        form_data.append('pasteles', this.state.pasteles)
-        form_data.append('user', this.state.user)
+        let form_data = new FormData();
+        form_data.append('foto', this.state.foto);
+        form_data.append('direccion', this.state.direccion);
+        form_data.append('costo', this.state.costo);
+        form_data.append('aceptado', this.state.aceptado);
+        form_data.append('domiciliario', this.state.domiciliario);
+        form_data.append('estado', this.state.estado);
+        form_data.append('comentario', this.state.comentario);
+        form_data.append('pasteles', this.state.pasteles);
+        form_data.append('user', this.state.user);
+        
+        
 
         fetch('http://localhost:8000/crear_pedido/', {
             method: 'POST',
@@ -453,60 +553,62 @@ export class Formulario extends React.Component{
             body: form_data
             // body: JSON.stringify(this.state)
         }).then((response) => response.json())
-        .catch(error => console.error('Error:', error))
-        .then(response =>( console.log(response))  );
+        .then(response =>{
+            if (response.idpedido!=-1){
+                
+                alert("se posteo correctamente")
+                window.location.pathname ="/";    
+            }else{
+                alert(" NO se posteo correctamente")
+            }
+            console.log(response)
+        });
 
-        console.log("se posteo el pastel")
-      //.then(responseJson =>  console.log("respueta del postera Pedido",responseJson));
-      e.preventDefault();
-      e.stopPropagation();
+        
+
+       
     }
-    obtenerDatos(event){
-        console.log("vamoas a obtener los datos")
-        var {datos}=this.props;
-        var getDireccion = document.getElementById('direccion').value;
-        var getFile = document.getElementById('file').files[0];
-        var getDomicilio=document.getElementById('domicilio').value;
-        if (getDomicilio=="No"){
-            getDomicilio=false;
-        }else{ getDomicilio=true}
-        this.setState({foto:getFile,direccion:getDireccion, domiciliario:getDomicilio, pasteles:datos.pastel.split(' ')[1], comentario:datos.Obs, user:datos.user});
-        console.log("se obtivieron los datos")
-        //event.preventDefault();
-        //event.stopPropagation();
+    obtenerDatos(){
+       var {datos}=this.props;
+        console.log(datos);
+        this.setState({ pasteles:datos.pastel, comentario:datos.Obs, user:datos.user});
+      }
+    enviar(e){
+        this.obtenerDatos();
+        this.postearPedido();
+        e.preventDefault();
+        e.stopPropagation();
     }
-    ver=()=>console.log(this.state);
     
+    ver=()=>(this.state);
     
 
     render(){
-        
-        const {datos}=this.props;
-            
+
         return(
             <form className ="container">
                 <div className=" form-row">
                     <div className=" form-group">
                         <label for="direccion"> Dirección </label>
-                        <input type = "text" class= "form-control" id="direccion" placeholder="Ingrese dirección" ></input>
+                        <input type = "text" class= "form-control" id="direccion" required onChange={(e)=>{this.setState({direccion:e.target.value});this.obtenerDatos()}} placeholder="Ingrese dirección" ></input>
                     </div>
                 </div>
                 <div className="form-group">
                     <label for="file"><span>Foto</span></label>
-                    <input type ="file" className="col-sm "  id="file"  accept="image/*"></input>
+                    <input type ="file" className="col-sm "  id="file" onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*"></input>
                     <div id="draw"></div>
                     
                 </div>
                 <div className ="form-group">
                     <label for ="domicilio" > ¿Desea domicilio?</label><br />
-                        <select name="domicilio"  id="domicilio">
-                            <option selected value="Si">Si</option>
-                            <option  value="No" >No</option>
+                        <select name="domicilio"  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
+                            <option selected value={true}>Si</option>
+                            <option  value={false} >No</option>
                         </select>
                 </div>
                     
-                <button className="btn btn-dark" onClick={this.postearPedido.bind(this)} onChange={this.handleChange}>Enviar</button>
-                <button className="btn btn-dark" onClick={this.ver} onChange={this.handleChange}>ver estado</button>
+                <button  className="btn btn-dark" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
+                <button className="btn btn-dark" onClick={this.ver} >ver estado</button>
 
                 
                
@@ -515,5 +617,32 @@ export class Formulario extends React.Component{
 
         )
     }
+}
+export class MensajeModal extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            mensaje:this.props.mensaje
+        };
+    }
+    render(){ 
+      return(
+          
+        <div className="modal fade show" id="emergente2"  style="display: block; padding-right: 22px;" aria-modal="true" role="dialog">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                
+                <div className="modal-body">
+                    <p>{this.state.mensaje}</p>
+                </div>
+
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-outline-info"  data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      );
+  }
 }
 
