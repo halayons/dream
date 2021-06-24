@@ -10,12 +10,12 @@ export class Feed extends React.Component {
 
 	render() {
 		return (
-			<div class="posts">
-				{
-					this.props.posts.map(post =>
-						<Post post={post}></Post>
-					)
-				}
+			<div class="container bg-light">
+				
+					{this.props.posts.map(post =>
+							<Post post={post}></Post>
+						)}
+				
 			</div>
 		);
 	}
