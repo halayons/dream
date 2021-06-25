@@ -9,7 +9,8 @@ export class Post extends React.Component {
 		super(props);
 
 		this.state = {
-			comments: []
+			comments: [],
+			id:this.props.post.id
 		};
 
 		this.onInputchange = this.onInputchange.bind(this);
@@ -71,16 +72,28 @@ export class Post extends React.Component {
 			<div class="row justify-content-center post bg-light" >
 					<div class = "card col-lg-4 col-sm-8">
 						
-					<img clasName=" img-post" src = {this.props.post.foto}></img>
-
-
+						<div className="carousel slide"  id={"post"+this.state.id} data_ride="carousel">
+							<div className="carousel-inner carousel-post" >
+								<img className=" carousel-item active img-fluid" src = {this.props.post.foto}></img>
+								<img className=" carousel-item img-fluid"  src="http://localhost:8000/media/postImages/321_jbjNKPP.png"></img>
+							</div>
+							
+							<div class="carousel-control-next" href={"#post"+this.state.id} role="button" data-slide="next">
+								<spam class="carousel-control-next-icon" arial-hidden="true"></spam>
+								<spam class="sr-only">Siguiente</spam>
+							</div>
+							<div class="carousel-control-prev" href={"#post"+this.state.id} role="button" data-slide="prev">
+								<spam class="carousel-control-prev-icon" aria-hidden="true"></spam>
+								<spam class="sr-only">Anterior</spam>
+							</div>
+						</div>
 
 						
 
 						<div className="card-body ">
 							<div className="row justify-content-between">
 								<div className= "comments col-lg-4 col-sm-4 col-4" >
-									<span class ="badge badge-light " type ="button" data-toggle="collapse" data-target="#comentarios" aria-expanded="false" aria-controls="">{this.state.comments.length} Cometarios </span> 
+									<span class ="badge badge-light " type ="button" data-toggle="collapse" data-target={"#	cometariosPost"+this.state.id} aria-expanded="false" aria-controls="">{this.state.comments.length} Cometarios </span> 
 								</div>
 								<div className= "col-lg-5 col-sm-5 col-5">
 								    <img className="likes" src="/static/media/like.115883dc.svg" alt="" />
@@ -104,12 +117,13 @@ export class Post extends React.Component {
 							
 							<div class="row">
 
-									<div class="collapse multi-collapse col-sm-6 " id ="comentarios">
+									<div class="collapse multi-collapse col-sm-6 " id ={"cometariosPost"+this.state.id}>
 										{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}
 									</div>
 								</div>
 						</div>
 					</div>
+				
 			</div>
 		);
 	}

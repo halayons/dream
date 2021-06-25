@@ -1,7 +1,8 @@
 .img-post{
 	//width: 80%;
-	width:5rem;
-	height: 5rem;
+	inherits: true;
+	width:20%;
+	
 	}
 .img-perfil{
 	width: 30px;
@@ -42,4 +43,24 @@
 	border-right: solid 1px black;
 	transform: rotateZ(45deg) translateX(8px) translateY(2px);
 
+}
+
+.carousel-post{
+	height: 12rem;
+	margin:auto 0;
+}
+
+.crearPost{
+	padding: 5px;
+	position: sticky;
+	z-index: 1000;
+	top:0%;
+	border-radius: 15px;
+	background-color: #fff;
+	border-bottom: solid 1px;
+}
+.postearImg{
+	position: absolute;
+	top:110%;
+	margin-right: 0.3rem;
 }

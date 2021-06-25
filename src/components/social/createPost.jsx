@@ -97,27 +97,36 @@ export class CreatePost extends React.Component {
 		let { imagePreviewUrl } = this.state;
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
-			$imagePreview = (<img src={imagePreviewUrl} />);
-		} else {
-			$imagePreview = (<div className="previewText">Elige una imagen para el post</div>);
+			$imagePreview = (<img className ="img-fluid " src={imagePreviewUrl} />);
+		} 
+		else {
+			$imagePreview = (<div className="previewText"></div>);
 		}
 
 		return (
-			<div className="container">
-				<label>Crear Post</label><br />
-				<label>pastel: </label>
-				<select value={this.state.option} onChange = {this.handleSelect}>
-					{
-						this.state.pasteles.map(pastel =>
-							<option value={pastel.id}>{pastel.id}</option>
-						)
-					}
-				</select>
-				<div class="foto">
-					<input type="file" onChange={this.handleImageChange} />
-					{$imagePreview}
+			<div className="container crearPost">
+				<div className="form-row justify-content-center">
+					
+					<input className="col-lg-8 col-sm-8 col-8 form-control " type="file" onChange={this.handleImageChange} />
+					<div className="col-lg-3 col-sm-3 col-3">
+								{/*<span htmlFor="pastelID" >Pastel:</span>*/}
+								<select className="form-control " id="pastelID" value={this.state.option} onChange = {this.handleSelect}>
+									{
+										this.state.pasteles.map(pastel =>
+											<option value={pastel.id}>{pastel.id}</option>
+										)
+									}
+								</select>
+							</div>
+					<div className="col-lg-1 col-sm-1 col-1">
+								<span className=" form-control badge badge-primary" type="button" onClick={this.crearPost}>Crear</span>
+							</div>
 				</div>
-				<button onClick={this.crearPost}>crear</button>
+				<div className="row justify-content-end postearImg ">
+						<div className =" col-lg-4 col-sm-3 col-4 ">
+							{$imagePreview}
+						</div>
+				</div>
 			</div>
 		);
 	}
