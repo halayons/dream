@@ -5,7 +5,15 @@ import { Footer, Header } from '../landingPage';
 import { Pedidos } from './pedidos/pedidos';
 import { Menu } from './menu';
 
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import { store } from 'react-notifications-component';
+
+import Cookies from 'js-cookie';
+
 export class Admin extends React.Component {
+
+  ws = new WebSocket("ws://localhost:8000/ws/")
 
   constructor(props) {
     super(props)
@@ -35,13 +43,78 @@ export class Admin extends React.Component {
         domiciliario: true,
         pasteles: 1,
         user: "admin@admin.com"
-      }]
+      }],
+      atr: "-fecha_pedido"
     }
+
+    this.send = this.send.bind(this);
+    this.cargarPedidos = this.cargarPedidos.bind(this);
+  }
+
+  componentDidMount() {
+    this.cargarPedidos();
+
+    this.ws.onopen = evt => {
+      console.log("open");
+      this.send();
+    };
+
+    this.ws.onclose = evt => { console.log('disconnected') };
+
+    this.ws.onmessage = evt => {
+      const message = JSON.parse(evt.data)
+      this.setState({ dataFromServer: message })
+      this.addNFT(message);
+      this.cargarPedidos();
+    };
+
+    this.ws.onerror = evt => { console.log(JSON.stringify(evt)) };
+  }
+
+  send() {
+    this.ws.send(JSON.stringify({
+      action: "subscribe_to_pedido_activity",
+      request_id: new Date().getTime(),
+    }))
+  }
+
+  addNFT(message) {
+    store.addNotification({
+      title: "Nuevo pedido",
+      message: message.user + " realizo un nuevo pedido",
+      type: "success",
+      insert: "top",
+      container: "bottom-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true
+      }
+    });
+  }
+
+  cargarPedidos(event) {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        // 'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken')
+      },
+      credentials: "include",
+    };
+    fetch("http://localhost:8000/all_pedidos/" + this.state.atr + "/", requestOptions)
+      .then(response => response.json())
+      .then(json => this.setState({
+        pedidos: json
+      }))
+      .catch(error => console.log(error));
   }
 
   render() {
     return (
       <div>
+        <ReactNotification />
         <Header></Header>
         <Menu></Menu>
         <Pedidos datos={this.state.pedidos}></Pedidos>
