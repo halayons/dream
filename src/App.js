@@ -9,7 +9,7 @@ import { Social } from "./components/social/index"
 import { Admin } from "./components/administracion/admin"
 
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
 

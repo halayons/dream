@@ -3,60 +3,85 @@ import React from 'react';
 import { Estado } from './estado';
 import { PedidosNav } from './pedidosNav';
 import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Detallep } from './detallep';
+
+import Cookies from 'js-cookie';
 
 
 export class Pedidos extends React.Component {
+	estados = [{
+		value: '0',
+		text: 'En Proceso'
+	}, {
+		value: '1',
+		text: 'Enviado'
+	}, {
+		value: '2',
+		text: 'Entregado'
+	}]
+
+	acpt = [{
+		value: true,
+		text: 'Aceptado'
+	},
+	{
+		value: false,
+		text: 'No aceptado'
+	}]
+
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			open: true,
-			value:" "
-			
-		};
+			value: " ",
+			sortName: undefined,
+			sortOrder: undefined
+		}
 
 		this.buttonFormatter = this.buttonFormatter.bind(this);
 		this.stateFromatter = this.stateFromatter.bind(this);
 		this.openModal = this.openModal.bind(this);
+		this.onSortChange = this.onSortChange.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.estadoFormatter = this.estadoFormatter.bind(this)
+		this.aceptadoFormatter = this.aceptadoFormatter.bind(this);
+		this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
 	}
 
 	handleChange(event) {
-		this.setState({value: event.target.value});
-	  }
-	
-	  handleSubmit(event) {
-		alert('Esta seguro?: ' + this.state.value);
-		event.preventDefault();
-	  }
+		console.log(event.tar)
+		this.setState({ value: event.target.value });
+	}
 
-	buttonFormatter(cell, row){
+	handleSubmit(event) {
+		event.preventDefault();
+		alert('Esta seguro?: ' + this.state.value);
+
+	}
+
+	buttonFormatter(cell, row) {
 		return (
 			<div>
-				<button className= "ver" onClick={this.openModal}>ver</button>
-				<Detallep open={this.state.open} datos={row} onClose={this.openModal}/>
+				<button className="ver" onClick={this.openModal}>ver</button>
+				<Detallep open={this.state.open} datos={row} onClose={this.openModal} />
 			</div>
 		);
 	}
-	
-	buttonSelect(cell, row){
-		
+
+	buttonSelect(cell, row) {
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<select  onChange={this.handleChange}>
-  <option value="Aceptar">Aceptar</option>
-  <option value="En proceso">En proceso</option>
-  <option value="enviado">Enviado</option>
-  <option value="entregado" selected>Entregado</option>
-</select>
-				
-			</form>
+			<div>
+				<select onChange={this.handleChange} value={row.estado % 3}>
+					<option value={0}>En proceso</option>
+					<option value={1}>Enviado</option>
+					<option value={2}>Entregado</option>
+				</select>
+			</div>
 		);
 	}
-	
+
 
 	openModal = (e) => {
 		e.preventDefault();
@@ -65,38 +90,123 @@ export class Pedidos extends React.Component {
 		});
 	};
 
-
-	stateFromatter(cell, row){
-		return <Estado datos = {row}></Estado>
+	stateFromatter(cell, row) {
+		return <Estado datos={row}></Estado>
 	}
 
-	
+	onSortChange(sortName, sortOrder) {
+		this.setState({
+			sortName,
+			sortOrder
+		});
+	}
+
+	parseDate = (s) => {
+
+	}
+
+	dateFormatter(cell, row) {
+		let s = cell;
+
+		let months = {
+			jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+			jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+		};
+		let p = s.split('-');
+		let date = new Date(p[0], months[p[1].toLowerCase()], p[2]);
+		return `${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + (date.getDate() - 1)).slice(-2)}/${date.getFullYear()}`;
+	}
+
+	estadoFormatter(cell, row) {
+		let estados = ['En proceso', 'Enviado', 'Entregado'];
+		return estados[row.estado]
+	}
+
+	aceptadoFormatter(cell, row) {
+		return row.aceptado ? 'Aceptado' : 'No aceptado'
+	}
+
+
+	onAfterSaveCell(row, cellName, cellValue) {
+		// alert(`Save cell ${cellName} with value ${cellValue} id ${row.idpedido}`);
+		if (cellName == 'aceptado') this.aceptarPedido(row.idpedido, cellValue)
+		if (cellName == 'estado') this.estadoPedido(row.idpedido, cellValue)
+		// if(cellName == 'aceptado') this.aceptarPedido
+	}
+
+	aceptarPedido(id, valor) {
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': Cookies.get('csrftoken')
+			},
+			credentials: "include",
+			body: JSON.stringify({
+				'aceptado': valor
+			})
+		};
+		fetch("http://localhost:8000/aceptar_pedido/" + id + "/", requestOptions)
+			.then(response => response.json())
+			.then(json => {
+				if (json.hasOwnProperty('aceptado'))
+					alert(`Pedido ${id} aceptado`)
+			})
+			.catch(error => console.log(error));
+	}
+
+	estadoPedido(id, valor){
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': Cookies.get('csrftoken')
+			},
+			credentials: "include",
+			body: JSON.stringify({
+				'estado': valor
+			})
+		};
+		fetch("http://localhost:8000/estado_pedido/" + id + "/", requestOptions)
+			.then(response => response.json())
+			.then(json => console.log(json))
+			.catch(error => console.log(error));
+	}
+
+
+
 
 	render() {
+		const options = {
+			sortName: this.state.sortName,
+			sortOrder: this.state.sortOrder,
+			onSortChange: this.onSortChange
+		};
 		return (
 			<div>
-				<PedidosNav></PedidosNav>
-				<BootstrapTable data={this.props.datos}>
-					<TableHeaderColumn isKey dataField='idpedido'>
-						ID 
+				{/* <P edidosNav></PedidosNav> */}
+				<BootstrapTable data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
+					<TableHeaderColumn isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
+						ID
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='fecha_pedido'>
-						Fecha 
+					<TableHeaderColumn dataField='fecha_pedido' dataSort={true} dataFormat={this.dateFormatter} editable={false} >
+						Fecha
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='user'>
-						Usuario 
+					<TableHeaderColumn dataField='user' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} editable={false}>
+						Usuario
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='button' dataFormat={this.buttonFormatter}> 
+					<TableHeaderColumn dataField='aceptado' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} dataFormat={this.aceptadoFormatter}
+						editable={{ type: 'select', options: { values: this.acpt } }}>
+						Aceptado
+					</TableHeaderColumn>
+					<TableHeaderColumn dataField='button' dataFormat={this.buttonFormatter} editable={false}>
 						Ver
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='estado' dataFormat={this.buttonSelect}> 
+					<TableHeaderColumn dataField='estado' dataFormat={this.estadoFormatter} editable={{ type: 'select', options: { values: this.estados } }}>
 						Editar Estado
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='estado' dataFormat={this.stateFromatter}> 
-						Estado
-					</TableHeaderColumn>
 				</BootstrapTable>
-				
+
 			</div>
 		);
 	}
