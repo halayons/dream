@@ -44,12 +44,13 @@
 	transform: rotateZ(45deg) translateX(8px) translateY(2px);
 
 }
-
+//------carousel-----
 .carousel-post{
 	height: 12rem;
 	margin:auto 0;
 }
 
+//------postear-----
 .crearPost{
 	padding: 5px;
 	position: sticky;
@@ -57,10 +58,24 @@
 	top:0%;
 	border-radius: 15px;
 	background-color: #fff;
-	border-bottom: solid 1px;
+	border-bottom: solid 1px #9556cc;
 }
 .postearImg{
 	position: absolute;
 	top:110%;
-	margin-right: 0.3rem;
+}
+input[type="file"]{
+	display:none;
+}
+input+label{
+	padding: 5px;
+	margin:0;
+	//border:solid 1px #7cd5d0;
+	border-radius: 5px ;
+	background-color: #7cd5d043;
+	text-align: center;
+	font-family:"Montserrat",sans-serif ;
+}
+.foto{
+	width:24px;
 }

@@ -1,4 +1,5 @@
 import './style.scss';
+import foto from '../../static/images/foto1.png';
 import React from 'react';
 import Cookies from 'js-cookie';
 
@@ -97,7 +98,7 @@ export class CreatePost extends React.Component {
 		let { imagePreviewUrl } = this.state;
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
-			$imagePreview = (<img className ="img-fluid " src={imagePreviewUrl} />);
+			$imagePreview = (<img className ="img-fluid shadow-lg  md-20" src={imagePreviewUrl} />);
 		} 
 		else {
 			$imagePreview = (<div className="previewText"></div>);
@@ -106,20 +107,27 @@ export class CreatePost extends React.Component {
 		return (
 			<div className="container crearPost">
 				<div className="form-row justify-content-center">
-					
-					<input className="col-lg-8 col-sm-8 col-8 form-control " type="file" onChange={this.handleImageChange} />
-					<div className="col-lg-3 col-sm-3 col-3">
+					<div className="">
+						<input  id ="imgfile" type="file" onChange={this.handleImageChange} />
+						<label htmlFor="imgfile" className="btn btn-outline-info">
+							<img className="foto" src={foto}/>
+							. Escoger foto
+						</label>
+					</div>
+					<div className="col-lg-2 col-sm-2 col-2">
 								{/*<span htmlFor="pastelID" >Pastel:</span>*/}
-								<select className="form-control " id="pastelID" value={this.state.option} onChange = {this.handleSelect}>
-									{
+								<select className="form-control " id="pastelID" value={this.state.option} placeholder="h" onChange = {this.handleSelect}>
+									
+									{	
 										this.state.pasteles.map(pastel =>
 											<option value={pastel.id}>{pastel.id}</option>
 										)
 									}
+									
 								</select>
 							</div>
-					<div className="col-lg-1 col-sm-1 col-1">
-								<span className=" form-control badge badge-primary" type="button" onClick={this.crearPost}>Crear</span>
+					<div className="col-lg-1 col-sm-2 col-2">
+								<span className=" form-control btn btn-info" type="button" onClick={this.crearPost}>Post</span>
 							</div>
 				</div>
 				<div className="row justify-content-end postearImg ">
