@@ -5,6 +5,7 @@ import './App.css';
 import { LoginScreen } from "./components/login/index";
 import { LandingPage } from "./components/landingPage/index";
 import {Pedido} from "./components/Pedidos/Pedidos"
+import { Profile } from "./components/Profile/Profile";
 
 
 class App extends React.Component {
@@ -43,6 +44,7 @@ class App extends React.Component {
          {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
          {window.location.pathname == "/" && <LandingPage></LandingPage>}
+         {window.location.pathname == "/profile" && <Profile></Profile>}
       </div>
     )
   }
