@@ -50,8 +50,10 @@ export class Post extends React.Component {
             this.setState({
 				comments: this.state.comments
 			})
+			this.setState({comentario:''});
         })
         .catch(error => console.log(error))   
+		
 	}
 
 
@@ -69,28 +71,40 @@ export class Post extends React.Component {
 			<div class="row justify-content-center post bg-light" >
 					<div class = "card col-lg-4 col-sm-8">
 						
-							<p>post: {this.props.post.id}</p>
-							
-							<img clasName=" img-post" src = {this.props.post.foto}></img>
-						<div className="card-body form">
-							
-							
-							<div className= "comments">
-								<span class ="badge badge-primary " type ="button" data-toggle="collapse" data-target="#comentarios" aria-expanded="false" aria-controls="">Cometarios </span> 
+					<img clasName=" img-post" src = {this.props.post.foto}></img>
+
+
+
+						
+
+						<div className="card-body ">
+							<div className="row justify-content-between">
+								<div className= "comments col-lg-4 col-sm-4 col-4" >
+									<span class ="badge badge-light " type ="button" data-toggle="collapse" data-target="#comentarios" aria-expanded="false" aria-controls="">{this.state.comments.length} Cometarios </span> 
+								</div>
+								<div className= "col-lg-5 col-sm-5 col-5">
+								    <img className="likes" src="/static/media/like.115883dc.svg" alt="" />
+									<span class ="badge badge-primary " type ="button" data-target="" >
+										{this.props.post.likes}
+									</span> 
+									
+								</div>
 							</div>
 
 							<div className="form-row d-flex">
-									<label htmlFor="comentario">Comentar</label>
-									<input className="form-control col-sm-10" type="text" id="comentario"  placeholder = "Escribe un comentario" value={this.state.comentario}  name="comentario" onChange={this.onInputchange}/>
-									<spam type="button" className=" form-control btn btn-info col-sm-2 btnComentar"  onClick = {this.createComment}>✔</spam>
+									<input className="form-control col-sm-10 col-lg-10 col-10" type="text" id="comentario"  placeholder = "Escribe un comentario" value={this.state.comentario}  name="comentario" onChange={this.onInputchange}/>
+									<div className=" col-sm-2 col-lg-2 col-2">
+										<spam type="button" className=" form-control badge badge-light  btnComentar"  onClick = {this.createComment}>
+											<div className="enviar"></div>
+										</spam>
+									</div>
 								
 							</div>
-							<hr />
-
+							
 							
 							<div class="row">
+
 									<div class="collapse multi-collapse col-sm-6 " id ="comentarios">
-								
 										{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}
 									</div>
 								</div>

@@ -1,6 +1,10 @@
 .img-post{
-	width: 80%;
-	
+	//width: 80%;
+	width:5rem;
+	height: 5rem;
+	}
+.img-perfil{
+	width: 30px;
 }
 .card-body{
 	border-top:solid 1px;
@@ -15,8 +19,27 @@
 	margin:2px;
 }
 .comments{
-	text-align: right;
+	text-align: center;
+	display: inline-block;
+	padding-top: 5px;
+}
+.item-comments{
+	text-align: left;
 }
 .btnComentar{
-	border:50%;
+	border-radius:100%;
+	text-align: center;
+	border:auto;
+}
+.likes{
+	display: inline-block;
+	width: 40px;
+}
+.enviar{
+	width: 10px;
+	height: 10px;
+	border-top: solid 0.1rem black;
+	border-right: solid 1px black;
+	transform: rotateZ(45deg) translateX(8px) translateY(2px);
+
 }
