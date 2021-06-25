@@ -34,9 +34,7 @@ export class Detallep extends React.Component {
                     <h1>Pedido</h1>
                     <h1>Foto</h1>         
                         
-                    <button >En proceso</button>
-                    <button >Entregado</button>  
-                        <button onClick={this.onClose}>Salir</button>
+                    <button onClick={this.onClose}>Salir</button>
                     
                 </div>
             </section>
