@@ -47,7 +47,7 @@
 //------carousel-----
 .carousel-post{
 	height: 12rem;
-	margin:auto 0;
+	margin-top:auto ;
 }
 
 //------postear-----
@@ -64,6 +64,7 @@
 	position: absolute;
 	top:110%;
 }
+
 input[type="file"]{
 	display:none;
 }

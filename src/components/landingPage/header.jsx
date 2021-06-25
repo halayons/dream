@@ -1,7 +1,12 @@
 import React from 'react';
+<<<<<<< HEAD
 import {Register} from '../login/register';
 import {Login} from '../login/login';
 import logo from '../../static/images/logo.png';
+=======
+
+import logo from '../../static/images/logo3.svg';
+>>>>>>> CAKE-24_CrearPedido
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 export class Header extends React.Component{
@@ -31,11 +36,14 @@ export class Header extends React.Component{
     render(){
         return(
         <header>
-            <div class="jumbotron-header"> 
-               <div class="row">
-                   <div class="col-md-8">
-                   <img src= {logo} class="img-logo" ></img>
+            <div className="jumbotron-header"> 
+               <div className="row">
+                   <div className="col-md-8">
+                        <a href="/" className="navbar-brand">
+                            <img src= {logo} className="img-logo" ></img>
+                        </a>
                    </div>
+<<<<<<< HEAD
                    <div class="col-md-4">
                    
                 
@@ -47,6 +55,11 @@ export class Header extends React.Component{
                        
                        <button type="button" class="btn-login" onClick={(e) => {this.openModal(e);}}>Iniciar Sesión</button>
                        <Login open={this.state.open} onClose={this.openModal} />
+=======
+                   <div className="col-md-4 ver">
+                       <button type="button" className="btn-register" onClick={this.registrarse}>Registrarse</button>
+                       <button type="button" className="btn-login" onClick={this.iniciarSesion}>Iniciar Sesión</button>
+>>>>>>> CAKE-24_CrearPedido
                    </div>
                    
 

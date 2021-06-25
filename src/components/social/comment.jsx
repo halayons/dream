@@ -26,7 +26,7 @@ export class Comment extends React.Component{
 					</div>
 					<p className="fecha">{this.state.date}</p>
 				</div>
-				{console.log(this.state.data)}
+				
 				
 				
 			</div>

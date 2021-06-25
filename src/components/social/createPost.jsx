@@ -1,4 +1,6 @@
 import './style.scss';
+import '../Pedidos/style.scss'
+import {Pastel,PastelC} from '../Pedidos/Pedidos'
 import foto from '../../static/images/foto1.png';
 import React from 'react';
 import Cookies from 'js-cookie';
@@ -98,7 +100,7 @@ export class CreatePost extends React.Component {
 		let { imagePreviewUrl } = this.state;
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
-			$imagePreview = (<img className ="img-fluid shadow-lg  md-20" src={imagePreviewUrl} />);
+			$imagePreview = (<img className ="img-fluid " src={imagePreviewUrl} />);
 		} 
 		else {
 			$imagePreview = (<div className="previewText"></div>);
@@ -131,9 +133,12 @@ export class CreatePost extends React.Component {
 							</div>
 				</div>
 				<div className="row justify-content-end postearImg ">
+						
 						<div className =" col-lg-4 col-sm-3 col-4 ">
+							<Pastel></Pastel>
 							{$imagePreview}
 						</div>
+						{console.log(this.state)}
 				</div>
 			</div>
 		);
