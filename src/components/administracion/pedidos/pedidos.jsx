@@ -183,13 +183,13 @@ export class Pedidos extends React.Component {
 			onSortChange: this.onSortChange
 		};
 		return (
-			<div>
+			<div class="content">
 				{/* <P edidosNav></PedidosNav> */}
 				<BootstrapTable data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
-					<TableHeaderColumn isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
+					<TableHeaderColumn isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }}  >
 						ID
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='fecha_pedido' dataSort={true} dataFormat={this.dateFormatter} editable={false} >
+					<TableHeaderColumn dataField='fecha_pedido'  dataSort={true} dataFormat={this.dateFormatter} editable={false} >
 						Fecha
 					</TableHeaderColumn>
 					<TableHeaderColumn dataField='user' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} editable={false}>
