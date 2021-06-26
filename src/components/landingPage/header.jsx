@@ -1,12 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD
 import {Register} from '../login/register';
 import {Login} from '../login/login';
 import logo from '../../static/images/logo.png';
-=======
-
-import logo from '../../static/images/logo3.svg';
->>>>>>> CAKE-24_CrearPedido
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 export class Header extends React.Component{
@@ -43,23 +38,15 @@ export class Header extends React.Component{
                             <img src= {logo} className="img-logo" ></img>
                         </a>
                    </div>
-<<<<<<< HEAD
                    <div class="col-md-4">
-                   
-                
-                <button type="button" class="btn-register" onClick={(e) => {this.openModal1(e);}}>
-                    Registrarse </button>
-            
-                    <Register open={this.state.open1} onClose={this.openModal1} />
-            
-                       
-                       <button type="button" class="btn-login" onClick={(e) => {this.openModal(e);}}>Iniciar Sesión</button>
-                       <Login open={this.state.open} onClose={this.openModal} />
-=======
-                   <div className="col-md-4 ver">
-                       <button type="button" className="btn-register" onClick={this.registrarse}>Registrarse</button>
-                       <button type="button" className="btn-login" onClick={this.iniciarSesion}>Iniciar Sesión</button>
->>>>>>> CAKE-24_CrearPedido
+                        <button type="button" class="btn-register" onClick={(e) => {this.openModal1(e);}}>
+                        Registrarse </button>
+                    
+                        <Register open={this.state.open1} onClose={this.openModal1} />
+                    
+                            
+                        <button type="button" class="btn-login" onClick={(e) => {this.openModal(e);}}>Iniciar Sesión</button>
+                        <Login open={this.state.open} onClose={this.openModal} />
                    </div>
                    
 

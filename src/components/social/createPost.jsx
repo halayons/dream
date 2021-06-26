@@ -4,6 +4,7 @@ import {Pastel,PastelC} from '../Pedidos/Pedidos'
 import foto from '../../static/images/foto1.png';
 import React from 'react';
 import Cookies from 'js-cookie';
+import { setTheUsername } from 'whatwg-url';
 
 export class CreatePost extends React.Component {
 
@@ -94,6 +95,36 @@ export class CreatePost extends React.Component {
 			})
 			.catch(error => console.log(error))
 	}
+	paintCake(){
+		let pastel =this.state.pasteles[0];
+		let chocolate ='url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")';
+        let vainilla ='url("https://www.transparenttextures.com/patterns/asfalt-dark.png")';
+        let leches = ' url("https://www.transparenttextures.com/patterns/ravenna.png")';
+        let velvet =  'url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png")';
+		let RV="velvet";
+		let TL ="leches";
+		let VA="vainilla";
+		let CH ="chocolate";
+		
+        document.documentElement.style.setProperty('--textura-pastel','');
+
+		let AQ="#995c2e";
+		let NU="#69391d";
+		let ML="#5c0c15b5";
+		let CP="#e4cc8ba1";
+		document.documentElement.style.setProperty('--color-pastel2',pastel.color);
+		
+		console.log("este es el pastel")
+		console.log(pastel);
+		
+
+	
+		document.documentElement.style.setProperty('--textura-pastel', (pastel.masa));
+		document.documentElement.style.setProperty('--color-pastel3','colorCubierta');
+		document.documentElement.style.setProperty('--color-pastel',this.state.pasteles.color);
+		document.documentElement.style.setProperty('--textura-pastel2','');
+	}
+	
 
 	render() {
 
@@ -101,11 +132,14 @@ export class CreatePost extends React.Component {
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
 			$imagePreview = (<img className ="img-fluid " src={imagePreviewUrl} />);
-		} 
-		else {
+		}else {
 			$imagePreview = (<div className="previewText"></div>);
 		}
-
+		if(this.state.pasteles.length>0){
+			this.paintCake();
+		}else{
+			console.log("F")
+		}
 		return (
 			<div className="container crearPost">
 				<div className="form-row justify-content-center">
@@ -138,7 +172,8 @@ export class CreatePost extends React.Component {
 							<Pastel></Pastel>
 							{$imagePreview}
 						</div>
-						{console.log(this.state)}
+						
+						
 				</div>
 			</div>
 		);

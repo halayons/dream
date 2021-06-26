@@ -1,5 +1,4 @@
 import React from 'react';
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
 import {SliderPicker} from 'react-color';
 import { Social, Footer, Header} from "../landingPage/index";
@@ -7,9 +6,7 @@ import {Login} from '../login/login'
 import {Register} from '../login/register'
 import Cookies from 'js-cookie';
 import textura from '../../media/img/texturaCobertura.jpg';
-import { event, get } from 'jquery';
-import { ResponsiveEmbed } from 'react-bootstrap';
-
+import foto from '../../static/images/foto1.png';
 
 export class Pedido extends React.Component{
     
@@ -83,13 +80,7 @@ export  class Index extends React.Component {
         }
         document.documentElement.style.setProperty('--color-pastel2',color);
 
-        if(this.state.cobertura === 'FD'){
-            colorCubierta = "#39caf7";
-        }
-        else if(this.state.cobertura === 'CR'){
-            colorCubierta = "#e0d8cd";
-        }
-        document.documentElement.style.setProperty('--color-pastel3',colorCubierta);
+      
 
     }
     
@@ -497,7 +488,7 @@ export class Mensaje extends Index{
                                 
                             </div>
 
-                            <div className="modal-footer">
+                            <div className="modal-footer justify-content-center">
                                 <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
@@ -554,8 +545,8 @@ export class Formulario extends React.Component{
             // body: JSON.stringify(this.state)
         }).then((response) => response.json())
         .then(response =>{
-            if (response.idpedido!=-1){
-                
+            if (response.idpedido!=undefined){
+                console.log(response.idpedido);
                 alert("se posteo correctamente")
                 window.location.pathname ="/";    
             }else{
@@ -590,25 +581,35 @@ export class Formulario extends React.Component{
                 <div className=" form-row">
                     <div className=" form-group">
                         <label for="direccion"> Dirección </label>
-                        <input type = "text" class= "form-control" id="direccion" required onChange={(e)=>{this.setState({direccion:e.target.value});this.obtenerDatos()}} placeholder="Ingrese dirección" ></input>
+                        <input type = "text" className= "form-control" id="direccion" required onChange={(e)=>{this.setState({direccion:e.target.value});this.obtenerDatos()}} placeholder="Ingrese dirección" ></input>
                     </div>
                 </div>
-                <div className="form-group">
-                    <label for="file"><span>Foto</span></label>
+                <div className="form-row justify-content-between">
+                    {/* <label for="file"><span>Foto</span></label>
                     <input type ="file" className="col-sm "  id="file" onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*"></input>
-                    <div id="draw"></div>
-                    
-                </div>
-                <div className ="form-group">
-                    <label for ="domicilio" > ¿Desea domicilio?</label><br />
-                        <select name="domicilio"  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
-                            <option selected value={true}>Si</option>
+                    <div id="draw"></div> */}
+
+                    <input  id ="imgfile" type="file"  onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*" />
+						<label htmlFor="imgfile" className="btn btn-outline-info col-lg-4 col-ms-4 col-5">
+							<img className="foto" src={foto}/>
+							. Escoger foto
+						</label>
+
+                        
+                        <select className="form-control  col-lg-4 col-sm-4 col-5" name="domicilio"  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
+                            <option selected value={true}>¿Domicilio?</option>
+                            <option  value={true}>Si</option>
                             <option  value={false} >No</option>
-                        </select>
+                        </select>   
+                    
                 </div>
                     
-                <button  className="btn btn-dark" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
-                <button className="btn btn-dark" onClick={this.ver} >ver estado</button>
+               
+                <hr />   
+
+                
+                <button  className="btn btn-dark col-lg-2 col-sm-2 col-3" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
+                
 
                 
                

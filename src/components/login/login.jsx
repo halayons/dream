@@ -69,7 +69,7 @@ class Login extends Component {
 
     return (
       <section className="modal-container" id="modal">
-        <div className="modal-content">
+        <div className="modal-content1">
           <img src={logo} class="img-logo" ></img>
           <h1>DreamCake</h1>
           <label>
