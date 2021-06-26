@@ -4,11 +4,13 @@ import './App.css';
 
 import { LoginScreen } from "./components/login/index";
 import { LandingPage } from "./components/landingPage/index";
-import {Pedido} from "./components/Pedidos/Pedidos"
-import { Profile } from "./components/Profile/Profile";
+import { Pedido } from "./components/Pedidos/Pedidos"
+import { Profile } from "./components/Profile/profile";
+import { Social } from "./components/social/index"
+import { Admin } from "./components/administracion/admin"
 
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,6 +47,8 @@ class App extends React.Component {
          {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
          {window.location.pathname == "/" && <LandingPage></LandingPage>}
          {window.location.pathname == "/profile" && <Profile></Profile>}
+         {window.location.pathname == "/social" && <Social></Social>}
+         {window.location.pathname == "/admin" && <Admin></Admin>}
       </div>
     )
   }

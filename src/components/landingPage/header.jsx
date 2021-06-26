@@ -1,34 +1,54 @@
 import React from 'react';
-
-import logo from '../../static/images/logo3.svg';
+import {Register} from '../login/register';
+import {Login} from '../login/login';
+import logo from '../../static/images/logo.png';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 export class Header extends React.Component{
 
 
-    registrarse(){
-        window.location.pathname = "/accounts/signup/"
-    }
+    state = {
+        open: true,
+        open1:true
+    };
+    
+    openModal = (e) => {
+        e.preventDefault();
+        this.setState({
+            open: !this.state.open
+        });
+    };
 
-    iniciarSesion(){
-        window.location.pathname = "/accounts/login/"
-
-    }
+    openModal1 = (e) => {
+        e.preventDefault();
+        this.setState({
+            open1: !this.state.open1
+        });
+    };
+    
+    
 
     render(){
         return(
-        <header>
-            <div className="jumbotron-header"> 
-               <div className="row">
-                   <div className="col-md-8">
-                        <a href="/" className="navbar-brand">
-                            <img src= {logo} className="img-logo" ></img>
-                        </a>
+            <header>
+            <div class="jumbotron-header"> 
+               <div class="row">
+                   <div class="col-md-8">
+                   <img src= {logo} class="img-logo" ></img>
                    </div>
-                   <div className="col-md-4 ver">
-                       <button type="button" className="btn-register" onClick={this.registrarse}>Registrarse</button>
-                       <button type="button" className="btn-login" onClick={this.iniciarSesion}>Iniciar Sesión</button>
+                   <div class="col-md-4">
+                   
+                
+                <button type="button" class="btn-register" onClick={(e) => {this.openModal1(e);}}>
+                    Registrarse </button>
+            
+                    <Register open={this.state.open1} onClose={this.openModal1} />
+            
+                       
+                       <button type="button" class="btn-login" onClick={(e) => {this.openModal(e);}}>Iniciar Sesión</button>
+                       <Login open={this.state.open} onClose={this.openModal} />
                    </div>
+                   
 
                </div>
            </div>
@@ -41,3 +61,6 @@ export class Header extends React.Component{
         )
     }
 }
+
+
+
