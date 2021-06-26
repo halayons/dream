@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import arrow from "./flecha.png"
 
 export class HeaderUpdater extends React.Component{
     constructor(){
@@ -30,7 +31,7 @@ export class HeaderUpdater extends React.Component{
     }
 
     
-    render(){    
+    render(){        
         //var user_name = this.state.userInfo.short_name;
         console.log('isNull?'+this.state.userInfo == null);    
         if (this.state.userInfo == null || this.state.userInfo.hasOwnProperty('detail')){
@@ -45,11 +46,24 @@ export class HeaderUpdater extends React.Component{
         }
         else{ 
             console.log('ELSE');   
-            return(       
-                <div className="user-header">
-                    <input type="image" className="img-user" src={this.state.userInfo.foto}/>
-                    <h2 className="btname-user">{this.state.userInfo.short_name}</h2>
-                </div>   
+            return(                      
+                <div className="user-options">                 
+                    <div className="user-header">
+                        <input type="image" className="img-user" src={this.state.userInfo.foto}/>
+                        <h2 className="btname-user">{this.state.userInfo.short_name}</h2>                    
+                    </div>   
+                    <div className="menubtn">
+                        <ul className="topnav">
+                            <li><input type="image"  className="arrow" src={arrow}/>
+                                <ul className="list">
+                                    <li><a href="#">Perfil</a></li>
+                                    <li><a href="#">Pasteles</a></li>
+                                    <li><a href="#">Salir</a></li>
+                                </ul>                        
+                            </li>                                
+                        </ul>
+                    </div>
+                </div>                 
             );                                
         }
     }    
