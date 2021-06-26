@@ -1,11 +1,14 @@
 :root{
     --fondo: white;
+    --raya: #9556CC;
+    --textNombre: #9556CC;
+    --fontFamily: open sans, sans-serif;
  }
 
 // User Data
 .card{
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-top: 30px;
     padding-bottom: 30px;
     border: none;
@@ -14,38 +17,64 @@
     background-color: var(--fondo) ;
     background-size: 100% 100%;
     padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 5%;
+    padding-bottom: 5px;
     border-bottom: solid;
-    border-bottom-color: plum;
+    border-bottom-color: var(--raya);
  }
 
 .div_image{
    display: inline-block;
-   padding: 10px;
+   padding: 30px;
 }
 
 .div_text{
    display: inline-block;
-   padding: 10px;
+   padding: 30px;;
+}
+
+.user-name{
+    color: var(--textNombre);
+    font-size: xx-large;
+    font-weight: bold;
+    font-family: var(--fontFamily);
 }
 
 .img_profile{
-    width: 200px;
-    height: 200px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 100%;
+}
+
+// div button
+.div-bottom{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 // Options
-
 .div_options{
-    display: inline-block;
-    padding-left: 10%;
+    padding-left: 5%;
+    min-width: 120px;
+    align-items: center;
 }
 
 // Information
-
 .div_information{
-    display: inline-block;
-    padding: 30px;
+    padding: 10px 5% 50px 50px;
+    height: inherit;
+    max-width: 80%;
 }
 
+
+// Account
+
+.div-account{
+    display: flex;
+    flex-direction: column;
+}
+
+.account-Name{
+    background-color: turquoise;
+    padding: auto;
+}

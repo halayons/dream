@@ -66,36 +66,38 @@ export class Cakes extends React.Component {
 		const options = {
 			sortName: this.state.sortName,
 			sortOrder: this.state.sortOrder,
-			onSortChange: this.onSortChange
+			onSortChange: this.onSortChange,
+
+			hideSizePerPage: true
 		};
 
 		return (
-			<BootstrapTable data={this.props.datos} options={options}>
-				<TableHeaderColumn isKey dataField='id' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
+			<BootstrapTable data={this.props.datos} options={options} pagination>
+				<TableHeaderColumn width='150' isKey dataField='id' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
 					ID
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='num_pisos' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }}>
+				<TableHeaderColumn width='150' dataField='num_pisos' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }}>
 					Pisos
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='forma' dataSort={true} dataFormat={this.formaFromatter}>
+				<TableHeaderColumn width='150' dataField='forma' dataSort={true} dataFormat={this.formaFromatter}>
 					Forma
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='masa' dataSort={true} dataFormat={this.masaFormatter}>
+				<TableHeaderColumn width='150' dataField='masa' dataSort={true} dataFormat={this.masaFormatter}>
 					Masa
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='relleno' dataSort={true} dataFormat={this.rellenoFormatter}>
+				<TableHeaderColumn width='150' dataField='relleno' dataSort={true} dataFormat={this.rellenoFormatter}>
 					Relleno
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='cobertura' dataSort={true} dataFormat={this.coberturaFormatter}>
+				<TableHeaderColumn width='150' dataField='cobertura' dataSort={true} dataFormat={this.coberturaFormatter}>
 					Cobertura
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='color' dataSort={true} dataFormat={this.colorFormatter}>
+				<TableHeaderColumn width='150' dataField='color' dataSort={true} dataFormat={this.colorFormatter}>
 					Color
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='costo' dataSort={true}>
+				<TableHeaderColumn width='150' dataField='costo' dataSort={true}>
 					Costo
 				</TableHeaderColumn>
-				<TableHeaderColumn dataField='mensaje' dataSort={true}>
+				<TableHeaderColumn width='150' dataField='mensaje' dataSort={true}>
 					Mensaje
 				</TableHeaderColumn>
 			</BootstrapTable>
