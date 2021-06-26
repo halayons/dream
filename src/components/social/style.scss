@@ -1,6 +1,11 @@
 .img-post{
-	width: 80%;
+	//width: 80%;
+	inherits: true;
+	width:20%;
 	
+	}
+.img-perfil{
+	width: 30px;
 }
 .card-body{
 	border-top:solid 1px;
@@ -15,8 +20,62 @@
 	margin:2px;
 }
 .comments{
-	text-align: right;
+	text-align: center;
+	display: inline-block;
+	padding-top: 5px;
+}
+.item-comments{
+	text-align: left;
 }
 .btnComentar{
-	border:50%;
+	border-radius:100%;
+	text-align: center;
+	border:auto;
+}
+.likes{
+	display: inline-block;
+	width: 40px;
+}
+.enviar{
+	width: 10px;
+	height: 10px;
+	border-top: solid 0.1rem black;
+	border-right: solid 1px black;
+	transform: rotateZ(45deg) translateX(8px) translateY(2px);
+
+}
+//------carousel-----
+.carousel-post{
+	height: 12rem;
+	margin:auto 0;
+}
+
+//------postear-----
+.crearPost{
+	padding: 5px;
+	position: sticky;
+	z-index: 1000;
+	top:0%;
+	border-radius: 15px;
+	background-color: #fff;
+	border-bottom: solid 1px #9556cc;
+}
+.postearImg{
+	position: absolute;
+	top:110%;
+}
+input[type="file"]{
+	display:none;
+}
+input+label{
+	padding: 5px;
+	margin:0;
+	//border:solid 1px #7cd5d0;
+	border-radius: 5px ;
+	background-color: #7cd5d043;
+	text-align: center;
+	font-family:"Montserrat",sans-serif ;
+}
+.foto{
+	width:24px;
 }
