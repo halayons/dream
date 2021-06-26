@@ -155,7 +155,7 @@ export class Pedidos extends React.Component {
 			.catch(error => console.log(error));
 	}
 
-	estadoPedido(id, valor){
+	estadoPedido(id, valor) {
 		const requestOptions = {
 			method: 'PUT',
 			headers: {
@@ -182,9 +182,11 @@ export class Pedidos extends React.Component {
 			sortOrder: this.state.sortOrder,
 			onSortChange: this.onSortChange
 		};
-		return (
-			<div>
-				{/* <P edidosNav></PedidosNav> */}
+
+		let table = "no hay datos"
+
+		if (this.props.datos.length > 0) {
+			table = (
 				<BootstrapTable data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
 					<TableHeaderColumn isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
 						ID
@@ -206,7 +208,13 @@ export class Pedidos extends React.Component {
 						Editar Estado
 					</TableHeaderColumn>
 				</BootstrapTable>
+			)
+		}
 
+
+		return (
+			<div>
+				{table}
 			</div>
 		);
 	}
