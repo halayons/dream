@@ -74,11 +74,11 @@ class Login extends Component {
           <h1>DreamCake</h1>
           <label>
             <p>Correo</p><br />
-            <input name="email" type="text" value={this.state.email} onChange={this.onInputchange} />
+            <input className ="input-email" type="email" value={this.state.email} onChange={this.onInputchange} />
           </label>
           <label>
             <p>Contraseña</p><br />
-            <input name="password" type="password" value={this.state.password} onChange={this.onInputchange} />
+            <input className ="input-password" type="password" value={this.state.password} onChange={this.onInputchange} />
           </label>
           <button onClick={this.onSubmitForm} >Continuar</button>
           <GoogleLogin

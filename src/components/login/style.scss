@@ -66,21 +66,12 @@ button.google{
   box-shadow: 5px 5px 5px #BAB1B1;
 }
 
-input[type=checkbox]{
-  height: 20px;
-  width: 20px;
-  display: inline-block;
-  margin-right: .5rem;
-  background-size: cover;
 
-}
-
-input[type=text], input[type=password],input[type=email]{
+.input-password, .input-email{
   background: #ECECEC;
   border-radius: 6px;
   border-style: solid;
   border: 3px solid rgba(12, 12, 12, 0.904);
-  
   margin-bottom: 10px;
   border: none;
   height: 40px;
@@ -101,26 +92,13 @@ button{
   justify-content: center;
   padding-left:3%;
 }
-input[type=text]:focus-visible, input[type=password]:focus-visible,
-input[type=email]:focus-visible{
+
+.input-password:focus-visible,
+.input-email:focus-visible{
   color: #7CD5D0;
   padding-left: 3%;
 }
 
-
-input[type=submit]{
-  background: #7CD5D0;
-  color: white;
-  border-radius: 6px;
-  border-style: solid;
-  border: 3px solid rgb(37, 192, 240);
-  height: 50px;
-  width: 380px;
-  align-self: center;
-  justify-content: center;
-  margin: 10px;
-  cursor: pointer;
-}
 
 ::placeholder {
   color: #7CD5D0;

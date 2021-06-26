@@ -66,10 +66,10 @@ export class Register extends React.Component {
                     <h1>DreamCake</h1>
                     <form>
                         {/* <input placeholder= "Nombre" value={this.state.name} onChange={this.onChange.bind(this)} name="name" id="name" type="text" /> */}
-                        <input placeholder="email" value={this.state.email} onChange={this.onInputchange} name="email" id="email" type="email" />
+                        <input className ="input-email" placeholder="email" value={this.state.email} onChange={this.onInputchange} name="email" id="email" type="email" />
                         {/* <input placeholder= "Usuario" value={this.state.username} onChange={this.onChange.bind(this)} name="username" id="username" type="text" /> */}
-                        <input placeholder="Contraseña" value={this.state.password} onChange={this.onInputchange} name="password" id="password1" type="password" />
-                        <input placeholder="Confirmar contraseña" value={this.state.password2} onChange={this.onInputchange} name="password2" id="password2" type="password" />
+                        <input className ="input-password" placeholder="Contraseña" value={this.state.password} onChange={this.onInputchange} name="password" id="password1" type="password" />
+                        <input className ="input-password" placeholder="Confirmar contraseña" value={this.state.password2} onChange={this.onInputchange} name="password2" id="password2" type="password" />
 
                         {/*<p>{JSON.stringify(this.state)}</p>*/}
                         <button onClick={this.onSubmitForm}>Registrarse</button>
