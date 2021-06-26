@@ -10,6 +10,10 @@ export class Notification extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.state={
+			mensaje:"notificacion 1"
+		}
+		
 	}
 
 	componentDidMount() {
@@ -53,8 +57,19 @@ export class Notification extends React.Component {
 
 		this.ws.onerror = evt => { console.log(JSON.stringify(evt)) };
 	}
+	sendData=(e)=>{
+		const {putData} =this.props;
+		if(putData!=undefined){
+			putData(this.state);
+			console.log("funcionando");
+			e.preventDefault();
+         	e.stopPropagation();
+		}
+		
+	}
 
 	render() {
+		this.sendData.bind(this);
 		return (
 			<ReactNotification />
 		);

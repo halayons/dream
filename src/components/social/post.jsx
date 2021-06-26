@@ -103,7 +103,7 @@ export class Post extends React.Component {
 									
 								</div>
 							</div>
-
+			
 							<div className="form-row d-flex">
 									<input className="form-control col-sm-10 col-lg-10 col-10" type="text" id="comentario"  placeholder = "Escribe un comentario" value={this.state.comentario}  name="comentario" onChange={this.onInputchange}/>
 									<div className=" col-sm-2 col-lg-2 col-2">
@@ -120,7 +120,7 @@ export class Post extends React.Component {
 									<div class="collapse multi-collapse col-sm-6 " id ={"cometariosPost"+this.state.id}>
 										{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}
 									</div>
-								</div>
+							</div>
 						</div>
 					</div>
 				

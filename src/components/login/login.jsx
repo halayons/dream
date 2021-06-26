@@ -52,9 +52,6 @@ class Login extends Component {
   }
 
   render() {
-    if (this.props.open) {
-      return null;
-    }
     const responseGoogle = (response) => {
       console.log(response);
       console.log(response.profileObj);
@@ -68,39 +65,44 @@ class Login extends Component {
     }
 
     return (
-      <section className="modal-container" id="modal">
+     <div className="modal fade" id ="login">
+        <section className="modal-dialog" >
         <div className="modal-content">
-          <img src={logo} class="img-logo" ></img>
-          <h1>DreamCake</h1>
-          <label>
-            <p>Correo</p><br />
-            <input name="email" type="text" value={this.state.email} onChange={this.onInputchange} />
-          </label>
-          <label>
-            <p>Contraseña</p><br />
-            <input name="password" type="password" value={this.state.password} onChange={this.onInputchange} />
-          </label>
-          <button onClick={this.onSubmitForm} >Continuar</button>
-          <GoogleLogin
-            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-            buttonText="Iniciar con Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={'single_host_origin'}
-          />
-          <FacebookLogin
-            appId="942968703190705"
-            autoLoad={false}
-            icon="fa-facebook"
-            callback={responseFacebook}
+          <div className="modal-body">
+            <img src={logo} class="img-logo" ></img>
+            <h1>DreamCake</h1>
+            <label>
+              <p>Correo</p><br />
+              <input className="form-control" name="email" type="text" value={this.state.email} onChange={this.onInputchange} />
+            </label>
+            <label>
+              <p>Contraseña</p><br />
+              <input className="form-control" name="password" type="password" value={this.state.password} onChange={this.onInputchange} />
+            </label>
+            <button className="btn btn-primary" onClick={this.onSubmitForm} >Continuar</button>
+            <GoogleLogin
+              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+              buttonText="Iniciar con Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+            <FacebookLogin
+              appId="942968703190705"
+              autoLoad={false}
+              icon="fa-facebook"
+              callback={responseFacebook}
 
-            render={renderProps => (
-              <button className="facebook" onClick={renderProps.onClick}>Facebook</button>
-            )} />
-          <button onClick={this.onClose}>Cancelar</button>
+              render={renderProps => (
+                <button className="btn btn-outline-primary"  onClick={renderProps.onClick}>Facebook</button>
+              )} />
+            <button className="btn btn-outline-info"onClick={this.onClose}>Cancelar</button>
+          </div>
         </div>
       </section>
-    );
+    
+     </div>
+      );
   }
 }
 export { Login };

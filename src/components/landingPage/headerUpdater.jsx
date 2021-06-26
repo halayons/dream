@@ -1,7 +1,8 @@
 import React from 'react';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import campana from "../../static/images/campana.svg"
 import arrow from "./flecha.png"
-
+import { Notification } from "../notification/notification";
 import { Register } from '../login/register';
 import { Login } from '../login/login';
 
@@ -11,7 +12,8 @@ export class HeaderUpdater extends React.Component {
         this.state = {
             userInfo: null,
             open: true,
-            open1: true
+            open1: true,
+            notification:''
         }
         //this.userInfo = null;
     }
@@ -52,42 +54,64 @@ export class HeaderUpdater extends React.Component {
             open1: !this.state.open1
         });
     };
+    putData=(e)=>{
+        this.setState({notification:e});
+        return this.state;
+    }
+   
 
 
     render() {
+        <Notification putData={this.putData}/> 
         //var user_name = this.state.userInfo.short_name;
         console.log('isNull?' + this.state.userInfo == null);
         if (this.state.userInfo == null || this.state.userInfo.hasOwnProperty('detail')) {
-            console.log('IF');
             return (
-                <div className="col-md-4 ver">
-                    <button type="button" className="btn-register" onClick={(e) => { this.openModal1(e); }}>Registrarse</button>
-                    <Register open={this.state.open1} onClose={this.openModal1} />
-                    <button type="button" className="btn-login" onClick={(e) => { this.openModal(e); }}>Iniciar Sesión</button>
-                    <Login open={this.state.open} onClose={this.openModal} />
+                <div className="col-lg-6 col-md-6 col-9 ">
+
+                    
+                    <button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-toggle="modal" data-target="#register" onClick={(e) => { this.openModal1(e); }}>Registrarse</button>
+                        <Register/>
+
+
+                    <button type="button" className="col-lg-6 col-sm6 col-6 btn btn-light" data-toggle="modal" data-target="#login" onClick={(e) => { this.openModal(e); }}>Iniciar Sesión</button>
+                        <Login/>
                 </div>
 
             );
         }
         else {
-            console.log('ELSE');
             return (
-                <div className="user-options">
-                    <div className="user-header">
-                        <input type="image" className="img-user" src={this.state.userInfo.foto} />
-                        <h2 className="btname-user">{this.state.userInfo.short_name}</h2>
+                <div className="col-lg-6 col-sm-6 col-9 row justify-content-end">
+                    
+                    <div className="col-lg-1 col-sm-2 col-2">
+
+                        <img type="button" onClick={this.n} className ="menubtn img-fluid" src={campana} alt="notificacion"  data-toggle="collapse" data-target="#notification" aria-expanded="false" aria-controls="" />
+                           
+                        <div className="row">
+                            <div className="collapse multi-collapse " id ="notification">
+                              {/*this.state.notification.map(n => <Comment comment={comment}></Comment>)*/}
+                                <p>n1</p>
+                                <p>{this.state.notification}</p>
+                            </div>
+					    </div>
                     </div>
-                    <div className="menubtn">
-                        <ul className="topnav">
-                            <li><input type="image" className="arrow" src={arrow} />
-                                <ul className="list">
-                                    <li><a href="#">Perfil</a></li>
-                                    <li><a href="#">Pasteles</a></li>
-                                    <li><a href="#">Salir</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <div className="col-lg-2 col-sm-4 col-4">
+                        <img  className="img-user img-fluid" src={this.state.userInfo.foto} />
                     </div>
+                    <div className="menubtn col-lg-4 col-sm-6 col-6">
+                        <span className=" btn badge btname-user">{this.state.userInfo.email}</span>
+                       <select type="select" className=" arrow btn  badge " id="perfil">
+                            <option className="btn btn-dark"value="Perfil">Perfil</option>
+                            <option className="btn btn-dark" value="Pasteles">Pasteles</option>
+                            <option className="btn btn-dark" value="Salir">Salir</option>
+                        </select>
+                    </div>
+
+                    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+                    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+                    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
                 </div>
             );
         }

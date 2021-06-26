@@ -39,8 +39,9 @@
     margin:10px;
     padding:5px;
     min-width:12rem;
+    max-width:15rem;
     width: 30%;
-    background: #e9e7eabf;
+    background: #fff;
     box-shadow: 1px 2px 4px rgba(122, 119, 119, 0.618);
     border-radius: 2%;
     text-align: center;
@@ -97,17 +98,22 @@
 }
 
 .footer{
+    //width: 100%;
     background:var(--color-principal);
+   // position: fixed;
+   // bottom: 0;
    
 }
 .principalF{
-   padding:20px;
+   padding:5px;
    margin:0 auto;
-   text-align: center;
 }
+
 .principalF>a>img{
-    margin:0.5rem 1rem;
+    margin:0 1rem;
+    max-width: 30px;
 }
+
 
 .areaW{
     display: block;
@@ -117,22 +123,6 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-}
-
-.widget{
-    display: inline-block;
-    width:20%;
-    padding: 10px;
-    
-    font-size: 10px;
-    text-align: left;
-   
-}
-.logo{
-    width: 35%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 
@@ -210,11 +200,7 @@
     // background-image: url("./cake3.png");
 }
 
-.btn{
-    transition-duration: 0.4s;
-    cursor: pointer;
-    font-weight: bold;
-}
+
 .btn-start{
     background-color: #9556cc;
     color: white;
@@ -229,94 +215,54 @@
     background-color:  #007bb6;
     color: white;
     padding: 13px 150px;
-    
+    position: sticky;
+    top:0;
 }
 
 // HEADER
 
 .jumbotron-header{
     background-color: #7cd5d0;
-    background-size: 100% 100%;
+    background-size: auto 100%;
     padding-top: 10px;
     padding-bottom: 10px;
-
-    position:static;
+    position: sticky;
+	z-index: 1001;
+	top:0%;
 }
 
-.btn{
-    transition-duration: 0.4s;
-    cursor: pointer;
-    font-weight: bold;
-}
+
 .btn-register{
-    background-color: #9556cc;
-    color: white;
-    padding: 10px 60px;
-    margin-top: 3%;
-    font-size: 15px;
-    border: 0px solid #6dd3ce;
-    transition: 0.5s;    
+    background: #9556cc;
+    color: white;transition: 0.5s;    
   }
 .btn-register:hover{
     background-color:  #007bb6;
     color: white;
-    padding: 11px 62px;
   }
 .btn-login{
-    background-color: #1291b8;
+    background: #1291b8;
     color: white;
-    padding: 10px 60px;
-    margin-top: 3%;
-    font-size: 15px;
     border: 1px solid #6dd3ce; 
     transition: 0.5s;    
 }
 .btn-login:hover{
     background-color:  #007bb6;
     color: white; 
-    padding: 11px 72px;
-}
-.btn-start{
-    background-color: #9556cc;
-    color: white;
-    padding: 8px 130px;
-    font-size: 15px;
-    opacity: 1;
-    margin-top: 50px;
-   
-}
-.btn-start:hover{
-    background-color:  #007bb6;
-    color: white;
-    padding: 13px 150px;
-    
 }
 .img-logo {
-    width: 4.5rem;
-    min-width: 3rem;
-    margin-left: 5rem;
+   margin-left: 2rem;
   }
 
-.img-user{
-    width: 28%;
-    margin-left: 12%;
-    margin-top: 8%;    
-    float:left;   
-    display: block;    
-    border-radius: 120%;
-    border: 2px solid white;    
+.img-user{ 
+    border-radius: 70%;   
+    width: 3rem;
+    max-width: 4rem;
 }
 .btname-user{
-    font-size: 150%;
     font-weight: bold;    
-    border-radius: 5px;
-    -webkit-text-stroke: .1px rgb(100, 99, 99);
     font-family: "Homer Simpson UI";
-    margin-top: 18%;
-    float: right;
-    margin-right: 15%;    
 }
-
 ul, ol{
     list-style: none;
 }
@@ -352,12 +298,6 @@ ul, ol{
 .topnav li a:hover{
     background-color: #1291b8;       
 }
-
-/*.topnav li input:hover{
-    background-color: rgb(82, 78, 83);   
-    border-radius: 80%; 
-}*/
-
 .topnav li ul{
     display: none;    
     position: absolute;  
@@ -368,31 +308,12 @@ ul, ol{
 }
 
 .arrow{
-    width: 50%;
-    height: 50%;
-    //margin: auto;
+    background-color: #7cd5d0;
+    border:none;
 }
 
-.user-header{
-    //background-color: red;    
-    margin: auto;
-    width: 180px;
-    height: 80px;
-    padding: .2px;
-    display: inline-block;
-}
 
 .menubtn{
-    //background-color: blue;
-    width: 18%;
-    height: 38%;
-    display: inline-block;
-    margin: auto;
-    margin-bottom: 4%; 
+    margin: auto 0;    
 }
 
-.user-options{
-    margin-left: 16%;
-    //background-color: green;
-    width: 15%;
-}

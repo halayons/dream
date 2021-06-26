@@ -9,17 +9,17 @@ export class Header extends React.Component{
     render(){
             return(
             <header>
-                <div className="jumbotron-header"> 
-                <div className="row">
-                        <div className="col-md-8">
-                        <img src= {logo} className="img-logo" ></img>
-                        </div>             
-                        <HeaderUpdater/>                                     
-                </div>                                                  
-            </div>
-            <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-            <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-            <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+                <div className="jumbotron-header "> 
+                    <div className="row justify-content-between">
+                            <div className="col-lg-4 col-md-4 col-3">
+                                <img src= {logo} className="img-fluid img-logo img-user" ></img>
+                            </div>             
+                            <HeaderUpdater/>                                     
+                    </div>                                                  
+                </div>
+                <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+                <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+                <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
             </header>
             );

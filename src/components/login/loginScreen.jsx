@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 export class LoginScreen extends React.Component {
 
   state = {
-    open: true
+    open: false
 };
 
 openModal = (e) => {
@@ -19,7 +19,7 @@ openModal = (e) => {
 render() {
     return (
         <main>
-            <section>
+           {/*  <section>
                 <h1>React-Modal</h1>
                 <button
                     onClick={(e) => {
@@ -29,7 +29,7 @@ render() {
                 </button>
             </section>
 
-            <Login open={this.state.open} onClose={this.openModal} />
+            <Login open={this.state.open} onClose={this.openModal} /> */}
         </main>
     );
 }

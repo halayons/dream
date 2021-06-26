@@ -391,8 +391,7 @@ export class Mensaje extends Index{
     }
     getO=(e)=>{
         this.setState({Obs: e.target.value})
-        console.log(this.state, this.props.pastel)
-
+       
      }
     componentDidMount = () => {
 
