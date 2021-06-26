@@ -80,7 +80,7 @@ class Login extends Component {
             <p>Contraseña</p><br />
             <input className ="input-password" type="password" value={this.state.password} onChange={this.onInputchange} />
           </label>
-          <button onClick={this.onSubmitForm} >Continuar</button>
+          <button className ="login-button" onClick={this.onSubmitForm} >Continuar</button>
           <GoogleLogin
             clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
             buttonText="Iniciar con Google"
@@ -97,7 +97,7 @@ class Login extends Component {
             render={renderProps => (
               <button className="facebook" onClick={renderProps.onClick}>Facebook</button>
             )} />
-          <button onClick={this.onClose}>Cancelar</button>
+          <button className ="login-button" onClick={this.onClose}>Cancelar</button>
         </div>
       </section>
     );

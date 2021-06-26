@@ -18,10 +18,7 @@ export class Account extends React.Component {
         <label className="field">{dateFormat(this.props.datos.last_login, "mm/dd/yyyy")}</label>
         <label className="title">Número de Pasteles Creados</label>
         <label className="field" >{this.props.datos.pasteles.length}</label>
-        <div class="d-grid gap-2 d-md-block">
-          <button class="btn btn-primary" type="button">Button</button>
-          <button class="btn btn-primary" type="button">Button</button>
-        </div>
+        <button class="btn-update" type="button">Actualizar</button>
       </div>
     );
   }

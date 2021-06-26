@@ -72,7 +72,7 @@ export class Register extends React.Component {
                         <input className ="input-password" placeholder="Confirmar contraseña" value={this.state.password2} onChange={this.onInputchange} name="password2" id="password2" type="password" />
 
                         {/*<p>{JSON.stringify(this.state)}</p>*/}
-                        <button onClick={this.onSubmitForm}>Registrarse</button>
+                        <button className ="login-button" onClick={this.onSubmitForm}>Registrarse</button>
                         {/* <spam>{this.state.message}</spam> */}
                         <GoogleLogin
                             clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
@@ -90,7 +90,7 @@ export class Register extends React.Component {
                             render={renderProps => (
                                 <button className="facebook" onClick={renderProps.onClick}>Facebook</button>
                             )} />
-                        <button onClick={this.onClose}>Cancelar</button>
+                        <button className ="login-button" onClick={this.onClose}>Cancelar</button>
                     </form>
                 </div>
             </section>

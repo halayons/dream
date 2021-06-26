@@ -43,14 +43,14 @@
   justify-content: center;
 }
 
-button.facebook{
+.facebook{
   background: #1877F2;
   color: white;
   margin: 10px;
   font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 }
 
-button.google{
+.button.google{
   background: #ffffff;
   color:red;
   margin: 10px;
@@ -82,7 +82,7 @@ button.google{
   padding-left:3%;
 }
 
-button{
+.login-button{
   background: #ECECEC;
   border-radius: 6px;
   border: none;

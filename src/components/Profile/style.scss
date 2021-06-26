@@ -3,6 +3,8 @@
     --raya: #9556CC;
     --textNombre: #9556CC;
     --fontFamily: open sans, sans-serif;
+    --colorBoton : #7CD5D0;
+    --colorLetra : white;
  }
 
 // User Data
@@ -45,7 +47,7 @@
     border-radius: 100%;
 }
 
-// div button
+// div bottom
 .div-bottom{
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +69,6 @@
 }
 
 // Account
-
 .div-account{
     display: flex;
     flex-direction: column;
@@ -83,6 +84,17 @@
     text-justify: center;
     font-family: var(--fontFamily);
 }
+
+.btn-update{
+    width: 120px;
+    background-color: var(--colorBoton);
+    color: var(--colorLetra);
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 8px;
+}
+
+
 
 // responsive
 @media only screen and (max-width: 600px) {
