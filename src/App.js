@@ -8,6 +8,7 @@ import { Pedido } from "./components/Pedidos/Pedidos"
 import { Profile } from "./components/Profile/profile";
 import { Social } from "./components/social/index"
 import { Admin } from "./components/administracion/admin"
+import { ModPedido } from "./components/Pedidos/ModPedido";
 
 
 export class App extends React.Component {
@@ -45,6 +46,7 @@ export class App extends React.Component {
          {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
+         {window.location.pathname == "/modificarPastel/" && <ModPedido></ModPedido>}
          {window.location.pathname == "/" && <LandingPage></LandingPage>}
          {window.location.pathname == "/profile" && <Profile></Profile>}
          {window.location.pathname == "/social" && <Social></Social>}

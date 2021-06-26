@@ -1,5 +1,5 @@
 import React from "react";
-import {Estadisticas, Social, Footer, Header, Banner} from "./index";
+import {Estadisticas, Social, Footer, Header, Banner, HeaderUpdater} from "./index";
 
 
 export class LandingPage extends React.Component {
