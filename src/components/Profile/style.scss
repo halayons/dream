@@ -63,9 +63,8 @@
 .div_information{
     padding: 10px 5% 50px 50px;
     height: inherit;
-    max-width: 80%;
+    width: 80%;
 }
-
 
 // Account
 
@@ -74,7 +73,25 @@
     flex-direction: column;
 }
 
-.account-Name{
-    background-color: turquoise;
-    padding: auto;
+.title{
+    font-weight: bold;
+    font-family: var(--fontFamily);
 }
+
+.field{
+    height: 20px;
+    text-justify: center;
+    font-family: var(--fontFamily);
+}
+
+// responsive
+@media only screen and (max-width: 600px) {
+    .div_image, .div_text {
+        display: flex;
+        justify-content: center;
+    }
+
+    .div_options{
+        padding-left: 0px;
+    }
+  }
