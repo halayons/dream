@@ -171,13 +171,11 @@ export class Profile extends React.Component {
     render() {
         return (
             <div>
-				<Header></Header>
                 <UserData user = {this.state.user}></UserData>
                 <div>
                     <Options handleButton={this.handleButton}></Options>
                     <Information datos={this.state.datos} current={this.state.current}></Information>
                 </div>
-				<Footer></Footer>
 			</div>
         )
     }

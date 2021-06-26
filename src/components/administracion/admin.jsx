@@ -96,16 +96,16 @@ export class Admin extends React.Component {
       .catch(error => console.log(error));
   }
 
-  reload(){
-    this.ws = new WebSocket("ws://localhost:8000/ws/") 
+  reload() {
+    this.ws = new WebSocket("ws://localhost:8000/ws/")
 
     this.ws.onopen = evt => {
       console.log("open");
       this.send();
     };
 
-    this.ws.onclose = evt => { 
-      console.log('disconnected reloadiong') 
+    this.ws.onclose = evt => {
+      console.log('disconnected reloadiong')
       this.reload()
     };
 
@@ -123,10 +123,8 @@ export class Admin extends React.Component {
     return (
       <div>
         <ReactNotification />
-        <Header></Header>
         <Menu></Menu>
         <Pedidos datos={this.state.pedidos}></Pedidos>
-        <Footer></Footer>
       </div>
     );
   }

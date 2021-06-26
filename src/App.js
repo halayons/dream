@@ -9,6 +9,7 @@ import { Profile } from "./components/Profile/profile";
 import { Social } from "./components/social/index"
 import { Admin } from "./components/administracion/admin"
 import { ModPedido } from "./components/Pedidos/ModPedido";
+import { Notification } from "./components/notification/notification";
 
 
 export class App extends React.Component {
@@ -42,6 +43,7 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Notification/>
         <Header></Header>
          {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}

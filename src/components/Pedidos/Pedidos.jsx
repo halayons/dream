@@ -16,9 +16,7 @@ export class Pedido extends React.Component{
     render()    {
         return(
             <div>
-                <Header></Header>
                 <Index></Index>
-                <Footer></Footer>
             </div>
     
         )

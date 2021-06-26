@@ -12,11 +12,9 @@ export class LandingPage extends React.Component {
 
         return (
             <div className="landingPage">
-                <Header></Header>
                 <Banner></Banner>
                 <Estadisticas></Estadisticas>
                 <Social></Social>
-                <Footer></Footer>
             </div>
         )
     }

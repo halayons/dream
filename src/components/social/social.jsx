@@ -65,10 +65,8 @@ export class Social extends React.Component {
 		
 		return (
 			<div>
-				<Header></Header>
 				<CreatePost update={this.update} />
 				<Feed posts={this.state.posts} />
-				<Footer></Footer>
 			</div>
 		);
 	}
