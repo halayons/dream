@@ -8,8 +8,13 @@ import Cookies from 'js-cookie';
 
 export class Notification extends React.Component {
 
+	ws = new WebSocket("ws://localhost:8000/ws/pedidoUser/")
+
 	constructor(props) {
 		super(props);
+		this.state ={
+			dataFromServer: "asdfasdf"
+		}
 	}
 
 	componentDidMount() {
@@ -32,22 +37,32 @@ export class Notification extends React.Component {
 		});
 	}
 
+	send() {
+		this.ws.send(JSON.stringify({
+			type: "subscribe",
+			id: new Date().getTime(),
+			action: 'list',
+			model: "pedido.Pedido"
+		}))
+	}
+
 	reload() {
-		this.ws = new WebSocket("ws://localhost:8000/postUser/")
+		this.ws = new WebSocket("ws://localhost:8000/ws/pedidoUser/")
 
 		this.ws.onopen = evt => {
 			console.log("open");
-			// this.send();
+			this.send();
 		};
 
 		this.ws.onclose = evt => {
 			console.log('disconnected reloadiong')
-			if(Cookies.get('sessionid') != undefined) this.reload()
+			if (Cookies.get('sessionid') != undefined) this.reload()
 		};
 
 		this.ws.onmessage = evt => {
 			const message = JSON.parse(evt.data)
 			this.setState({ dataFromServer: message })
+			console.log(message);
 			this.addNFT(message);
 		};
 
@@ -56,7 +71,10 @@ export class Notification extends React.Component {
 
 	render() {
 		return (
-			<ReactNotification />
+			<div>
+				<ReactNotification />
+			</div>
+			
 		);
 	}
 }
