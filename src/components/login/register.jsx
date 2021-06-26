@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import logo from '../../static/images/logo.png';
+import logo from '../../static/images/logo.svg';
 
 export class Register extends React.Component {
 
@@ -52,44 +52,66 @@ export class Register extends React.Component {
 
 
         return (
-            <div className="modal fade" id="register">
-                <section className="modal-dialog" id="modal">
-                    <div className="modal-content"> 
-                       <div className="modal-body">
-                            <img src={logo} class="img-logo" ></img>
-                            <h1>DreamCake</h1>
-                            <form className="form">
+            <div>
+
+            <div className="modal fade" id="register" aria-hidden="true">
+                <div className="modal-dialog" >
+                    <div className="modal-content" role="document"> 
+                       <div className="modal-body ">
+                            <div className="modal-header row justify-content-center">
+                                <img src={logo} className=" row img-logo col-3" />
+                               
+                            </div>
+                            <div className="form">
                                 {/* <input placeholder= "Nombre" value={this.state.name} onChange={this.onChange.bind(this)} name="name" id="name" type="text" /> */}
+                                <label className="badge badge-light" htmlFor="email">Correo:</label>
                                 <input className="form-control" placeholder="email" value={this.state.email} onChange={this.onInputchange} name="email" id="email" type="email" />
                                 {/* <input placeholder= "Usuario" value={this.state.username} onChange={this.onChange.bind(this)} name="username" id="username" type="text" /> */}
-                                <input className="form-control" placeholder="Contraseña" value={this.state.password} onChange={this.onInputchange} name="password" id="password1" type="password" />
+                                <label className="badge badge-light" htmlFor="password1">Contraseña:</label>
+                                <input className="form-control " placeholder="Contraseña" value={this.state.password} onChange={this.onInputchange} name="password" id="password1" type="password" />
+                                <label className="badge badge-light" htmlFor="password2">Contraseña:</label>
                                 <input className="form-control" placeholder="Confirmar contraseña" value={this.state.password2} onChange={this.onInputchange} name="password2" id="password2" type="password" />
-
+                                <br />
                                 {/*<p>{JSON.stringify(this.state)}</p>*/}
-                                <button className="form-control" onClick={this.onSubmitForm}>Registrarse</button>
+                                <button className="form-control btn btn-info" onClick={this.onSubmitForm}>Registrarse</button>
                                 {/* <spam>{this.state.message}</spam> */}
-                                <GoogleLogin 
-                                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                                    buttonText="Iniciar con Google"
-                                    onSuccess={responseGoogle}
-                                    onFailure={responseGoogle}
-                                    cookiePolicy={'single_host_origin'}
-                                />
-                                <FacebookLogin
-                                    appId="942968703190705"
-                                    autoLoad={false}
-                                    icon="fa-facebook"
-                                    callback={responseFacebook}
+                                <br />
+                                <div className="btn col-12">
+                                    <GoogleLogin 
+                                        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                                        buttonText="Iniciar con Google"
+                                        onSuccess={responseGoogle}
+                                        onFailure={responseGoogle}
+                                        cookiePolicy={'single_host_origin'}
+                                    />
+                                </div>
+                                <br />
+                                <div className="btn col-12  ">
+                                    <FacebookLogin
+                                        appId="942968703190705"
+                                        autoLoad={false}
+                                        icon="fa-facebook"
+                                        callback={responseFacebook}
 
-                                    render={renderProps => (
-                                        <button className="facebook btn btn-outline-primary" onClick={renderProps.onClick}>Facebook</button>
-                                    )} />
-                                <button className="btn btn-info" onClick={this.onClose}>Cancelar</button>
-                            </form>
+                                        render={renderProps => (
+                                            <button className="facebook btn btn-outline-primary" onClick={renderProps.onClick}>Facebook</button>
+                                        )} />
+                                </div>
+                                
+
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
                        </div>
                     </div>
-                </section>
+                </div>
         
+            </div>
+
+            <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+                    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+                    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
             </div>
             );
     }

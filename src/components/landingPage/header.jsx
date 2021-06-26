@@ -17,9 +17,6 @@ export class Header extends React.Component{
                             <HeaderUpdater/>                                     
                     </div>                                                  
                 </div>
-                <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-                <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-                <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
             </header>
             );

@@ -2,7 +2,7 @@ import './style.scss';
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import logo from '../../static/images/logo.png';
+import logo from '../../static/images/logo.svg';
 
 class Login extends Component {
 
@@ -68,35 +68,44 @@ class Login extends Component {
      <div className="modal fade" id ="login">
         <section className="modal-dialog" >
         <div className="modal-content">
-          <div className="modal-body">
-            <img src={logo} class="img-logo" ></img>
-            <h1>DreamCake</h1>
-            <label>
-              <p>Correo</p><br />
-              <input className="form-control" name="email" type="text" value={this.state.email} onChange={this.onInputchange} />
-            </label>
-            <label>
-              <p>Contraseña</p><br />
-              <input className="form-control" name="password" type="password" value={this.state.password} onChange={this.onInputchange} />
-            </label>
-            <button className="btn btn-primary" onClick={this.onSubmitForm} >Continuar</button>
-            <GoogleLogin
-              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-              buttonText="Iniciar con Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
-            <FacebookLogin
-              appId="942968703190705"
-              autoLoad={false}
-              icon="fa-facebook"
-              callback={responseFacebook}
+          <div className="modal-body ">
+            
 
-              render={renderProps => (
-                <button className="btn btn-outline-primary"  onClick={renderProps.onClick}>Facebook</button>
-              )} />
-            <button className="btn btn-outline-info"onClick={this.onClose}>Cancelar</button>
+            <div className="modal-header row justify-content-center">
+              <img src={logo} className=" row img-logo col-3" />
+            </div>
+
+            <label htmlFor="correo" className ="btn">Correo:</label>
+            <input id="correo"className="form-control " name="email" type="text" value={this.state.email} onChange={this.onInputchange} />
+            
+            <label htmlFor="contraseña" className="btn">Contraseña:</label>
+            <input className="form-control"  id="contraseña" name="password" type="password" value={this.state.password} onChange={this.onInputchange} />
+            <br />
+            <button className="btn btn-primary col-12" onClick={this.onSubmitForm} >Continuar</button>
+            
+            <div className="btn">
+              <GoogleLogin
+                clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                buttonText="Iniciar con Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
+            </div>
+            <div className="btn">
+              <FacebookLogin
+                appId="942968703190705"
+                autoLoad={false}
+                icon="fa-facebook"
+                callback={responseFacebook}
+
+                render={renderProps => (
+                  <button className="btn btn-outline-primary"  onClick={renderProps.onClick}>Facebook</button>
+                )} />
+            </div>
+              <div className="modal-footer justify-content-center">
+                 <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cancelar</button>
+              </div>
           </div>
         </div>
       </section>

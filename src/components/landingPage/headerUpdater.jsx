@@ -42,18 +42,11 @@ export class HeaderUpdater extends React.Component {
     }
 
     openModal = (e) => {
-        e.preventDefault();
-        this.setState({
-            open: !this.state.open
-        });
+       let mod =document.getElementById(e.target.value);
+       mod.append("body")
+       console.log(e.target.value);
     };
 
-    openModal1 = (e) => {
-        e.preventDefault();
-        this.setState({
-            open1: !this.state.open1
-        });
-    };
     putData=(e)=>{
         this.setState({notification:e});
         return this.state;
@@ -70,11 +63,11 @@ export class HeaderUpdater extends React.Component {
                 <div className="col-lg-6 col-md-6 col-9 ">
 
                     
-                    <button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-toggle="modal" data-target="#register" onClick={(e) => { this.openModal1(e); }}>Registrarse</button>
+                    <button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-toggle="modal" data-target="#register" value="register" data-backdrop="false" data-dismiss="modal" >Registrarse</button>
                         <Register/>
 
 
-                    <button type="button" className="col-lg-6 col-sm6 col-6 btn btn-light" data-toggle="modal" data-target="#login" onClick={(e) => { this.openModal(e); }}>Iniciar Sesión</button>
+                    <button type="button" className="col-lg-6 col-sm6 col-6 btn btn-light" data-toggle="modal" data-target="#login" value="login" data-backdrop="false" y data-dismiss="modal">Iniciar Sesión</button>
                         <Login/>
                 </div>
 
