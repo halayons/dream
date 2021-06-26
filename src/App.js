@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import { LoginScreen } from "./components/login/index";
-import { LandingPage } from "./components/landingPage/index";
+import { LandingPage, Header, Footer } from "./components/landingPage/index";
 import { Pedido } from "./components/Pedidos/Pedidos"
 import { Profile } from "./components/Profile/profile";
 import { Social } from "./components/social/index"
@@ -42,6 +42,7 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Header></Header>
          {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
          {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
@@ -51,7 +52,9 @@ export class App extends React.Component {
          {window.location.pathname == "/profile" && <Profile></Profile>}
          {window.location.pathname == "/social" && <Social></Social>}
          {window.location.pathname == "/admin" && <Admin></Admin>}
+         <Footer></Footer>
       </div>
+     
     )
   }
 }
