@@ -1,11 +1,16 @@
 :root{
     --fondo: white;
+    --raya: #9556CC;
+    --textNombre: #9556CC;
+    --fontFamily: open sans, sans-serif;
+    --colorBoton : #7CD5D0;
+    --colorLetra : white;
  }
 
 // User Data
 .card{
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-top: 30px;
     padding-bottom: 30px;
     border: none;
@@ -14,38 +19,91 @@
     background-color: var(--fondo) ;
     background-size: 100% 100%;
     padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 5%;
+    padding-bottom: 5px;
     border-bottom: solid;
-    border-bottom-color: plum;
+    border-bottom-color: var(--raya);
  }
 
 .div_image{
    display: inline-block;
-   padding: 10px;
+   padding: 30px;
 }
 
 .div_text{
    display: inline-block;
-   padding: 10px;
+   padding: 30px;;
+}
+
+.user-name{
+    color: var(--textNombre);
+    font-size: xx-large;
+    font-weight: bold;
+    font-family: var(--fontFamily);
 }
 
 .img_profile{
-    width: 200px;
-    height: 200px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 100%;
+}
+
+// div bottom
+.div-bottom{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 // Options
-
 .div_options{
-    display: inline-block;
-    padding-left: 10%;
+    padding-left: 5%;
+    min-width: 120px;
+    align-items: center;
 }
 
 // Information
-
 .div_information{
-    display: inline-block;
-    padding: 30px;
+    padding: 10px 5% 50px 50px;
+    height: inherit;
+    width: 80%;
 }
 
+// Account
+.div-account{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-weight: bold;
+    font-family: var(--fontFamily);
+}
+
+.field{
+    height: 20px;
+    text-justify: center;
+    font-family: var(--fontFamily);
+}
+
+.btn-update{
+    width: 120px;
+    background-color: var(--colorBoton);
+    color: var(--colorLetra);
+    margin-top: 20px;
+    border: 0px;
+    border-radius: 8px;
+}
+
+
+
+// responsive
+@media only screen and (max-width: 600px) {
+    .div_image, .div_text {
+        display: flex;
+        justify-content: center;
+    }
+
+    .div_options{
+        padding-left: 0px;
+    }
+  }

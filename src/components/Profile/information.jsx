@@ -1,6 +1,7 @@
 import React from "react";
 import { Cakes } from "./info/cakes";
 import { Orders } from "./info/orders";
+import { Account } from "./info/account";
 
 
 export class Information extends React.Component {
@@ -28,6 +29,10 @@ export class Information extends React.Component {
         let { datos } = this.props;
         let info;
 
+        if (current == 0) {
+            if (datos.length < 0) info = <p>No hay cuenta :O</p>
+            else info = <Account datos = {datos}></Account>
+        }
 
         if (current == 1) {
             if (datos.length < 0) info = <p>No hay pasteles</p>

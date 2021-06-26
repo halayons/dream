@@ -15,11 +15,10 @@ export class Comment extends React.Component{
 	render(){
 		return  (
 			<div className="row">
-				<br />
-				<div className="col-sm-3">
+				<div className="col-lg-3 col-sm-3 col-3">
 					<img className="img-perfil" src="http://localhost:8000/media/postImages/321_jbjNKPP.png" alt="perfil" />
 				</div>
-				<div class = "col-sm-9">
+				<div className= "col-lg-8 col-sm-8 col-8">
 					<div className="badge badge-light item-comments ">
 						<b><span>{this.state.data.usuario}:</span> </b><br />
 						<span>{this.state.data.comentario}</span><br />

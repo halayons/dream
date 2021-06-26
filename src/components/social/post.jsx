@@ -72,7 +72,7 @@ export class Post extends React.Component {
 			<div class="row justify-content-center post bg-light" >
 					<div class = "card col-lg-4 col-sm-8">
 						
-						<div className="carousel slide"  id={"post"+this.state.id} data_ride="carousel">
+						<div className="carousel slide col-12 col-lg-12"  id={"post"+this.state.id} data_ride="carousel">
 							<div className="carousel-inner carousel-post" >
 								<img className=" carousel-item active img-fluid" src = {this.props.post.foto}></img>
 								<img className=" carousel-item img-fluid"  src="http://localhost:8000/media/postImages/321_jbjNKPP.png"></img>
@@ -92,10 +92,10 @@ export class Post extends React.Component {
 
 						<div className="card-body ">
 							<div className="row justify-content-between">
-								<div className= "comments col-lg-4 col-sm-4 col-4" >
-									<span class ="badge badge-light " type ="button" data-toggle="collapse" data-target={"#	cometariosPost"+this.state.id} aria-expanded="false" aria-controls="">{this.state.comments.length} Cometarios </span> 
+								<div className= "justify-content-start col-lg-6 col-sm-6 col-7" >
+									<span class ="badge badge-light " type ="button" data-toggle="collapse" data-target={"#cometariosPost"+this.state.id} aria-expanded="false" aria-controls="">{this.state.comments.length} Cometarios </span> 
 								</div>
-								<div className= "col-lg-5 col-sm-5 col-5">
+								<div className= "justify-content-end col-lg-6 col-sm-6 col-5">
 								    <img className="likes" src="/static/media/like.115883dc.svg" alt="" />
 									<span class ="badge badge-primary " type ="button" data-target="" >
 										{this.props.post.likes}
@@ -116,8 +116,8 @@ export class Post extends React.Component {
 							
 							
 							<div class="row">
-
 									<div class="collapse multi-collapse col-sm-6 " id ={"cometariosPost"+this.state.id}>
+										<hr />
 										{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}
 									</div>
 							</div>

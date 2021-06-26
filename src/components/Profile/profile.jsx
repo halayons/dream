@@ -10,70 +10,6 @@ export class Profile extends React.Component {
     constructor(props){
         super(props);
 
-        let pedidos = [
-            {
-                idpedido: 10,
-                fecha_pedido: "2021-Jun-24 ",
-                foto: "http://localhost:8000/media/pedido/a_8_69UKEp6.png",
-                direccion: "asdfa",
-                costo: 2.0,
-                aceptado: true,
-                estado: 2,
-                comentario: "sadfasdf",
-                domiciliario: true,
-                pasteles: 1,
-                user: "admin@admin.com"
-            },
-            {
-                idpedido: 9,
-                fecha_pedido: "2021-Jun-24 ",
-                foto: "http://localhost:8000/media/pedido/a_8_9M0As40.png",
-                direccion: "asdfa",
-                costo: 2.0,
-                aceptado: true,
-                estado: 2,
-                comentario: "sadfasdf",
-                domiciliario: true,
-                pasteles: 1,
-                user: "admin@admin.com"
-            }
-        ]
-
-        let pasteles = [
-            {
-                id: 5,
-                usuarios: [
-                    "admin@admin.com"
-                ],
-                status_pastel: true,
-                forma: "CI",
-                num_pisos: 1,
-                porciones: 3,
-                masa: "RV",
-                relleno: "AQ",
-                cobertura: "FD",
-                color: "#FFFFFF",
-                costo: 10000.0,
-                mensaje: ""
-            },
-            {
-                id: 6,
-                usuarios: [
-                    "admin@admin.com"
-                ],
-                status_pastel: true,
-                forma: "CI",
-                num_pisos: 1,
-                porciones: 3,
-                masa: "RV",
-                relleno: "AQ",
-                cobertura: "FD",
-                color: "#FFFFFF",
-                costo: 10000.0,
-                mensaje: ""
-            }
-        ]
-
         let user = {
             pasteles: [],
             email: "admin2@admin.com",
@@ -172,7 +108,7 @@ export class Profile extends React.Component {
         return (
             <div>
                 <UserData user = {this.state.user}></UserData>
-                <div>
+                <div className ="div-bottom">
                     <Options handleButton={this.handleButton}></Options>
                     <Information datos={this.state.datos} current={this.state.current}></Information>
                 </div>
