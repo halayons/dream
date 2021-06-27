@@ -4,9 +4,7 @@ import "./style.scss";
 import {SliderPicker} from 'react-color';
 import {HeaderUpdater} from '../landingPage/headerUpdater'
 import Cookies from 'js-cookie';
-import textura from '../../media/img/texturaCobertura.jpg';
-import { event, get } from 'jquery';
-import { ResponsiveEmbed } from 'react-bootstrap';
+
 
 
 export class Pedido extends React.Component{

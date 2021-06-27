@@ -2,6 +2,7 @@ import './style.scss';
 import foto from '../../static/images/foto1.png';
 import React from 'react';
 import Cookies from 'js-cookie';
+import {Pastel,PastelC} from '../Pedidos/Pedidos'
 
 export class CreatePost extends React.Component {
 
@@ -11,7 +12,8 @@ export class CreatePost extends React.Component {
 			pasteles: [],
 			file: '',
 			imagePreviewUrl: '',
-			option: ''
+			option: '',
+			cakePaint:''
 		};
 
 		this.handleImageChange = this.handleImageChange.bind(this);
@@ -92,7 +94,45 @@ export class CreatePost extends React.Component {
 			})
 			.catch(error => console.log(error))
 	}
+	paintCakes(p){
+		//masa[CH,VA,TL,RV]
+		//relleno[AQ,NU,ML,CP]
+		let masa=['url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")', 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")','url("https://www.transparenttextures.com/patterns/ravenna.png")','url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png")']
+		let relleno=["#995c2e","#69391d","#5c0c15b5", "#e4cc8ba1"]
+		let cubierta =["FD","CR"]
 
+		if(p.masa=='CH') masa=masa[0]
+		if(p.masa=='VA') masa=masa[1]
+		if(p.masa=='TL') masa=masa[2]
+		if(p.masa=='RV') masa=masa[3]
+		
+		if(p.relleno=='AQ') relleno=relleno[0]
+		if(p.relleno=='NU') relleno=relleno[1]
+		if(p.relleno=='ML') relleno=relleno[2]
+		if(p.relleno=='CP') relleno=relleno[3]
+
+		
+        document.documentElement.style.setProperty('--color-pastel2',relleno);
+		document.documentElement.style.setProperty('--textura-pastel',masa);
+
+		if(p.cobertura =='FD') { 
+			document.documentElement.style.setProperty('--color-pastel',p.color);
+			document.documentElement.style.setProperty('--textura-pastel2','');}
+		if(p.cobertura=='CR') {
+			document.documentElement.style.setProperty('--color-pastel','#eee8c9');
+			document.documentElement.style.setProperty('--textura-pastel2',"url(http://www.transparenttextures.com/patterns/zig-zag.png)");}
+		
+		return(
+			p.forma=='CI'?(<Pastel></Pastel>):(<PastelC></PastelC>)
+		);
+	}
+	countCakes(p){
+		let i =1;
+		while(i<=p.length){	
+			<option type="bottom" onClick={this.setState({cakePaint:p[i]})} value={i} >{p[i].id}</option>
+			i++;
+		}
+	}
 	render() {
 
 		let { imagePreviewUrl } = this.state;
@@ -119,9 +159,7 @@ export class CreatePost extends React.Component {
 								<select className="form-control " id="pastelID" value={this.state.option} placeholder="h" onChange = {this.handleSelect}>
 									
 									{	
-										this.state.pasteles.map(pastel =>
-											<option value={pastel.id}>{pastel.id}</option>
-										)
+										this.countCakes(this.state.pasteles)
 									}
 									
 								</select>
@@ -131,6 +169,9 @@ export class CreatePost extends React.Component {
 							</div>
 				</div>
 				<div className="row justify-content-end postearImg ">
+						<div className =" col-lg-4 col-sm-3 col-4 ">
+							{this.paintCakes(this.cakePaint)}
+						</div>
 						<div className =" col-lg-4 col-sm-3 col-4 ">
 							{$imagePreview}
 						</div>
