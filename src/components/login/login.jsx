@@ -69,17 +69,21 @@ class Login extends Component {
 
     return (
       <section className="modal-container" id="modal">
+        
         <div className="modal-content">
           <img src={logo} class="img-logo" ></img>
           <h1>DreamCake</h1>
+          <form>
           <label>
-            <p>Correo</p><br />
+            <p>Correo</p>
+            </label>
             <input name="email" type="text" value={this.state.email} onChange={this.onInputchange} />
-          </label>
+          
           <label>
-            <p>Contraseña</p><br />
+            <p>Contraseña</p>
+            </label>
             <input name="password" type="password" value={this.state.password} onChange={this.onInputchange} />
-          </label>
+          
           <button onClick={this.onSubmitForm} >Continuar</button>
           <GoogleLogin
             clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
@@ -98,7 +102,9 @@ class Login extends Component {
               <button className="facebook" onClick={renderProps.onClick}>Facebook</button>
             )} />
           <button onClick={this.onClose}>Cancelar</button>
+          </form>
         </div>
+        
       </section>
     );
   }

@@ -3,6 +3,7 @@ import React from 'react';
 import { Estado } from './estado';
 import { PedidosNav } from './pedidosNav';
 import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Detallep } from './detallep';
 
@@ -173,10 +174,27 @@ export class Pedidos extends React.Component {
 			.catch(error => console.log(error));
 	}
 
-
-
+	
 
 	render() {
+		const pagination = {
+			page: 2,
+			sizePerPage: 5,
+			lastPageText: '>>',
+			firstPageText: '<<',
+			nextPageText: '>',
+			prePageText: '<',
+			showTotal: true,
+			alwaysShowAllBtns: true,
+			onPageChange: function (page, sizePerPage) {
+			  console.log('page', page);
+			  console.log('sizePerPage', sizePerPage);
+			},
+			onSizePerPageChange: function (page, sizePerPage) {
+			  console.log('page', page);
+			  console.log('sizePerPage', sizePerPage);
+			}
+		  };
 		const options = {
 			sortName: this.state.sortName,
 			sortOrder: this.state.sortOrder,
@@ -185,7 +203,7 @@ export class Pedidos extends React.Component {
 		return (
 			<div class="content">
 				{/* <P edidosNav></PedidosNav> */}
-				<BootstrapTable data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
+				<BootstrapTable pagination={pagination} data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
 					<TableHeaderColumn isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }}  >
 						ID
 					</TableHeaderColumn>
