@@ -106,7 +106,7 @@ export class Profile extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <UserData user = {this.state.user}></UserData>
                 <div className ="div-bottom">
                     <Options handleButton={this.handleButton}></Options>
