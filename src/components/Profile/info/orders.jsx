@@ -29,7 +29,7 @@ export class Orders extends React.Component {
 			sortOrder
 		});
 	}
-	
+
 
 	render() {
 		const options = {
@@ -42,14 +42,14 @@ export class Orders extends React.Component {
 
 		return (
 			<div className="div-table">
-				<BootstrapTable  data={this.props.datos} pagination={ true } options={options}>
-					<TableHeaderColumn width='50' isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
+				<BootstrapTable data={this.props.datos} pagination={true} options={options}>
+					<TableHeaderColumn width='150' isKey dataField='idpedido' dataSort={true} filter={{ className: 'Filter', type: 'TextFilter', delay: 200 }}>
 						ID
 					</TableHeaderColumn>
 					<TableHeaderColumn width='150' dataField='fecha_pedido' dataSort={true} dataFormat={this.dateFormatter} >
 						Fecha
 					</TableHeaderColumn>
-					<TableHeaderColumn width='150' dataField='aceptado' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} dataFormat={this.aceptadoFormatter}>
+					<TableHeaderColumn width='150' dataField='aceptado' dataSort={true} filter={{ className: 'Filter', type: 'TextFilter', delay: 200 }} dataFormat={this.aceptadoFormatter}>
 						Aceptado
 					</TableHeaderColumn>
 					<TableHeaderColumn width='150' dataField='estado' dataFormat={this.estadoFormatter}>

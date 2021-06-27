@@ -68,11 +68,11 @@ export class Cakes extends React.Component {
 			sortOrder: this.state.sortOrder,
 			onSortChange: this.onSortChange,
 
-			hideSizePerPage: true
+			hideSizePerPage: true,
 		};
 
 		return (
-			<BootstrapTable data={this.props.datos} options={options} pagination>
+			<BootstrapTable data={this.props.datos} options={options} pagination={true}>
 				<TableHeaderColumn width='150' isKey dataField='id' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
 					ID
 				</TableHeaderColumn>

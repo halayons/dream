@@ -57,8 +57,25 @@
 // Options
 .div_options{
     padding-left: 5%;
+    padding-bottom: 20px;
     min-width: 120px;
     align-items: center;
+}
+
+.option-btn{
+    width: 120px;
+    height: 30px;
+    background-color: var(--fondo);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0px;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+
+.option-btn:hover{
+    background-color: var(--colorBoton);
+    color: var(--fondo);
 }
 
 // Information
@@ -87,14 +104,25 @@
 
 .btn-update{
     width: 120px;
+    height: 30px;
     background-color: var(--colorBoton);
     color: var(--colorLetra);
     margin-top: 20px;
     border: 0px;
     border-radius: 8px;
+    transition: 0.5s;
 }
 
+.btn-update:hover{
+    background-color: var(--raya);
+    color: var(--fondo);
+}
 
+// Table 
+
+.filter{
+    height: 30px;
+}
 
 // responsive
 @media only screen and (max-width: 600px) {
