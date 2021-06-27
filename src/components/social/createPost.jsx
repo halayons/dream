@@ -107,11 +107,11 @@ export class CreatePost extends React.Component {
 		return (
 			<div className="container crearPost">
 				<div className="form-row justify-content-center">
-					<div className="">
+					<div className="bg-light">
 						<input  id ="imgfile" type="file" onChange={this.handleImageChange} />
 						<label htmlFor="imgfile" className="btn btn-outline-info">
 							<img className="foto" src={foto}/>
-							. Escoger foto
+							 Escoger foto
 						</label>
 					</div>
 					<div className="col-lg-2 col-sm-2 col-2">

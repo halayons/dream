@@ -2,9 +2,7 @@ import React from 'react';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
 import {SliderPicker} from 'react-color';
-import { Social, Footer, Header} from "../landingPage/index";
-import {Login} from '../login/login'
-import {Register} from '../login/register'
+import {HeaderUpdater} from '../landingPage/headerUpdater'
 import Cookies from 'js-cookie';
 import textura from '../../media/img/texturaCobertura.jpg';
 import { event, get } from 'jquery';
@@ -340,39 +338,7 @@ export class Pastel2 extends React.Component{
         );
     }
 }
-export class LoginOrRegister extends React.Component{
-    render(){
-        return(
-            <div>
-                <ul class="nav nav-tabs" id ="myTab" role ="tablist">
-                    <li class ="nav-item">
-                        <a class ="nav-link active badge badge-info" id ="login-tab" data-toggle ="tab" href ="#login" role ="tab" aria-controls ="login" aria-selected = "true"><span>Login</span> </a>
-                    </li>
-                    <li class ="nav-item">
-                        <a class ="nav-link badge badge-info" id ="register-tab" data-toggle ="tab" href ="#register" role ="tab" aria-controls ="resgister" aria-selected ="false"><span>Register</span></a>
-                    </li>
-                </ul>
 
-                <div class ="tab-content " id ="myTabContent">
-                    <div class="tab-pane fade  show active " id ="login" role="tabpanel" aria-labelledby="login-tab">
-                        <div class="card  ">
-                            <Login></Login>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade " id ="register" role ="tabpanel" aria-labelledby ="register-tab">
-                        <div class="card ">
-                           <Register></Register>
-                        </div>
-                    </div>
-                </div>
-                
-                
-            </div>
-            
-
-        )
-    }
-}
 
 
 export class Mensaje extends Index{
@@ -432,7 +398,7 @@ export class Mensaje extends Index{
         if(this.state.user!=''){
             this.postearPastel();
         }else{
-           <LoginOrRegister></LoginOrRegister>
+            <HeaderUpdater></HeaderUpdater>
         }
     }
     postearPastel(e) {
@@ -490,7 +456,7 @@ export class Mensaje extends Index{
                         <div className="modal-content">
                             
                             <div className="modal-body">
-                            {f=='0' ? ( <Formulario datos={this.state}></Formulario>):(<LoginOrRegister></LoginOrRegister>) }
+                            {f=='0' ? ( <Formulario datos={this.state}></Formulario>):(<HeaderUpdater></HeaderUpdater>) }
                                 
                             </div>
 

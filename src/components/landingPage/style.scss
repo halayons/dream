@@ -144,6 +144,12 @@
     align-items: center;
     text-align: center;
 }
+//Notificaciones
+.pop-notification{
+    position: absolute;
+    top: 100%;
+    left:0;
+}
 
 
 // BANNER
@@ -317,4 +323,5 @@ ul, ol{
 .menubtn{
     margin: auto 0;    
 }
+
 

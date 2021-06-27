@@ -72,7 +72,7 @@ export class Post extends React.Component {
 			<div class="row justify-content-center post bg-light" >
 					<div class = "card col-lg-4 col-sm-8">
 						
-						<div className="carousel slide col-12 col-lg-12"  id={"post"+this.state.id} data_ride="carousel">
+						<div className="carousel slide"  id={"post"+this.state.id} data_ride="carousel">
 							<div className="carousel-inner carousel-post" >
 								<img className=" carousel-item active img-fluid" src = {this.props.post.foto}></img>
 								<img className=" carousel-item img-fluid"  src="http://localhost:8000/media/postImages/321_jbjNKPP.png"></img>
