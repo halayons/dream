@@ -13,7 +13,7 @@ export class CreatePost extends React.Component {
 			file: '',
 			imagePreviewUrl: '',
 			option: '',
-			cakePaint:''
+			cakePaint:undefined
 		};
 
 		this.handleImageChange = this.handleImageChange.bind(this);
@@ -49,13 +49,19 @@ export class CreatePost extends React.Component {
 			console.log('Post creado\n' + json)
         })
         .catch(error => console.log(error))   
+
+		let activar = document.getElementById('post-collapse');
+		activar.hidden=true
 	}
 
 	handleSelect(e) {
-		console.log(e)
+		let i =e.target.value;
         this.setState({
-            option: e.target.value,
+            cakePaint: this.state.pasteles[i],
+			option:i
         })
+		let activar = document.getElementById('post-collapse');
+		activar.hidden=false
     }
 
 	handleImageChange(e) {
@@ -72,9 +78,12 @@ export class CreatePost extends React.Component {
 		}
 
 		reader.readAsDataURL(file)
+		let activar = document.getElementById('post-collapse');
+		activar.hidden=false;
 	}
 
 	getCakes() {
+		
 		const requestOptions = {
 			method: 'GET',
 			headers: {
@@ -88,18 +97,18 @@ export class CreatePost extends React.Component {
 			.then(res => res.json())
 			.then(json => {
 				this.setState({
-					pasteles: json,
-					option: json[0].id
+					pasteles: json
 				});
 			})
 			.catch(error => console.log(error))
 	}
+	
 	paintCakes(p){
+		
 		//masa[CH,VA,TL,RV]
 		//relleno[AQ,NU,ML,CP]
 		let masa=['url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")', 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")','url("https://www.transparenttextures.com/patterns/ravenna.png")','url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png")']
 		let relleno=["#995c2e","#69391d","#5c0c15b5", "#e4cc8ba1"]
-		let cubierta =["FD","CR"]
 
 		if(p.masa=='CH') masa=masa[0]
 		if(p.masa=='VA') masa=masa[1]
@@ -127,56 +136,62 @@ export class CreatePost extends React.Component {
 		);
 	}
 	countCakes(p){
-		let i =1;
-		while(i<=p.length){	
-			<option type="bottom" onClick={this.setState({cakePaint:p[i]})} value={i} >{p[i].id}</option>
-			i++;
-		}
+		return(
+			p.map(e=><option type="bottom" >{p.indexOf(e)}</option>)
+		)
 	}
 	render() {
-
+		
 		let { imagePreviewUrl } = this.state;
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
-			$imagePreview = (<img className ="img-fluid shadow-lg  md-20" src={imagePreviewUrl} />);
-		} 
-		else {
-			$imagePreview = (<div className="previewText"></div>);
+			$imagePreview = (<img className ="img-fluid shadow-lg img-post " style ={{margin:"auto"}} src={imagePreviewUrl} />);
 		}
 
-		return (
-			<div className="container crearPost">
-				<div className="form-row justify-content-center">
-					<div className="bg-light">
-						<input  id ="imgfile" type="file" onChange={this.handleImageChange} />
-						<label htmlFor="imgfile" className="btn btn-outline-info">
-							<img className="foto" src={foto}/>
-							 Escoger foto
-						</label>
+
+
+		if(this.state.pasteles.length>0){
+			
+			return (
+				<div className="container crearPost">
+					<div className="form-row justify-content-center">
+						<div className="bg-light">
+							<input  id ="imgfile" type="file" onChange={this.handleImageChange} />
+							<label htmlFor="imgfile" className="btn btn-outline-info">
+								<img className="foto" src={foto}/>
+								Escoger foto
+							</label>
+						</div>
+						<div className="col-lg-2 col-sm-2 col-2">
+								
+									<select className="form-control " id="pastelID" value={this.state.option} placeholder="h" onChange = {this.handleSelect}>
+										
+										{	
+											this.countCakes(this.state.pasteles)
+											
+										}
+										
+									</select>
+								</div>
+						
 					</div>
-					<div className="col-lg-2 col-sm-2 col-2">
-								{/*<span htmlFor="pastelID" >Pastel:</span>*/}
-								<select className="form-control " id="pastelID" value={this.state.option} placeholder="h" onChange = {this.handleSelect}>
-									
-									{	
-										this.countCakes(this.state.pasteles)
-									}
-									
-								</select>
+					<div className="row justify-content-left postearImg crearPost" hidden='true'  id="post-collapse">
+							
+							<div className =" col-lg-3 col-sm-5 col-12 ">
+								{$imagePreview}
 							</div>
-					<div className="col-lg-1 col-sm-2 col-2">
-								<span className=" form-control btn btn-info" type="button" onClick={this.crearPost}>Post</span>
+							<div className =" col-lg-5 col-sm-7 col-12">
+								{
+								this.state.cakePaint!=undefined ?(this.paintCakes(this.state.cakePaint)):('')
+								}
 							</div>
+							<button className="form-control badge badge-info" type="button"  onClick={this.crearPost}>Post</button>
+					</div>
 				</div>
-				<div className="row justify-content-end postearImg ">
-						<div className =" col-lg-4 col-sm-3 col-4 ">
-							{this.paintCakes(this.cakePaint)}
-						</div>
-						<div className =" col-lg-4 col-sm-3 col-4 ">
-							{$imagePreview}
-						</div>
-				</div>
-			</div>
-		);
+			);
+		}else{return <div>
+			
+			<button className="badge badge-primary" onClick={this.getCakes}>RECARGAR</button>
+		</div>}
 	}
 }
