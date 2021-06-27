@@ -10,20 +10,26 @@ export class Notification extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state={
-			mensaje:"notificacion 1"
-		}
-		
+		// this.state={
+		// 	dataFromServer: ""
+		// }
 	}
 
 	componentDidMount() {
-		this.reload();
+		this.reloadPedidoUser();
+	}
+
+	stateFromatter(state){
+		let states = ["En proceso", "Enviado", "Entregado"];
+		return states[state];
 	}
 
 	addNFT(message) {
+		let mensaje = message.model == "pedido.Pedido" ? `Pedido actualizado\nEstado: ${this.stateFromatter(message.instance.estado)}` : "Nueva actividad en tus posts";
+		let titulo = message.model == "pedido.Pedido" ? "Pedido actualizado" : "Nueva actividad"
 		store.addNotification({
-			title: "Nuevo pedido",
-			message: message.user + " realizo un nuevo pedido",
+			title: titulo,
+			message: mensaje,
 			type: "success",
 			insert: "top",
 			container: "bottom-right",
@@ -36,42 +42,77 @@ export class Notification extends React.Component {
 		});
 	}
 
-	reload() {
-		this.ws = new WebSocket("ws://localhost:8000/postUser/")
+	sendPedido() {
+		this.ws.send(JSON.stringify({
+			type: "subscribe",
+			id: new Date().getTime(),
+			action: 'list',
+			model: "pedido.Pedido"
+		}))
+	}
+
+	sendPost() {
+		this.ws.send(JSON.stringify({
+			type: "subscribe",
+			id: new Date().getTime(),
+			action: 'list',
+			model: "social.Post"
+		}))
+	}
+
+	reloadPedidoUser() {
+		this.ws = new WebSocket("ws://localhost:8000/ws/pedidoUser/")
 
 		this.ws.onopen = evt => {
-			console.log("open");
-			// this.send();
+			this.sendPedido();
 		};
 
 		this.ws.onclose = evt => {
 			console.log('disconnected reloadiong')
-			if(Cookies.get('sessionid') != undefined) this.reload()
+			if (Cookies.get('sessionid') != undefined) this.reloadPedidoUser()
 		};
 
 		this.ws.onmessage = evt => {
 			const message = JSON.parse(evt.data)
-			this.setState({ dataFromServer: message })
+			// this.setState({ dataFromServer: message })
+			console.log();
+			this.props.notificationManager(message);
 			this.addNFT(message);
 		};
 
 		this.ws.onerror = evt => { console.log(JSON.stringify(evt)) };
 	}
+
+	reloadPostUser(){
+		this.ws = new WebSocket("ws://localhost:8000/ws/socialUser/")
+
+		this.ws.onopen = evt => {
+			this.sendPost();
+		};
+
+		this.ws.onclose = evt => {
+			console.log('disconnected reloadiong')
+			if (Cookies.get('sessionid') != undefined) this.reloadPedidoUser()
+		};
+
+		this.ws.onmessage = evt => {
+			const message = JSON.parse(evt.data)
+			// this.setState({ dataFromServer: message })
+			// console.log(message);
+			this.addNFT(message);
+		};
+
+		this.ws.onerror = evt => { console.log(JSON.stringify(evt)) };
+	}
+
 	sendData=(e)=>{
-		const {putData} =this.props;
-		if(putData!=undefined){
-			putData(this.state);
-			console.log("funcionando");
-			e.preventDefault();
-         	e.stopPropagation();
-		}
-		
+
 	}
 
 	render() {
 		this.sendData.bind(this);
 		return (
-			<ReactNotification />
+			<ReactNotification />	
 		);
 	}
 }

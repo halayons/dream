@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 
 export class Admin extends React.Component {
 
-  ws = new WebSocket("ws://localhost:8000/ws/")
+  ws = new WebSocket("ws://localhost:8000/ws/pedido/")
 
   constructor(props) {
     super(props)
@@ -58,8 +58,10 @@ export class Admin extends React.Component {
 
   send() {
     this.ws.send(JSON.stringify({
-      action: "subscribe_to_pedido_activity",
-      request_id: new Date().getTime(),
+      type: "subscribe",
+      id: new Date().getTime(),
+      action: 'list',
+      model: "pedido.Pedido"
     }))
   }
 
@@ -97,7 +99,7 @@ export class Admin extends React.Component {
   }
 
   reload() {
-    this.ws = new WebSocket("ws://localhost:8000/ws/")
+    this.ws = new WebSocket("ws://localhost:8000/ws/pedido/")
 
     this.ws.onopen = evt => {
       console.log("open");

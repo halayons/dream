@@ -14,7 +14,7 @@ export class Header extends React.Component{
                             <div className="col-lg-4 col-md-4 col-3">
                                 <img src= {logo} className="img-fluid img-logo img-user" ></img>
                             </div>             
-                            <HeaderUpdater/>                                     
+                            <HeaderUpdater  notifications = {this.props.notifications}/>                                     
                     </div>                                                  
                 </div>
 

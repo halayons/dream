@@ -15,10 +15,10 @@ import { Notification } from "./components/notification/notification";
 export class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-			notification:''
-		}
-
+    this.state = {
+      notification: []
+    }
+    this.notificationMngr = this.notificationMngr.bind(this);
   }
 
   /*componentDidMount() {
@@ -42,24 +42,30 @@ export class App extends React.Component {
     }
   }*/
 
+  notificationMngr(message) {
+    this.setState({
+      notifications: this.state.notification.push(message)
+    });
+  }
+
 
   render() {
     return (
       <div className="App">
-        <Notification/>
-        <Header></Header>
-         {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
-         {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
-         {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
-         {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
-         {window.location.pathname == "/modificarPastel/" && <ModPedido></ModPedido>}
-         {window.location.pathname == "/" && <LandingPage></LandingPage>}
-         {window.location.pathname == "/profile" && <Profile></Profile>}
-         {window.location.pathname == "/social" && <Social></Social>}
-         {window.location.pathname == "/admin" && <Admin></Admin>}
-         <Footer></Footer>
+        <Notification notificationManager = {this.notificationMngr}/>
+        <Header notifications = {this.state.notification}></Header>
+        {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
+        {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
+        {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
+        {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
+        {window.location.pathname == "/modificarPastel/" && <ModPedido></ModPedido>}
+        {window.location.pathname == "/" && <LandingPage></LandingPage>}
+        {window.location.pathname == "/profile" && <Profile></Profile>}
+        {window.location.pathname == "/social" && <Social></Social>}
+        {window.location.pathname == "/admin" && <Admin></Admin>}
+        <Footer></Footer>
       </div>
-     
+
     )
   }
 }
