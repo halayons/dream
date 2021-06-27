@@ -6,17 +6,17 @@ import { Social, Footer, Header} from "../landingPage/index";
 import {Login} from '../login/login'
 import {Register} from '../login/register'
 import Cookies from 'js-cookie';
-import textura from '../../media/img/texturaCobertura.jpg';
 import { event, get } from 'jquery';
-import { ResponsiveEmbed } from 'react-bootstrap';
 
 
-export class Pedido extends React.Component{
+export class ModPedido extends React.Component{
     
     render()    {
         return(
             <div>
+                <Header></Header>
                 <Index></Index>
+                <Footer></Footer>
             </div>
     
         )
@@ -30,7 +30,7 @@ export  class Index extends React.Component {
                 masa: 'TL',
                 relleno: '',
                 cobertura: '',
-                color: '#6610f200',
+                color: '#FFFFFF',
                 porciones: 1,
                 forma:'CI',    
                 mensaje:'',
@@ -43,7 +43,33 @@ export  class Index extends React.Component {
         };
     }
 
-
+    /*componentDidMount(){   
+        let userInfo =  null;
+        fetch('http://localhost:8000/users/api/auth/user/',{
+            method: 'GET',
+            credentials:'include',
+            headers: {                
+            },  
+        }).then((response) => response.json())
+            .then(responseJson => { 
+                console.log('Esta es la info del usuario');
+                userInfo = responseJson
+                console.log(userInfo)})
+            .catch(error => console.error('Error:', error));    
+            
+        
+        fetch('http://localhost:8000/modificar_pastel/2/', {
+            method: 'GET',
+            credentials:'include',
+            headers: {                
+            },            
+        }).then((response) =>{
+            console.log('Esta es la info del pastel del usuario');
+            console.log(response.json());
+        } )
+        .catch(error => console.error('Error:', error));        
+    } */
+    
     actualizar(){
         let chocolate ='url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")';
         let vainilla ='url("https://www.transparenttextures.com/patterns/asfalt-dark.png")';
@@ -124,11 +150,9 @@ export  class Index extends React.Component {
     //seleccionT =(event)=> {this.setState({Tematica:event.target.id})}
     seleccionColor =(event)=> {this.setState({color:event.target.id});}
     getData=(info)=>{
-        this.setState({Mensaje:info.Men});
-        this.setState({Observaciones:info.Obs});
-        return this.state;
+        this.setState({Mensaje:info.Men})
+        this.setState({Observaciones:info.Obs})
     }
-   
    
     postearPastel() {
         console.log("vamos a postear el pastel");
@@ -158,14 +182,7 @@ export  class Index extends React.Component {
     render() {
         let color =this.state.color;   
         const f =this.state.forma;
-        if(this.state.cobertura =="FD"){
-            document.documentElement.style.setProperty('--color-pastel',color);
-            document.documentElement.style.setProperty('--textura-pastel2','');
-        }else if(this.state.cobertura =="CR"){
-            document.documentElement.style.setProperty('--color-pastel','#eee8c9');
-            document.documentElement.style.setProperty('--textura-pastel2',"url(http://www.transparenttextures.com/patterns/zig-zag.png)");
-        }
-        
+        document.documentElement.style.setProperty('--color-pastel',color);
         this.actualizar()
         
 
@@ -181,7 +198,7 @@ export  class Index extends React.Component {
                                 <button class="btn btn-outline-info  btn-reserva dropdown-toggle" style ={{width:11+'em'}} type="button" id="dropdownMenuForma" data-toggle="dropdown" aria-expanded="false">
                                     Forma
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" required>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item"   onClick= {this.seleccionF} id="CI" selected>Redondo</a></li>
                                     <li><a class="dropdown-item" onClick= {this.seleccionF} id="CU"> Cuadrado</a></li>
                                 </ul>
@@ -259,13 +276,10 @@ export  class Index extends React.Component {
                        {f=='CI' ?(<Pastel2></Pastel2>,<Pastel></Pastel>) : (<PastelC></PastelC>)}
                     </div>
                     <div className=" col-lg-4  col-sm-12 " style ={{marginTop:10+'px'}}>
-                        <Mensaje getData={this.getData}  Pastel={this.state} ></Mensaje> 
+                        <Mensaje getData={this.getData}   Pastel={this.state} ></Mensaje> 
                         
                     </div>
                    
-                    <div className="boxLoader" id="boxLoader">
-                        <div className="loader"></div>
-                    </div>
                     
             </div>
                
@@ -288,12 +302,12 @@ export  class Pastel extends React.Component{
                         <div className="pastelB pastelBtwo"></div>
                     </div>
                     <div className="pastelT tapas"></div>
-                    <div className="pastelCubierta1 "></div>
-                    <div className="pastelCubierta1 "></div>
-                    <div className="pastelCubierta2 "></div>
+                    <div className="pastelCubierta1 cubierta"></div>
+                    <div className="pastelCubierta2 cubierta"></div>
+                    <div className="pastelCubierta3 cubierta"></div>
                     <div className="pastelCubierta4 "></div>
-                    <div className="pastelCubierta3 "></div>
                     <div className="pastelCubierta5 "></div>
+                    <div className="pastelTCubierta "></div>
                     
                 </div>
             
@@ -304,22 +318,17 @@ export  class PastelC extends React.Component{
     render(){
      
         return(
-            <div class="draw">
-                <div className="bandejaCuadrada"></div>
-                <div className="sideUpRelleno caraRelleno"></div>
-                <div className="sideRightRelleno caraRelleno "></div>
-                <div className="sideFrontRelleno caraRelleno"></div> 
+            <div class="contenedor">
 
-                <div className="sideUp caraMasa"></div>
-                <div className="sideRight caraMasa"></div>
-                <div className="sideFront caraMasa"></div>
-
-
-                <div className="cubiertaFront cubierta"></div>
-                <div className="cubiertaUp cubierta"></div>
-                <div className="cubiertaUp2 cubierta"></div>
-                    
-            </div>
+                    <div class="cubo">
+                      <div class="uno"></div>
+                      <div class="dos"></div>
+                      <div class="tres"></div>
+                      <div class="cuatro"></div>
+                      <div class="cinco"></div>
+                      <div class="seis"></div>
+                  </div>
+                  </div>
                 
         )    
     
@@ -391,7 +400,8 @@ export class Mensaje extends Index{
     }
     getO=(e)=>{
         this.setState({Obs: e.target.value})
-       
+        console.log(this.state, this.props.pastel)
+
      }
     componentDidMount = () => {
 
@@ -399,68 +409,47 @@ export class Mensaje extends Index{
             method: 'GET',
             //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
             credentials:'include'
+         
         };
-        let load = document.getElementById('boxLoader');
-
         
-        if(this.state.user===''){
-            fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
+        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
             .then((response) => response.json())
-            .then(responseJson => {  
-                console.log("estamos comprobando si se inicio una sesion"); 
-                load.style.visibility = 'visible';
-
-            
-                if(responseJson.email!=undefined){
-                   
-                    console.log("efectivamente hay una cuenta")
-                    this.setState({log:'0',user:responseJson.email})
-                    load.style.visibility = 'hidden';
-                } else{
-                    console.log("no hay cuentas iniciadas");
-                    load.style.visibility = 'hidden';
-                }
-            }
+            .then(responseJson => {  if(responseJson.email!=undefined){this.setState({log:'0',user:responseJson.email})} }
             );
-        }
     }
-    continuar =()=>{
-        
-    }
-    postear = () => {
-        this.componentDidMount();
-        if(this.state.user!=''){
-            this.postearPastel();
-        }else{
-           <LoginOrRegister></LoginOrRegister>
-        }
-    }
-    postearPastel(e) {
-        let load = document.getElementById('boxLoader');
-        load.style.visibility = 'visible';
-        
+    userExist = () => {
 
-        if(this.state.pastel ==-1){
-            fetch('http://localhost:8000/crear_pastel/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken':Cookies.get('csrftoken')
-                },
-                credentials:'include',
-                body: JSON.stringify(this.props.Pastel)
-            }).then((response) => response.json())
-            .then(response =>{
-                if(response.id != undefined){
-                    this.setState({pastel:response.id})
-                }else{
-                    alert("por favor llene todos los campos, de lo contrario el pedido no se realizara con exito")
-                }
-                  
-            });
-        }
-        load.style.visibility = 'hidden';
+        let requestOptions ={
+            method: 'GET',
+            //headers: { 'Content-Type': 'application/json', 'Authorization':"Bearer "+Cookies.get("csrftoken"),"Host":"localhost"},
+            credentials:'include'
+         
+        };
+        console.log("el usuario automatico=")
+        fetch('http://localhost:8000/users/api/auth/user/',requestOptions)
+            .then((response) => response.json())
+            .then(responseJson => { console.log("email:"+responseJson.email); if(responseJson.email!=undefined){this.setState({log:'0'})} }
+            );
     }
+    postearPastel() {
+
+      if (this.state.pastel == -1){
+        fetch('http://localhost:8000/crear_pastel/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken':Cookies.get('csrftoken')
+                
+            },
+            credentials:'include',
+            body: JSON.stringify(this.props.Pastel)
+        }).then((response) => response.json())
+        .catch(error => console.error('Error:', error))
+        .then(response =>( console.log("Pastel "+response.data.id), this.setState({pastel:response.data.id}))  );
+      }
+    }
+    
+   
     
    
     render(){
@@ -481,10 +470,7 @@ export class Mensaje extends Index{
             </form>
 
             <div class="formulario" style ={{marginTop:10+'px'}} >
-                
-                <button type="button" onClick={()=>getData(this.state),this.postear.bind(this)} href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
-                
-                
+                <button type="button" onClick={()=>getData(this.state),this.userExist,this.postearPastel.bind(this)} href ="#emergente" className="btn btn-info btn" style={{ width:11+'em'}} data-toggle ="modal">Continuar</button>
                 <div className="modal fade" id="emergente">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -495,7 +481,7 @@ export class Mensaje extends Index{
                             </div>
 
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-outline-info" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -525,6 +511,7 @@ export class Formulario extends React.Component{
     }
    
     postearPedido(e) {
+       
 
         let form_data = new FormData();
         form_data.append('foto', this.state.foto);
@@ -550,26 +537,20 @@ export class Formulario extends React.Component{
             body: form_data
             // body: JSON.stringify(this.state)
         }).then((response) => response.json())
-        .then(response =>{
-            if (response.idpedido!=-1){
-                
-                alert("se posteo correctamente")
-                window.location.pathname ="/";    
-            }else{
-                alert(" NO se posteo correctamente")
-            }
-            console.log(response)
-        });
+        .catch(error => console.error('Error:', error))
+        .then(response =>( console.log(response))  );
 
-        
+        console.log("se posteo el pastel")
 
        
     }
     obtenerDatos(){
-       var {datos}=this.props;
+        console.log("vamoas a obtener los datos")
+        var {datos}=this.props;
         console.log(datos);
         this.setState({ pasteles:datos.pastel, comentario:datos.Obs, user:datos.user});
-      }
+        console.log("se obtivieron los datos")
+    }
     enviar(e){
         this.obtenerDatos();
         this.postearPedido();
@@ -577,7 +558,7 @@ export class Formulario extends React.Component{
         e.stopPropagation();
     }
     
-    ver=()=>(this.state);
+    ver=()=>console.log(this.state);
     
 
     render(){
@@ -604,8 +585,8 @@ export class Formulario extends React.Component{
                         </select>
                 </div>
                     
-                <button  className="btn btn-dark" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
-                <button className="btn btn-dark" onClick={this.ver} >ver estado</button>
+                <button  className="btn btn-dark" id="enviar" onClick={this.enviar.bind(this)}>Enviar</button>
+                <button className="btn btn-dark" onClick={this.ver} onChange={this.handleChange}>ver estado</button>
 
                 
                
@@ -614,32 +595,5 @@ export class Formulario extends React.Component{
 
         )
     }
-}
-export class MensajeModal extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state={
-            mensaje:this.props.mensaje
-        };
-    }
-    render(){ 
-      return(
-          
-        <div className="modal fade show" id="emergente2"  style="display: block; padding-right: 22px;" aria-modal="true" role="dialog">
-        <div className="modal-dialog">
-            <div className="modal-content">
-                
-                <div className="modal-body">
-                    <p>{this.state.mensaje}</p>
-                </div>
-
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-outline-info"  data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-      );
-  }
 }
 

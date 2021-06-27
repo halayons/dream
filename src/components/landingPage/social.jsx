@@ -58,6 +58,11 @@ export class Social extends React.Component {
                     <div>
                         {this.state.data.map(e => this.usuarios(e))}
                     </div>
+                    <div>
+                        <a href="http://localhost:3000/social">
+                            <button className="btn btn-info" >Ver mas...</button>
+                        </a>
+                    </div>
                 </div>
 
             </div>

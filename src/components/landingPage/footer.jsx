@@ -10,10 +10,10 @@ export class Footer extends React.Component {
         return (
             <div className="footer ">
                 <div className="principalF d-flex f-wrap justify-content-center">
-                    <a href="https://www.facebook.com/DreamCakeOFICIAL1/"><img src={face} alt="" ></img></a>
-                    <a href="https://web.whatsapp.com/"><img src={what} alt="" ></img></a>
-                    <a href="#"><img src={tel} alt="" ></img></a>
-                    <a href="#"><img src={insta} alt="" ></img></a>
+                    <a className="redes-footer" href="https://www.facebook.com/DreamCakeOFICIAL1/"><img src={face} alt="" ></img></a>
+                    <a className="redes-footer" href="https://web.whatsapp.com/"><img src={what} alt="" ></img></a>
+                    <a className="redes-footer" href="#"><img src={tel} alt="" ></img></a>
+                    <a className="redes-footer" href="#"><img src={insta} alt="" ></img></a>
                     
                     
                 </div>

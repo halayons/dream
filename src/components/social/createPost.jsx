@@ -1,4 +1,5 @@
 import './style.scss';
+import foto from '../../static/images/foto1.png';
 import React from 'react';
 import Cookies from 'js-cookie';
 
@@ -97,27 +98,43 @@ export class CreatePost extends React.Component {
 		let { imagePreviewUrl } = this.state;
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
-			$imagePreview = (<img src={imagePreviewUrl} />);
-		} else {
-			$imagePreview = (<div className="previewText">Elige una imagen para el post</div>);
+			$imagePreview = (<img className ="img-fluid shadow-lg  md-20" src={imagePreviewUrl} />);
+		} 
+		else {
+			$imagePreview = (<div className="previewText"></div>);
 		}
 
 		return (
-			<div className="container">
-				<label>Crear Post</label><br />
-				<label>pastel: </label>
-				<select value={this.state.option} onChange = {this.handleSelect}>
-					{
-						this.state.pasteles.map(pastel =>
-							<option value={pastel.id}>{pastel.id}</option>
-						)
-					}
-				</select>
-				<div class="foto">
-					<input type="file" onChange={this.handleImageChange} />
-					{$imagePreview}
+			<div className="container crearPost">
+				<div className="form-row justify-content-center">
+					<div className="">
+						<input  id ="imgfile" type="file" onChange={this.handleImageChange} />
+						<label htmlFor="imgfile" className="btn btn-outline-info">
+							<img className="foto" src={foto}/>
+							. Escoger foto
+						</label>
+					</div>
+					<div className="col-lg-2 col-sm-2 col-2">
+								{/*<span htmlFor="pastelID" >Pastel:</span>*/}
+								<select className="form-control " id="pastelID" value={this.state.option} placeholder="h" onChange = {this.handleSelect}>
+									
+									{	
+										this.state.pasteles.map(pastel =>
+											<option value={pastel.id}>{pastel.id}</option>
+										)
+									}
+									
+								</select>
+							</div>
+					<div className="col-lg-1 col-sm-2 col-2">
+								<span className=" form-control btn btn-info" type="button" onClick={this.crearPost}>Post</span>
+							</div>
 				</div>
-				<button onClick={this.crearPost}>crear</button>
+				<div className="row justify-content-end postearImg ">
+						<div className =" col-lg-4 col-sm-3 col-4 ">
+							{$imagePreview}
+						</div>
+				</div>
 			</div>
 		);
 	}
