@@ -4,10 +4,12 @@ import { Feed } from './feed';
 import { CreatePost } from './createPost';
 import { Footer, Header } from '../landingPage';
 
+import Cookies from 'js-cookie';
+
 
 export class Social extends React.Component {
 
-	ws = new WebSocket("ws://localhost:8000/postWS/")
+	ws = new WebSocket("ws://localhost:8000/ws/socialGeneral/")
 
 	constructor() {
 		super();
@@ -35,14 +37,22 @@ export class Social extends React.Component {
 	componentDidMount() {
 		this.loadPosts()
 
-		//this.ws.onopen = evt => this.send(); 
-		//this.ws.onclose = evt => window.location.reload(); 
-		//this.ws.onmessage = evt => this.loadPosts();
-		//this.ws.onerror = evt => console.log(JSON.stringify(evt)); 
+		this.ws.onopen = evt => this.send();
+		this.ws.onclose = evt => window.location.reload();
+		this.ws.onmessage = evt => this.loadPosts();
+		this.ws.onerror = evt => console.log(JSON.stringify(evt));
 	}
 
 	loadPosts() {
-		fetch("http://localhost:8000/social/all_posts/" + this.state.order + this.state.attr + "/" + this.state.count)
+		const requestOptions = {
+			method: 'GET',
+			headers: {
+				// 'Content-Type': 'application/json',
+				'X-CSRFToken': Cookies.get('csrftoken')
+			},
+			credentials: "include",
+		};
+		fetch("http://localhost:8000/social/all_posts/" + this.state.order + this.state.attr + "/" + this.state.count + "/", requestOptions)
 			.then(response => response.json())
 			.then(json => this.setState({
 				posts: json
@@ -54,20 +64,22 @@ export class Social extends React.Component {
 		this.loadPosts()
 	}
 
-	send(){
+	send() {
 		this.ws.send(JSON.stringify({
-			action: "subscribe_to_post_activity",
-			request_id: new Date().getTime(),
+			type: "subscribe",
+			id: new Date().getTime(),
+			action: 'list',
+			model: "social.Post"
 		}))
 	}
 
 	render() {
-		
+
 		return (
 			<div>
 				<CreatePost update={this.update} />
 				<Feed posts={this.state.posts} />
-				
+
 			</div>
 		);
 	}
