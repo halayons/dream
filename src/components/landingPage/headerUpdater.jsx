@@ -4,6 +4,7 @@ import campana from "../../static/images/campana.svg"
 import { Notifications } from "./notifications/notifications"
 import { Register } from '../login/register';
 import { Login } from '../login/login';
+import Cookies from 'js-cookie';
 
 export class HeaderUpdater extends React.Component {
     constructor() {
@@ -48,7 +49,34 @@ export class HeaderUpdater extends React.Component {
     putData = (e) => {
         this.setState({ notification: e });
     }
+    menuSelect(e){
+        e.preventDefault();
+        if(e.target.value =="Salir")this.logOut(e);
+        if(e.target.value =="Pasteles")window.location.pathname = "/social"
+        if(e.target.value =="Perfil")window.location.pathname = "/profile"
+        if(e.target.value =="Inicio")window.location.pathname = "/"
+    }
+    logOut(e){
+        console.log("chao prra")
+        e.preventDefault();
 
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRFToken':Cookies.get('csrftoken')
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                likes:this.state.like+1
+            })
+        };
+        fetch('http://localhost:8000/users/api/auth/logout/', requestOptions)
+        .then(res => res.json())
+        .then(json =>console.log(json))
+        window.location.pathname = "/"
+    }
+    
 
 
     render() {
@@ -83,12 +111,14 @@ export class HeaderUpdater extends React.Component {
                         <div className="col-lg-2 col-sm-4 col-4">
                             <img className="img-fluid" src={this.state.userInfo.foto} />
                         </div>
-                        <div className="menubtn col-lg-4 col-sm-6 col-6">
+                        <div className="menubtn">
                             <span className=" btn badge btname-user">{this.state.userInfo.email}</span>
-                            <select type="select" className=" arrow btn  badge " id="perfil">
+                            <select type="select" className=" arrow btn  badge " id="perfil" onClick={e=>this.menuSelect(e)}>
+                                <option select  className="btn-dark" value=""></option>
+                                <option className="btn btn-dark" value="Inicio">Inicio</option>
                                 <option className="btn btn-dark" value="Perfil">Perfil</option>
                                 <option className="btn btn-dark" value="Pasteles">Pasteles</option>
-                                <option className="btn btn-dark" value="Salir">Salir</option>
+                                <option className="btn btn-dark" value="Salir" >Salir</option>
                             </select>
                         </div>
                         

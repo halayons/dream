@@ -43,6 +43,8 @@ class Login extends Component {
         console.log("otro error: " + JSON.stringify(js) + JSON.stringify(response))
       }
     }
+    
+    window.location.pathname = "/"
   }
 
   onInputchange(event) {
@@ -76,7 +78,7 @@ class Login extends Component {
             </div>
 
             <label htmlFor="correo" className ="btn">Correo:</label>
-            <input id="correo"className="form-control " name="email" type="text" value={this.state.email} onChange={this.onInputchange} />
+            <input id="correo"className="form-control " name="email" type="email" value={this.state.email} onChange={this.onInputchange} />
             
             <label htmlFor="contraseña" className="btn">Contraseña:</label>
             <input className="form-control"  id="contraseña" name="password" type="password" value={this.state.password} onChange={this.onInputchange} />

@@ -12,7 +12,7 @@ export class Header extends React.Component{
                 <div className="jumbotron-header "> 
                     <div className="row justify-content-around">
                             <div className="col-lg-1 col-md-2 col-3 rounded">
-                                <img src= {logo} className="img-fluid " ></img>
+                               <a href="./"><img src= {logo} className="img-fluid " ></img></a>
                             </div>             
                             <HeaderUpdater  notifications = {this.props.notifications}/>                                     
                     </div>                                                  
