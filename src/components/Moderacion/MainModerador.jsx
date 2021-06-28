@@ -1,45 +1,29 @@
 import './styles.scss';
 import React from 'react';
-import { Footer, Header } from '../landingPage';
-import { NavBar} from './navbar';
 import { Report} from './report';
+import { CommentsReport} from './commentsReport';
 import Cookies from 'js-cookie';
 
 
-export class Mod extends React.Component {
+export class Mod extends React.Component{
 
-	constructor() {
+
+    constructor() {
 		super();
 
-		this.attrs = {
-			1: "reported",
-			2: "published_date",
-		}
-
-		this.order = {
-			asc: "",
-			desc: "-"
-		}
-
 		this.state = {
-			attr: this.attrs[1],
-			count: 20,
-			order: this.order.desc,
-			posts: []
+            open: true,
+			open1: false,
+			posts: [],
 		};
-
-		this.update = this.update.bind(this)
+        
 	}
 
-	componentDidMount() {
-		this.loadPosts()
-	}
-
-	loadPosts() {
+    componentDidMount() {
 		const requestOptions = {
 			method: 'GET',
 			headers: {
-			  // 'Content-Type': 'application/json',
+			  'Content-Type': 'application/json',
 			  'X-CSRFToken': Cookies.get('csrftoken')
 			},
 			credentials: "include",
@@ -52,18 +36,40 @@ export class Mod extends React.Component {
 			.catch(error => console.log(error));
 	}
 
-	update() {
-		this.loadPosts()
-	}
+    openComponent(name) {
+        switch(name){
+            case "Report":
+                this.setState({open: !this.state.open});
+                this.setState({open1: false})
+                break;
+            case "Comments":
+                this.setState({open:false, open1: !this.state.open1});
+                break;
+            default:
+                this.setState({open:false, open1: false});   
+        }
+    };
 
-	render() {
-		return (
+    render(){
+        const {open, open1} = this.state;
+        return(
+        <div>   
             
-			<div>
-				<Header></Header>
-				<NavBar></NavBar>
-				<Footer></Footer>
-			</div>
-		);
-	}
+            
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn-navbar"  onClick={() => {this.openComponent("Report")}}>
+                    Moderar Publicaciones </button>
+			    <button type="button" class="btn-navbar" onClick={() => {this.openComponent("Comments")}}>
+                    Moderar Comentarios </button>
+            </div>
+
+            {open && <Report datos={this.state.posts}/>}
+            <hr />
+            {open1 && <CommentsReport datos={this.state.posts}  />}
+			
+            <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        </div>
+
+        )
+    }
 }

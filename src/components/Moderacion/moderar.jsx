@@ -38,7 +38,7 @@ export class Moderar extends React.Component {
        
         
         return (
-            <button onClick={this.onSubmitForm} >Continuar</button>
+            <button class="btn-moderar" onClick={this.onSubmitForm} >Continuar</button>
         );
     }
 }
