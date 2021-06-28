@@ -148,9 +148,6 @@ export class Post extends React.Component {
 									<div className="  col-2 col-sm-2 col-lg-2">
 									<img type="button" className="img-fluid btn-outline-primary reacciones" src={share} alt="" />
 									</div>
-									
-									
-								
 							</div>
 							
 							
