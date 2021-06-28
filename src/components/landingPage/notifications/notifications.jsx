@@ -16,16 +16,18 @@ export class Notifications extends React.Component {
 		if(news.length>0){
 			
 			return (
-				<div className="text-wrap ">
-					{
-					news.forEach(message => {
-						console.log(message.instance)
-						if(message.instance.aceptado =="false" )mensaje='no ';
-						<div className="col-lg-4 col-sm-4 col-4 ">
-							<img src={message.instance.foto} alt="" />
-							<p className="text-wrap">Su pedido {mensaje}fue aceptado</p>
-							<span>ID  pedido:{message.instance.idpedido}</span>
-						</div>
+				<div className=" ">
+					{news.map(message => {
+						if(message.instance.aceptado ==false){mensaje='no '}else{mensaje=" "}
+						console.log(message.instance);
+						return(
+							<div className="col-lg-12 col-sm-12 col-12 ">
+								<img  className="col-4"src={message.instance.foto} alt="" />
+								<p className="text-wrap">Su pedido {mensaje}fue aceptado</p>
+								<span>ID  pedido:{message.instance.idpedido}</span>
+								<hr />
+							</div>
+						)
 					}) }
 				</div>
 			);

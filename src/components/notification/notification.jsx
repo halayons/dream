@@ -72,7 +72,7 @@ export class Notification extends React.Component {
 		this.ws.onclose = evt => {
 			console.log('disconnected reloadiong')
 			//if (Cookies.get('sessionid') != undefined) this.reloadPedidoUser()
-			//this.reloadPedidoUser()
+			this.reloadPedidoUser()
 		};
 
 		this.ws.onmessage = evt => {

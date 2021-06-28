@@ -74,13 +74,14 @@ export class HeaderUpdater extends React.Component {
                 
                     <div className="col-lg-6 col-sm-6 col-9 row justify-content-end f-wrap">
                         <div className="col-lg-1 col-sm-2 col-2">
-
                             <img type="button" className="menubtn img-fluid" src={campana} alt="notificacion" data-toggle="collapse" data-target="#notification" aria-expanded="false" aria-controls="" />
-
+                            <div className="collapse multi-collapse   badge pop-notification" id="notification">
+                                <Notifications  notifications = {this.props.notifications}></Notifications>
+                            </div>
                         
                         </div>
                         <div className="col-lg-2 col-sm-4 col-4">
-                            <img className="img-user img-fluid" src={this.state.userInfo.foto} />
+                            <img className="img-fluid" src={this.state.userInfo.foto} />
                         </div>
                         <div className="menubtn col-lg-4 col-sm-6 col-6">
                             <span className=" btn badge btname-user">{this.state.userInfo.email}</span>
@@ -90,12 +91,6 @@ export class HeaderUpdater extends React.Component {
                                 <option className="btn btn-dark" value="Salir">Salir</option>
                             </select>
                         </div>
-                        <div className="pop-notification ">
-                            <div className="collapse multi-collapse   badge bg-light" id="notification">
-                                <Notifications  notifications = {this.props.notifications}></Notifications>
-                            </div>
-                        </div>
-
                         
                     </div>
                     
