@@ -63,19 +63,23 @@ export class Notification extends React.Component {
 	reloadPedidoUser() {
 		this.ws = new WebSocket("ws://localhost:8000/ws/pedidoUser/")
 
+
 		this.ws.onopen = evt => {
 			this.sendPedido();
+			console.log("open");
 		};
 
 		this.ws.onclose = evt => {
 			console.log('disconnected reloadiong')
-			if (Cookies.get('sessionid') != undefined) this.reloadPedidoUser()
+			//if (Cookies.get('sessionid') != undefined) this.reloadPedidoUser()
+			this.reloadPedidoUser()
 		};
 
 		this.ws.onmessage = evt => {
+
 			const message = JSON.parse(evt.data)
 			// this.setState({ dataFromServer: message })
-			console.log();
+			
 			this.props.notificationManager(message);
 			this.addNFT(message);
 		};

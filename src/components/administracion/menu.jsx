@@ -11,16 +11,11 @@ export class Menu extends React.Component {
 
 	render() {
 		return (
-			<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Menu
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/">Home</a>
-    <a class="dropdown-item" href="#">Pedidos</a>
-    <a class="dropdown-item" href="#">Banner</a>
-	<a class="dropdown-item" href="#">Logout</a>
-  </div>
+			<div class="sidebar">
+  <a class="active" href="/">Home</a>
+  <a href="#news">Pedidos</a>
+  <a href="#contact">Banner</a>
+  <a href="#about">Cerrar sesión</a>
 </div>
 		);
 	}

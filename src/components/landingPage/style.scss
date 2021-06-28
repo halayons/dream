@@ -144,6 +144,17 @@
     align-items: center;
     text-align: center;
 }
+//Notificaciones
+.pop-notification{
+    position: absolute;
+    top: 50%;
+    right:50%;
+    background: rgba(255, 255, 255, 0.548);
+    border:solid 1px #17a2b8;
+    backdrop-filter: blur(2px);
+    z-index: 1001;
+    transition: 1s;
+}
 
 
 // BANNER
@@ -227,9 +238,8 @@
     background-size: auto 100%;
     padding-top: 10px;
     padding-bottom: 10px;
-    position: sticky;
 	z-index: 1001;
-	top:0%;
+	
 }
 
 
@@ -311,10 +321,12 @@ ul, ol{
 .arrow{
     background-color: #7cd5d0;
     border:none;
+    width: 15px;
 }
 
 
 .menubtn{
-    margin: auto 0;    
+    margin: auto 0; 
 }
+
 
