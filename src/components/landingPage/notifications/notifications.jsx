@@ -5,7 +5,7 @@ export class Notifications extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			notifications: []
+			notifications: ''
 		}
 	}
 
@@ -13,7 +13,7 @@ export class Notifications extends React.Component {
 	render() {
 		let news =this.props.notifications;
 		let mensaje = '';
-		if(news.length>0){
+		if(news!=undefined && news.length>0){
 			
 			return (
 				<div className=" ">
