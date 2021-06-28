@@ -170,11 +170,27 @@ export  class Index extends React.Component {
         .catch(error => console.error('Error:', error));
         
     }
+    editarPastel() {
+        console.log("vamos a editar el pastel");
+       fetch('http://localhost:8000/midificar_pastel/'+this.state.id+'/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken':Cookies.get('csrftoken')
+                
+            },
+            credentials:'include',
+            body: JSON.stringify(this.state)
+        }).then((response) => response.json())
+        .catch(error => console.error('Error:', error));
+        
+    }
 
     
      
     handleChangeComplete = (color) => {
         this.setState({ color: color.hex });
+        
     };
 
     

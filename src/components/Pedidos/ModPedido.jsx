@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import textura from '../../media/img/texturaCobertura.jpg';
 import { event, get } from 'jquery';
 import { ResponsiveEmbed } from 'react-bootstrap';
+import { FcElectronics } from 'react-icons/fc';
 
 
 export class ModPedido extends React.Component{
@@ -28,7 +29,7 @@ export class ModPedido extends React.Component{
             costo: props.costo,                       
         }*/
         {
-            id: 3,
+            id: 80,
             masa: 'RV',
             relleno: 'NU',
             cobertura: 'CR',
@@ -197,11 +198,27 @@ export  class Index extends React.Component {
         .catch(error => console.error('Error:', error));
         
     }
+    editarPastel() {
+        console.log("vamos a editar el pastel");
+       fetch('http://localhost:8000/midificar_pastel/'+this.state.id+'/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken':Cookies.get('csrftoken')
+                
+            },
+            credentials:'include',
+            body: JSON.stringify(this.state)
+        }).then((response) => response.json())
+        .catch(error => console.error('Error:', error));
+        
+    }
 
     
      
     handleChangeComplete = (color) => {
         this.setState({ color: color.hex });
+        document.documentElement.style.setProperty('--color-pastel',color.hex);
     };
 
      
@@ -625,10 +642,22 @@ export class Formulario extends React.Component{
                 estado: '1',
                 comentario: '',    
                 pasteles:'',
-                user:''
+                user:'',
+                pedido:''
         };
     }
-   
+    componentDidMount=()=>{
+        this.loadPedido();
+        console.log()
+    }
+    
+    loadPedido() {
+		fetch("http://localhost:8000/pedidos/",{credentials:'include'})
+			.then(response => response.json())
+                .then(json =>( this.setState({pedidos: json}),this.filtrarPedido())
+                )
+			.catch(error => console.log(error));      
+	}
     postearPedido(e) {
 
         let form_data = new FormData();
@@ -644,8 +673,8 @@ export class Formulario extends React.Component{
         
         
 
-        fetch('http://localhost:8000/crear_pedido/', {
-            method: 'POST',
+        fetch('http://localhost:8000/editar_pedido/'+this.state.pedido+'/', {
+            method: 'PUT',
             headers: {
                 // 'Content-Type': 'multipart/form-data',
                 'X-CSRFToken':Cookies.get('csrftoken')
@@ -656,8 +685,9 @@ export class Formulario extends React.Component{
             // body: JSON.stringify(this.state)
         }).then((response) => response.json())
         .then(response =>{
-            if (response.idpedido!=-1){
-                
+            if (response.idpedido!=undefined){
+                console.log(response);
+                alert(response);
                 alert("se posteo correctamente")
                 window.location.pathname ="/";    
             }else{
@@ -675,8 +705,14 @@ export class Formulario extends React.Component{
         console.log(datos);
         this.setState({ pasteles:datos.pastel, comentario:datos.Obs, user:datos.user});
       }
+    filtrarPedido=()=>{
+        this.state.pedidos.map(e=>{
+            if(e.pasteles==this.props.datos.id)this.setState({pedido:e.idpedido})
+        })
+    }
     enviar(e){
         this.obtenerDatos();
+       
         this.postearPedido();
         e.preventDefault();
         e.stopPropagation();
