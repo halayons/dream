@@ -13,15 +13,25 @@ export class CommentsList extends React.Component {
 	}
 
     componentDidMount(){
-        fetch("http://localhost:8000/social/comments/" + this.props.id)
-            .then(response => response.json())
-            .then(json => this.setState({
-                comments: json
-            }))
-            .catch(error => console.log(error));
+        
+		const requestOptions = {
+			method: 'GET',
+			headers: {
+			  'Content-Type': 'application/json',
+			  'X-CSRFToken': Cookies.get('csrftoken')
+			},
+			credentials: "include",
+		  };
+		  fetch('http://localhost:8000/social/all_coms/'+ this.props.id + "/", requestOptions)
+			.then(response => response.json())
+			.then(json => this.setState({
+			  comments: json
+			}))
+			.catch(error => console.log(error));
     }
 
     render() {
+        console.log(this.state.comments)
         return (
             <div>{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}</div>       
         )   
@@ -32,12 +42,13 @@ export class Comment extends React.Component {
     constructor(props){
 		super(props);
 		this.state = {
-            status:this.props.comment.status
+            status: !this.props.comment.status,
+            open: this.props.comment.status,
+            open1: !this.props.comment.status
 		}
 	}
 
-    modFunction(data) {
-        console.log("entra");
+    modFunction() {
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -47,33 +58,35 @@ export class Comment extends React.Component {
             credentials: "include",
             body:JSON.stringify(this.state)
           };
-          console.log(requestOptions)
           fetch('http://localhost:8000/social/mod_com/' + this.props.comment.id, requestOptions)
             .then(response => response.json())
             .then(json => this.setState({
-              status: json
+              status: !this.state.status,
+              open: !this.state.open,
+              open1: !this.state.open1
             }))
             .catch(error => console.log(error));
     };
 
 	render(){
+        const {open, open1} = this.state;
 		return  (
 			<div className="row">
 				<div className="col-lg-2 col-sm-2 col-2">
 					<img className="img-perfil" src="http://localhost:8000/media/postImages/321_jbjNKPP.png" alt="perfil" />
 				</div>
 				<div className= "col-lg-6 col-sm-6 col-6">
-                    
                     <div className="badge badge-light item-comments text-wrap ">
 						{this.props.comment.comentario} <br />
-
 					<div><p className="fecha">{this.props.comment.date}</p></div>
                     </div>
-					
 				</div>
-                <div className= "col-lg-3 col-sm-3 col-3">
-                    <button onClick={() => {this.modFunction(this.props.comment)}}>Borrar   </button>
-                </div>
+                {open && <div className= "col-lg-3 col-sm-3 col-3">
+                    <button class="btn-report" onClick={() => {this.modFunction()}}> Borrar   </button>
+                </div>}
+                {open1 && <div className= "col-lg-3 col-sm-3 col-3">
+                    <button class="btn-report" onClick={() => {this.modFunction()}}> Mostrar   </button>
+                </div>}
 			</div>
 
 		);
