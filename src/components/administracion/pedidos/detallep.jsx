@@ -8,6 +8,7 @@ export class Detallep extends React.Component {
       idpedido: 'sds',
       datos: ''
     }
+  }
 
   constructor(props) {
     super(props);
@@ -53,3 +54,4 @@ export class Detallep extends React.Component {
   }
 
 }
+
