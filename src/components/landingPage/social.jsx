@@ -20,40 +20,29 @@ export class Social extends React.Component {
     }
     usuarios(e) {
         return(
-            <div className="col-12 col-sm3 col-lg-4">
-                <div className="card">
-                 <img src={e.foto} className="img-fluid"></img>
-                 <div className="card-body">
-                    <div className="nameC">
-                        <h4 style={{margin:0}}> {e.usuario.full_name}</h4> 
+            <div>
+                <div className=" row justify-content-center">
+                    <div className="card col-12 col-sm-6 col-lg-6">
+                        <img src={e.foto} className="img-fluid"></img>
+                        <div className="card-body">
+                            
+                            <div className="nameC">
+                                <h4 style={{margin:0}}> {e.usuario.full_name}</h4> 
+                            </div>
+                            <div className="counterLikes info-customer">
+                                {this.fecha(e.published_date)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;   <img src={like} className="likes"></img><span>{e.likes}</span>
+                            </div>
+                        </div>
+                    
                     </div>
-                    <div className="counterLikes info-customer">
-                        {this.fecha(e.published_date)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;   <img src={like} className="likes"></img><span>{e.likes}</span>
-                    </div>
-                 </div>
+                </div>
+                <br />
             </div>
-            </div>
+
+           
             );
 
-        /* return (<div className="customer">
-            <div className="cakeC">
-                <img src={e.foto} className="cake"></img>
-            </div>
-            <div className="photoC">
-                <img src={e.usuario.foto} className="photo" />
-            </div>
-
-            <div className="infoC ">
-                
-                <div className="nameC">
-                  <h4 style={{margin:0}}> {e.usuario.full_name}</h4> 
-                </div>
-               
-               
-            </div>
-
-
-        </div>); */
+       
 
     }
 
@@ -68,13 +57,13 @@ export class Social extends React.Component {
     render() {
         return (
            
-                <div className="container">
-                    <div className="row d-flex">
-                        {this.state.data.map(e => this.usuarios(e))}
-                    </div>
-                    <div>
+                <div className="container  bg-light">
+                    
+                    {this.state.data.map(e => this.usuarios(e))}
+                    <br />
+                    <div className="row justify-content-center">
                         <a href="http://localhost:3000/social">
-                            <button className="btn btn-info" >Ver mas...</button>
+                            <button className="btn btn-info" >Mas...</button>
                         </a>
                     </div>
                 </div>

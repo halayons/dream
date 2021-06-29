@@ -102,7 +102,7 @@ export class CrearPedido extends React.Component {
 	render(){
 		return( 
 			<div className="row">
-				<a className="col-3 col-sm-2 col-lg-1 btn-CrearPedido" href="/crearPastel/"><img className="img-fluid" src={añadir} alt="" /></a>
+				<a className="col-3 col-sm-1 col-md-1 col-lg-1 btn-CrearPedido" href="/crearPastel/"><img className="img-fluid" src={añadir} alt="" /></a>
 			</div>
 		)
 	}

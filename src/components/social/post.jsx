@@ -189,7 +189,7 @@ export class Post extends React.Component {
 		
 			return (
 				<div class="row justify-content-center post bg-light" >
-						<div class = "card col-lg-4 col-sm-8">
+						<div class = "card col-lg-4 col-sm-8 card-post">
 							
 							<div className="carousel slide"  id={"post"+this.state.id} data_ride="carousel">
 								<div className="carousel-inner carousel-post" >

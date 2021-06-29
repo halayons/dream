@@ -145,7 +145,7 @@ export class CreatePost extends React.Component {
 		let { imagePreviewUrl } = this.state;
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
-			$imagePreview = (<img className ="img-fluid shadow-lg img-post " style ={{margin:"auto"}} src={imagePreviewUrl} />);
+			$imagePreview = (<img className ="img-fluid shadow-lg " style ={{margin:"auto"}} src={imagePreviewUrl} />);
 		}
 
 
@@ -185,7 +185,7 @@ export class CreatePost extends React.Component {
 								this.state.cakePaint!=undefined ?(this.paintCakes(this.state.cakePaint)):('')
 								}
 							</div>
-							<button className="form-control badge badge-info" type="button"  onClick={this.crearPost}>Post</button>
+							<button className="badge badge-info" type="button"  onClick={this.crearPost}>Post</button>
 					</div>
 				</div>
 			);
