@@ -459,7 +459,7 @@ export class Mensaje extends Index{
                             </div>
 
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-outline-danger" id="btnModal" data-dismiss="modal">X</button>
                             </div>
                         </div>
                     </div>
@@ -547,29 +547,31 @@ export class Formulario extends React.Component{
     render(){
 
         return(
-            <form className ="container">
+            <form className ="form">
                 <div className=" form-row">
-                    <div className=" form-group">
+                   
                         <label for="direccion"> Dirección </label>
-                        <input type = "text" class= "form-control" id="direccion" required onChange={(e)=>{this.setState({direccion:e.target.value});this.obtenerDatos()}} placeholder="Ingrese dirección" ></input>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label for="file"><span>Foto</span></label>
-                    <input type ="file" className="col-sm "  id="file" onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*"></input>
-                    <div id="draw"></div>
+                        <input type = "text" className= "form-control" id="direccion" required onChange={(e)=>{this.setState({direccion:e.target.value});this.obtenerDatos()}} placeholder="Ingrese dirección" ></input>
                     
                 </div>
-                <div className ="form-group">
-                    <label for ="domicilio" > ¿Desea domicilio?</label><br />
-                        <select name="domicilio"  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
+                <br />
+                <div className="form-group justify-content-around">
+                    <label for="imgfile"  className="btn btn-outline-info col-5"><span>Foto</span></label>
+                    <input type ="file" className="col-sm "  id="imgfile" onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*"></input>
+
+                        
+
+                    <label className="btn  col-5 form-data" for ="domicilio" > ¿Domicilio?
+                        <select name="domicilio "  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
                             <option selected value={true}>Si</option>
                             <option  value={false} >No</option>
                         </select>
+                    </label>
                 </div>
+                
                     
-                <button  className="btn btn-dark" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
-                <button className="btn btn-dark" onClick={this.ver} >ver estado</button>
+                <button  className="btn btn-primary form-control" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
+                
 
                 
                
@@ -578,32 +580,5 @@ export class Formulario extends React.Component{
 
         )
     }
-}
-export class MensajeModal extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state={
-            mensaje:this.props.mensaje
-        };
-    }
-    render(){ 
-      return(
-          
-        <div className="modal fade show" id="emergente2"  style="display: block; padding-right: 22px;" aria-modal="true" role="dialog">
-        <div className="modal-dialog">
-            <div className="modal-content">
-                
-                <div className="modal-body">
-                    <p>{this.state.mensaje}</p>
-                </div>
-
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-outline-info"  data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-      );
-  }
 }
 
