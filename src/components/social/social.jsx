@@ -2,9 +2,8 @@ import './style.scss';
 import React from 'react';
 import { Feed } from './feed';
 import { CreatePost } from './createPost';
-import { Footer, Header } from '../landingPage';
-
 import Cookies from 'js-cookie';
+import añadir from '../../static/images/anadir.png'
 
 
 export class Social extends React.Component {
@@ -35,13 +34,13 @@ export class Social extends React.Component {
 	}
 
 	componentDidMount() {
-		this.requestUser()
-		this.loadPosts()
-
-		this.ws.onopen = evt => this.send();
-		this.ws.onclose = evt => window.location.reload();
-		this.ws.onmessage = evt => this.loadPosts();
-		this.ws.onerror = evt => console.log(JSON.stringify(evt));
+		this.requestUser();
+		this.loadPosts();
+		
+		//this.ws.onopen = evt => this.send(); 
+		//this.ws.onclose = evt => window.location.reload(); 
+		//this.ws.onmessage = evt => this.loadPosts();
+		//this.ws.onerror = evt => console.log(JSON.stringify(evt)); 
 	}
 
 	requestUser() {
@@ -56,23 +55,15 @@ export class Social extends React.Component {
 			}).catch(error => window.location.pathname = "/");
 	}
 
-
 	loadPosts() {
-		const requestOptions = {
-			method: 'GET',
-			headers: {
-				// 'Content-Type': 'application/json',
-				'X-CSRFToken': Cookies.get('csrftoken')
-			},
-			credentials: "include",
-		};
-		fetch("http://localhost:8000/social/all_posts/" + this.state.order + this.state.attr + "/" + this.state.count + "/", requestOptions)
+		fetch("http://localhost:8000/social/all_posts/" + this.state.order +this.state.attr + "/" + this.state.count+'/')
 			.then(response => response.json())
 			.then(json => this.setState({
 				posts: json
 			}))
 			.catch(error => console.log(error));
 	}
+	
 
 	update() {
 		this.loadPosts()
@@ -93,8 +84,29 @@ export class Social extends React.Component {
 			<div>
 				<CreatePost update={this.update} />
 				<Feed posts={this.state.posts} />
+				<CrearPedido></CrearPedido>
 
 			</div>
 		);
 	}
 }
+
+
+export class CrearPedido extends React.Component {
+	constructor() {
+		super();
+		this.state={
+
+		}
+	}
+	render(){
+		return( 
+			<div className="row">
+				<a className="col-3 col-sm-2 col-lg-1 btn-CrearPedido" href="/crearPastel/"><img className="img-fluid" src={añadir} alt="" /></a>
+			</div>
+		)
+	}
+
+
+}
+
