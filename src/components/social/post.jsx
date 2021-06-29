@@ -143,8 +143,8 @@ export class Post extends React.Component {
 		fetch('http://localhost:8000/guardar_pastel/' + id + '/', requestOptions)
         .then(res => res.json())
         .then(json => {
-			alert(JSON.stringify(json))
-			this.props.modificar(this.state.cake)
+			// alert(JSON.stringify(json))
+			this.props.modificar(this.state.cake, 2)
         })
         .catch(error => console.log(error))   
 	}

@@ -54,7 +54,7 @@ export class Orders extends React.Component {
 					.then(json => {
 						console.log(json)
 						// alert(json)
-						this.props.modificar(json);
+						this.props.modificar(json, 1);
 					})
 					.catch(error => console.log(error));
 			}

@@ -15,12 +15,14 @@ import { Mod } from "./components/Moderacion/MainModerador"
 
 
 
+
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       notification: [],
       modPastel: '',
+      showMod: false
     }
     this.notificationMngr = this.notificationMngr.bind(this);
     this.modificar = this.modificar.bind(this)
@@ -53,17 +55,30 @@ export class App extends React.Component {
     });
   }
 
-  modificar(pastel) {
+  modificar(pastel, id) {
     this.setState({
-      modPastel: pastel
+      modPastel: pastel,
+      showMod: true,
+      id: id
     })
-    window.location.pathname = "/modificarPastel/";
+    // return <ModPedido pastel={pastel}></ModPedido>
+    // window.location.pathname = "/modificarPastel/";
+    
   }
 
 
 
 
   render() {
+    if (this.state.showMod) 
+    return (
+      <div className="App">
+        <Notification notificationManager={this.notificationMngr} />
+        <Header notifications={this.state.notification}></Header>
+        <ModPedido pastel={this.state.modPastel} origen={this.state.id}></ModPedido>
+        <Footer></Footer>
+      </div>
+    )
     return (
       <div className="App">
         <Notification notificationManager={this.notificationMngr} />
