@@ -16,9 +16,11 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notification: []
+      notification: [],
+      modPastel: '',
     }
     this.notificationMngr = this.notificationMngr.bind(this);
+    this.modificar = this.modificar.bind(this)
   }
 
   /*componentDidMount() {
@@ -48,6 +50,15 @@ export class App extends React.Component {
     });
   }
 
+  modificar(pastel){
+    this.setState({
+      modPastel : pastel
+    })
+    window.location.pathname ="/modificarPastel/"; 
+  }
+
+
+
 
   render() {
     return (
@@ -58,9 +69,9 @@ export class App extends React.Component {
         {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
         {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
         {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
-        {window.location.pathname == "/modificarPastel/" && <ModPedido></ModPedido>}
+        {window.location.pathname == "/modificarPastel/" && <ModPedido pastel = {this.state.modPastel}></ModPedido>}
         {window.location.pathname == "/" && <LandingPage></LandingPage>}
-        {window.location.pathname == "/profile" && <Profile></Profile>}
+        {window.location.pathname == "/profile" && <Profile modificar = {this.modificar}></Profile>}
         {window.location.pathname == "/social" && <Social></Social>}
         {window.location.pathname == "/admin" && <Admin></Admin>}
         <Footer></Footer>

@@ -41,7 +41,7 @@ export class Information extends React.Component {
 
         if (current == 2) {
             if (datos.length < 0) info = <p>No hay pedidos</p>
-            else info = <Orders datos = {datos}></Orders>
+            else info = <Orders datos = {datos} modificar = {this.props.modificar}></Orders>
             
         }
 

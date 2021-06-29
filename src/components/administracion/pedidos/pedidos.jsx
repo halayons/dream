@@ -19,7 +19,10 @@ export class Pedidos extends React.Component {
 		text: 'Enviado'
 	}, {
 		value: '2',
-		text: 'Entregado'
+		text: 'Entregado',
+	}, {
+		value: '4',
+		text: 'Cancelado'
 	}]
 
 	acpt = [{
@@ -119,7 +122,7 @@ export class Pedidos extends React.Component {
 	}
 
 	estadoFormatter(cell, row) {
-		let estados = ['En proceso', 'Enviado', 'Entregado'];
+		let estados = ['En proceso', 'Enviado', 'Entregado', 'Cancelado'];
 		return estados[row.estado]
 	}
 

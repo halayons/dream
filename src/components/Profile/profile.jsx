@@ -110,7 +110,7 @@ export class Profile extends React.Component {
                 <UserData user = {this.state.user}></UserData>
                 <div className ="div-bottom">
                     <Options handleButton={this.handleButton}></Options>
-                    <Information datos={this.state.datos} current={this.state.current}></Information>
+                    <Information datos={this.state.datos} current={this.state.current} modificar = {this.props.modificar}></Information>
                 </div>
 			</div>
         )

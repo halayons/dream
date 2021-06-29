@@ -43,6 +43,7 @@ export class ModPedido extends React.Component{
         }      
     }
     render()    {
+        
         return(
             <div>
                 <Index //verificar las props para que coincidadn con el state de Index 
