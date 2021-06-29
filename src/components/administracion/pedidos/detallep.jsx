@@ -10,12 +10,13 @@ export class Detallep extends React.Component {
     }
 
   }
-  // componentDidUpdate(nextProps) {
-  //   console.log(nextProps)
-  //   if (nextProps.datos !== this.props.datos) {
-  //     this.setState({ datos: nextProps.datos })
-  //   }
-  // }
+  componentDidUpdate(nextProps) {
+    for (let i = 0; i < this.props.datos; i++)
+    if (this.props.datos[i].idpedido == nextProps.current) {
+      console.log(this.props.datos[i])
+      this.setState({ datos: this.props.datos[i] })
+    }
+  }
 
 
   render() {

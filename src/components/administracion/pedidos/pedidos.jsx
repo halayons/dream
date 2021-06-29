@@ -81,13 +81,12 @@ export class Pedidos extends React.Component {
 	}
 
 	updateRow(event) {
-		// this.setState({current: row})
-		for (let i = 0; i < this.props.datos; i++)
-			if (this.props.datos[i].idpedido == parseInt(event.target.idpedido)){
-				console.log(this.props.datos[i])
-				this.setState({ current: this.props.datos[i] })
-				this.openModal();
-			}
+		this.setState({current: parseInt(event.target.idpedido)})
+		// for (let i = 0; i < this.props.datos; i++)
+		// 	if (this.props.datos[i].idpedido == parseInt(event.target.idpedido)){
+		// 		console.log(this.props.datos[i])
+		// 		this.setState({ current: this.props.datos[i] })
+		// 	}
 	}
 
 	buttonSelect(cell, row) {
@@ -253,7 +252,7 @@ export class Pedidos extends React.Component {
 		return (
 			<div>
 				{table}
-				<Detallep datos={this.state.current}  />
+				<Detallep datos={this.props.datos} current={this.state.current} />
 			</div>
 		);
 	}
