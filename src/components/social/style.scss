@@ -80,3 +80,20 @@ input+label{
 .foto{
 	width:24px;
 }
+//----------------carousel----------
+.bg-cake{
+	margin:0 auto;
+	text-align: center;
+	height: 50%;
+	margin:0 auto ;
+	background-image: url('../../static/images/bgInfo.jpg');
+	
+}
+.info-cake{
+	background-color: rgba(0, 0, 0, 0.418);
+	backdrop-filter: blur(4px);
+	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	min-width: 6rem;
+	width: 7rem;
+	
+}

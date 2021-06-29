@@ -2,6 +2,8 @@ import './style.scss';
 import React from 'react';
 import { Feed } from './feed';
 import { CreatePost } from './createPost';
+
+import Cookies from 'js-cookie';
 import { Footer, Header } from '../landingPage';
 
 
@@ -33,8 +35,8 @@ export class Social extends React.Component {
 	}
 
 	componentDidMount() {
-		this.loadPosts()
-
+		this.loadPosts();
+		this.getCakes();
 		//this.ws.onopen = evt => this.send(); 
 		//this.ws.onclose = evt => window.location.reload(); 
 		//this.ws.onmessage = evt => this.loadPosts();
@@ -42,12 +44,30 @@ export class Social extends React.Component {
 	}
 
 	loadPosts() {
-		fetch("http://localhost:8000/social/all_posts/" + this.state.order + this.state.attr + "/" + this.state.count)
+		fetch("http://localhost:8000/social/all_posts/" + this.state.order +this.state.attr + "/" + this.state.count+'/')
 			.then(response => response.json())
 			.then(json => this.setState({
 				posts: json
 			}))
 			.catch(error => console.log(error));
+	}
+	getCakes(){
+		
+		const requestOptions = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': Cookies.get('csrftoken')
+			},
+			credentials: "include"
+		};
+
+		fetch('http://localhost:8000/pasteles/', requestOptions)
+			.then(res => res.json())
+			.then(json => {
+				this.setState({pasteles: json})
+			})
+			.catch(error => console.log(error))
 	}
 
 	update() {
