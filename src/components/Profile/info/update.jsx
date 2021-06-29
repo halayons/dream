@@ -30,15 +30,11 @@ export class Update extends React.Component {
 		};
         fetch('http://localhost:8000/users/api/auth/user/', requestOptions)
         .then(res => res.json())
-        .then(json => {
+        .then(json => { 
             console.log(json);
-
             window.location.pathname ="/profile";
-
         })
         .catch(error => console.log(error));
-        
-        
     }
 
     render(){
