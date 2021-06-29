@@ -13,24 +13,22 @@ export class Detallep extends React.Component {
 
   render() {
     return (
-      <div className="modal fade" id={this.props.row.idpedido + 'a'}>
+      <div className="modal fade" id={'a'+this.props.row.idpedido }>
         <section className="modal-dialog" >
           <div className="modal-content">
             <div className="modal-body ">
 
+              {console.log(this.props.row)}
 
-              <div className="modal-header row justify-content-center">
-                <img src={logo} className=" row img-logo col-3" />
+
+              <div className="modal-body badge ">
+                  <img className="img-fluid"src={this.props.row.foto} alt="" />
+                  <p>Comentario:{this.props.row.comentario}</p>
+                  <p>Fecha:{this.props.row.fecha_pedido}</p>
+                  <p>Direccion:{this.props.row.direccion}</p>
+                  <p>ID pedido:{this.props.row.idpedido}</p>
               </div>
 
-
-              <h2>{this.props.row.idpedido}</h2>
-
-
-
-              <label className="btn">Foto</label>
-
-              <br />
 
 
 
