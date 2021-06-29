@@ -3,6 +3,7 @@ import './style.scss';
 import React from 'react';
 import { Footer, Header } from '../landingPage';
 import { Pedidos } from './pedidos/pedidos';
+
 import { Banner } from './banner/banner';
 import { Moderadores } from './crearModerador/moderadores';
 import { Menu } from './menu';
@@ -305,12 +306,16 @@ export class Admin extends React.Component {
     return (
       <div>
         <ReactNotification />
-        <Menu menu = {this.changeComponent}></Menu>
-        {this.state.id == 0 && <Pedidos datos={this.state.pedidos}></Pedidos>}
+        <div class="sidebar">
+        <Menu menu = {this.changeComponent}></Menu></div>
+        <div class="content">
+        {this.state.id == 0 && <Pedidos datos={this.state.pedidos}></Pedidos>}</div>
         {this.state.id == 1 && <Banner></Banner>}
         {this.state.id == 2 && <Moderadores></Moderadores>}
+        
       </div>
     );
   }
 
 }
+

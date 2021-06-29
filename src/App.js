@@ -8,6 +8,7 @@ import { Pedido } from "./components/Pedidos/Pedidos"
 import { Profile } from "./components/Profile/profile";
 import { Social } from "./components/social/index"
 import { Admin } from "./components/administracion/admin"
+
 import { ModPedido } from "./components/Pedidos/ModPedido";
 import { Notification } from "./components/notification/notification";
 import { Mod } from "./components/Moderacion/MainModerador"

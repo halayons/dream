@@ -4,6 +4,7 @@ export class UserData extends React.Component {
 
 	constructor(props) {
 		super(props);
+
 	}
 
 	render() {
@@ -14,7 +15,7 @@ export class UserData extends React.Component {
 					<img className="img_profile" src ={this.props.user.foto}></img>
 					</div>
 					<div className = "div_text">
-						<p className ="user-name">Hola! {this.props.user.full_name == "" ? 'Caker' : this.props.user.full_name.substr(0, this.props.user.full_name.indexOf(" "))}</p>
+						<p className ="user-name">Hola! {this.props.user.full_name == "" ? 'Caker' : this.props.user.full_name/*.substr(0, this.props.user.full_name.indexOf(" "))*/}</p>
 					</div>
 				</div>
 			</div>
