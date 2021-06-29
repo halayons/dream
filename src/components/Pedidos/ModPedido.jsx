@@ -15,7 +15,7 @@ import { FcElectronics } from 'react-icons/fc';
 export class ModPedido extends React.Component{
     constructor(props) {
         super(props);
-        this.state = /*{  
+        this.state = {  
             id: props.id,     
             masa: props.masa, 
             relleno: props.relleno,
@@ -27,20 +27,7 @@ export class ModPedido extends React.Component{
              status_pastel: props.status_pastel,
             num_pisos: props.num_pisos,
             costo: props.costo,                       
-        }*/
-        {
-            id: 80,
-            masa: 'RV',
-            relleno: 'NU',
-            cobertura: 'CR',
-            color: '#6610f200',
-            porciones: 2,
-            forma:'CU',    
-            mensaje:'Me siento Bichota B-)',
-            status_pastel:true,
-            num_pisos:1,
-            costo:0,
-        }      
+        }   
     }
     render()    {
         
@@ -715,8 +702,10 @@ export class Formulario extends React.Component{
         this.obtenerDatos();
        
         this.postearPedido();
+        window.location.pathname = "/social"
         e.preventDefault();
         e.stopPropagation();
+       
     }
     
     ver=()=>(this.state);
@@ -725,29 +714,33 @@ export class Formulario extends React.Component{
     render(){
 
         return(
-            <form className ="container">
+            <form className ="form">
                 <div className=" form-row">
-                    <div className=" form-group">
+                    
                         <label for="direccion"> Dirección </label>
                         <input type = "text" class= "form-control" id="direccion" required onChange={(e)=>{this.setState({direccion:e.target.value});this.obtenerDatos()}} placeholder="Ingrese dirección" ></input>
-                    </div>
+                   
                 </div>
+                <br />
+
                 <div className="form-group">
-                    <label for="file"><span>Foto</span></label>
-                    <input type ="file" className="col-sm "  id="file" onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*"></input>
-                    <div id="draw"></div>
+                    <label for="imgfile" className="btn btn-outline-info col-5"><span>Foto</span></label>
+                    <input type ="file" className="col-sm "  id="imgfile" onChange={(e)=>this.setState({foto:e.target.files[0]})} accept="image/*"></input>
                     
                 </div>
+
                 <div className ="form-group">
-                    <label for ="domicilio" > ¿Desea domicilio?</label><br />
-                        <select name="domicilio"  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
-                            <option selected value={true}>Si</option>
-                            <option  value={false} >No</option>
-                        </select>
+                    <label className="btn  col-5 form-data" for ="domicilio" > ¿Domicilio?
+                            <select name="domicilio "  id="domicilio" onChange={(e)=>{this.setState({domiciliario:e.target.value})}}>
+                                <option selected value={true}>Si</option>
+                                <option  value={false} >No</option>
+                            </select>
+                        </label>
+
+
                 </div>
                     
-                <button  className="btn btn-dark" id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
-                <button className="btn btn-dark" onClick={this.ver} >ver estado</button>
+                <button   className="btn btn-primary form-control"  id="enviar" onClick={(this.enviar.bind(this))}>Enviar</button>
 
                 
                
@@ -755,33 +748,9 @@ export class Formulario extends React.Component{
 
 
         )
-    }
-}
-export class MensajeModal extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state={
-            mensaje:this.props.mensaje
-        };
-    }
-    render(){ 
-      return(
-          
-        <div className="modal fade show" id="emergente2"  style="display: block; padding-right: 22px;" aria-modal="true" role="dialog">
-        <div className="modal-dialog">
-            <div className="modal-content">
-                
-                <div className="modal-body">
-                    <p>{this.state.mensaje}</p>
-                </div>
 
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-outline-info"  data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-      );
-  }
+       
+    }
 }
+
 

@@ -88,7 +88,7 @@ export class HeaderUpdater extends React.Component {
         console.log('isNull?' + this.state.userInfo == null);
         if (this.state.userInfo == null || this.state.userInfo.hasOwnProperty('detail')) {
             return (
-                <div className="col-lg-6 col-md-6 col-9 ">
+                <div className="col-lg-6 col-md-6 col-9 row ">
 
                     <button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-toggle="modal" data-target="#register" value="register" data-backdrop="false" data-dismiss="modal" >Registrarse</button>
                     <Register />
