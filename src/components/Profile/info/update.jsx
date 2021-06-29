@@ -13,6 +13,7 @@ export class Update extends React.Component {
         };
 
         this.onSubmitForm = this.onSubmitForm.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     onSubmitForm(event){
@@ -37,6 +38,25 @@ export class Update extends React.Component {
         .catch(error => console.log(error));
     }
 
+    deleteUser(event){
+        event.preventDefault()
+        const requestOptions = {
+			method: 'PUT',
+			headers: {
+				'X-CSRFToken': Cookies.get('csrftoken')
+			},
+			credentials: "include",
+		};
+        fetch('http://localhost:8000/users/api/auth/user/disable/', requestOptions)
+        .then(res => res.json())
+        .then(json => { 
+            // console.log(json);
+            window.location.pathname ="/";
+            // window.location.reload()
+        })
+        .catch(error => console.log(error));
+    }
+
     render(){
 
         return(
@@ -53,7 +73,7 @@ export class Update extends React.Component {
                     <div id="draw"></div>
                 </div>
                     
-                <button  className="btn btn-danger">Borrar</button>
+                <button  className="btn btn-danger" onClick={this.deleteUser}>Borrar</button>
                 <button className="btn btn-success" onClick = {this.onSubmitForm}>Actualizar</button>
             </form>
         )

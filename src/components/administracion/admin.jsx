@@ -309,9 +309,10 @@ export class Admin extends React.Component {
         <div class="sidebar">
         <Menu menu = {this.changeComponent}></Menu></div>
         <div class="content">
-        {this.state.id == 0 && <Pedidos datos={this.state.pedidos}></Pedidos>}</div>
+        {this.state.id == 0 && <Pedidos datos={this.state.pedidos}></Pedidos>}
         {this.state.id == 1 && <Banner></Banner>}
         {this.state.id == 2 && <Moderadores></Moderadores>}
+        </div>
         
       </div>
     );

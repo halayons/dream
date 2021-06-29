@@ -33,7 +33,6 @@ export class Profile extends React.Component {
     componentDidMount() {  
         this.geUser();
     }
-
     geUser(){
         let requestOptions = {
             method: 'GET',
@@ -48,7 +47,7 @@ export class Profile extends React.Component {
                     datos: responseJson
                 })
             }
-            else console.log("error")
+            else window.location.pathname = "/";
             
         })
         .catch(error => console.log(error));

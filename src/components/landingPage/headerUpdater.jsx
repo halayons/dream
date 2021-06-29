@@ -58,7 +58,6 @@ export class HeaderUpdater extends React.Component {
         if(e.target.value =="Inicio")window.location.pathname = "/"
     }
     logOut(e){
-        console.log("chao prra")
         e.preventDefault();
 
         const requestOptions = {
@@ -74,8 +73,11 @@ export class HeaderUpdater extends React.Component {
         };
         fetch('http://localhost:8000/users/api/auth/logout/', requestOptions)
         .then(res => res.json())
-        .then(json =>console.log(json))
-        window.location.pathname = "/"
+        .then(json =>{
+            window.location.pathname = "/"
+            window.location.reload()
+        })
+        
     }
     
 

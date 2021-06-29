@@ -135,7 +135,6 @@ export class Moderadores extends React.Component {
 
 		return (
 			<div>
-				<button onClick={this.modal}>Crear Banner</button>
 				{table}
 			</div>
 		);

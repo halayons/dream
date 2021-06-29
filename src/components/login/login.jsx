@@ -32,6 +32,7 @@ class Login extends Component {
     if (response.statusText === 'OK') {
       let json = await response.json();
       console.log(json);
+      window.location.pathname = "/social";
     }
     else {
       let js = await response.json()
