@@ -19,7 +19,23 @@ export class Social extends React.Component {
         return a;
     }
     usuarios(e) {
-        return (<div className="customer">
+        return(
+            <div className="col-12 col-sm3 col-lg-4">
+                <div className="card">
+                 <img src={e.foto} className="img-fluid"></img>
+                 <div className="card-body">
+                    <div className="nameC">
+                        <h4 style={{margin:0}}> {e.usuario.full_name}</h4> 
+                    </div>
+                    <div className="counterLikes info-customer">
+                        {this.fecha(e.published_date)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;   <img src={like} className="likes"></img><span>{e.likes}</span>
+                    </div>
+                 </div>
+            </div>
+            </div>
+            );
+
+        /* return (<div className="customer">
             <div className="cakeC">
                 <img src={e.foto} className="cake"></img>
             </div>
@@ -32,14 +48,12 @@ export class Social extends React.Component {
                 <div className="nameC">
                   <h4 style={{margin:0}}> {e.usuario.full_name}</h4> 
                 </div>
-                <div className="counterLikes info-customer">
-                    {this.fecha(e.published_date)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;   <img src={like} className="likes"></img><span>{e.likes}</span>
-                </div>
+               
                
             </div>
 
 
-        </div>);
+        </div>); */
 
     }
 
@@ -53,9 +67,9 @@ export class Social extends React.Component {
 
     render() {
         return (
-            <div className="social_app">
-                <div className="content">
-                    <div>
+           
+                <div className="container">
+                    <div className="row d-flex">
                         {this.state.data.map(e => this.usuarios(e))}
                     </div>
                     <div>
@@ -65,7 +79,7 @@ export class Social extends React.Component {
                     </div>
                 </div>
 
-            </div>
+            
         )
     }
 

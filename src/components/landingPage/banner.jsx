@@ -4,6 +4,7 @@ import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../../node_modules/bootstrap/dist/js/bootstrap.min";
 import "../../../node_modules/popper.js/dist/umd/popper.min";
 import "../../../node_modules/jquery/dist/jquery.slim.min";
+import ban from '../../static/images/bgInfo.jpg'
 
 
 export class Banner extends React.Component {
@@ -48,12 +49,16 @@ export class Banner extends React.Component {
                         </ol>
 
                         <div className="carousel-inner">
-                            <div>
+                            
                                 <div className="carousel-item active">
-                                    <div id="opacity_div "></div>
+                                    
+                                    <div className="card">
+                                    <img src={ban} alt="" className="img-fluid" />
+                                    </div>
+                                    
 
-                                    <div className="row h-100 ">
-                                        <div className=" col-sm-12 text-center my-auto" >
+                                    <div className="info-carousel">
+                                        <div className="text-center" >
                                             <h2>Crea tu Pastel</h2>
                                             <p>1.) ¡Registrate! </p>
                                             <p>2.) ¡Elige la crema! </p>
@@ -64,30 +69,29 @@ export class Banner extends React.Component {
 
                                             <button type="button" className="btn-start mx-auto d-md-block" id="comenzar" onClick={this.realizarPedido} > COMENZAR </button>
 
-
-
-
+                                            <div className="carousel-caption d-none d-md-block" >
+                                                <h3>Conoce nuestras promociones</h3>
+                                            </div>
                                         </div >
                                     </div>
-                                    <div className="carousel-caption d-none d-md-block" >
-                                        <h3>Conoce nuestras promociones</h3>
-                                    </div>
+                                    
                                 </div>
                                 
                                 {this.state.promos.map((promo) => (
                                     <div className="carousel-item">
                                        <div className="card">
                                        <img src={promo.image} className="img-fluid" />
+                                       </div>
                                        <div className="carousel-caption info-carousel">
                                             <h1>{promo.title}</h1>
                                             <h5>{promo.text}</h5>
                                         </div>
-                                       </div>
+                                       
 
                                         
                                     </div>
                                 ))}
-                            </div>
+                            
                         </div>
                     </div>
 
