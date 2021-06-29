@@ -35,6 +35,7 @@ export class Social extends React.Component {
 	}
 
 	componentDidMount() {
+		this.requestUser()
 		this.loadPosts()
 
 		this.ws.onopen = evt => this.send();
@@ -42,6 +43,19 @@ export class Social extends React.Component {
 		this.ws.onmessage = evt => this.loadPosts();
 		this.ws.onerror = evt => console.log(JSON.stringify(evt));
 	}
+
+	requestUser() {
+		fetch('http://localhost:8000/users/api/auth/user/', {
+			method: 'GET',
+			credentials: 'include',
+			headers: {
+			},
+		}).then((response) => response.json())
+			.then(responseJson => {
+				if(!responseJson.hasOwnProperty('email')) window.location.pathname = "/";
+			}).catch(error => window.location.pathname = "/");
+	}
+
 
 	loadPosts() {
 		const requestOptions = {

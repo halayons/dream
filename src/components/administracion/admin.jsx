@@ -3,6 +3,8 @@ import './style.scss';
 import React from 'react';
 import { Footer, Header } from '../landingPage';
 import { Pedidos } from './pedidos/pedidos';
+import { Banner } from './banner/banner';
+import { Moderadores } from './crearModerador/moderadores';
 import { Menu } from './menu';
 
 import ReactNotification from 'react-notifications-component'
@@ -200,17 +202,33 @@ export class Admin extends React.Component {
         pasteles: 1,
         user: "admin@admin.com"
       }],
-      atr: "-fecha_pedido"
+      atr: "-fecha_pedido",
+      id:0
     }
 
     this.send = this.send.bind(this);
     this.cargarPedidos = this.cargarPedidos.bind(this);
+    this.changeComponent = this.changeComponent.bind(this);
   }
 
   componentDidMount() {
     this.cargarPedidos();
     this.reload();
+    this.requestUser();
   }
+
+  requestUser() {
+		fetch('http://localhost:8000/users/api/auth/user/', {
+			method: 'GET',
+			credentials: 'include',
+			headers: {
+			},
+		}).then((response) => response.json())
+			.then(responseJson => {
+				if(!responseJson.is_staff) window.location.pathname = "/";
+			}).catch(error => console.error('Error:', error));
+	}
+
 
   send() {
     this.ws.send(JSON.stringify({
@@ -277,12 +295,20 @@ export class Admin extends React.Component {
     this.ws.onerror = evt => { console.log(JSON.stringify(evt)) };
   }
 
+  changeComponent(id){
+    this.setState({
+      id:parseInt(id)
+    })
+  }
+
   render() {
     return (
       <div>
         <ReactNotification />
-        <Menu></Menu>
-        <Pedidos datos={this.state.pedidos}></Pedidos>
+        <Menu menu = {this.changeComponent}></Menu>
+        {this.state.id == 0 && <Pedidos datos={this.state.pedidos}></Pedidos>}
+        {this.state.id == 1 && <Banner></Banner>}
+        {this.state.id == 2 && <Moderadores></Moderadores>}
       </div>
     );
   }

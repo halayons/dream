@@ -3,6 +3,11 @@
     height: 50px;
 }
 
+.img-post-comments {
+    width: 150px;
+    height: 150px;
+}
+
 .card-body {
     border-top: solid 1px;
 }
@@ -27,12 +32,24 @@
 }
 
 .btn-navbar {
-    background: #7cd5d1;
+    background: #9556CC;
     color: white;
+    font-weight: bold;
     border-radius: 6px;
     margin: 10px;
     height: 50px;
     width: 30%;
+    align-self: center;
+    justify-content: center;
+}
+
+.btn-report {
+    background: #9556CC;
+    color: white;
+    border-radius: 6px;
+    margin: 10px;
+    height: 50px;
+    width: 80px;
     align-self: center;
     justify-content: center;
 }

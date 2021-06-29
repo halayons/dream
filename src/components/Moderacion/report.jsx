@@ -26,14 +26,15 @@ export class Report extends React.Component {
 		this.onSortChange = this.onSortChange.bind(this);
 	}
 	  
+	
 	activeFormatter(cell, row) {
 
 		let content
 		if(cell){
-			content = <button onClick={this.openModal}>Ocultar</button>
+			content = <button class="btn-report" onClick={this.openModal}>Ocultar</button>
 		}
 		else{
-			content = <button onClick={this.openModal}>Mostrar</button>
+			content = <button class="btn-report" onClick={this.openModal}>Mostrar</button>
 		}
 
 		return (
@@ -107,7 +108,7 @@ export class Report extends React.Component {
 		};
 		return (
 			<div class="container bg-light">
-				<BootstrapTable data={this.props.datos} pagination options = {options}>
+				<BootstrapTable data={this.props.datos} headerStyle={ { background: '#7CD5D0' } }  pagination options = {options}>
 					<TableHeaderColumn isKey dataField='id' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }}>
 						ID
 					</TableHeaderColumn>
@@ -123,7 +124,7 @@ export class Report extends React.Component {
 					<TableHeaderColumn dataField='foto' dataFormat={this.stateFromatter}>
 						Ver
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='status' dataFormat={this.activeFormatter}>
+					<TableHeaderColumn dataField='status' dataSort={true} dataFormat={this.activeFormatter}>
 						Moderar
 					</TableHeaderColumn>
 				</BootstrapTable>

@@ -1,8 +1,7 @@
 import './styles.scss';
 import React from 'react';
-import { Footer, Header } from '../landingPage';
-import { NavBar} from './navbar';
-import { Report} from './report';
+import { Report } from './report';
+import { CommentsReport } from './commentsReport';
 import Cookies from 'js-cookie';
 
 
@@ -13,28 +12,16 @@ export class Mod extends React.Component {
 	constructor() {
 		super();
 
-		this.attrs = {
-			1: "reported",
-			2: "published_date",
-		}
-
-		this.order = {
-			asc: "",
-			desc: "-"
-		}
-
 		this.state = {
-			attr: this.attrs[1],
-			count: 20,
-			order: this.order.desc,
-			posts: []
+			open: true,
+			open1: false,
+			posts: [],
 		};
-
-		this.update = this.update.bind(this)
 	}
 
 	componentDidMount() {
-		this.loadPosts()
+		this.requestUser();
+		this.loadPosts();
 
 		this.ws.onopen = evt => this.send();
 		this.ws.onclose = evt => window.location.reload();
@@ -46,22 +33,44 @@ export class Mod extends React.Component {
 		const requestOptions = {
 			method: 'GET',
 			headers: {
-			  // 'Content-Type': 'application/json',
-			  'X-CSRFToken': Cookies.get('csrftoken')
+				'Content-Type': 'application/json',
+				'X-CSRFToken': Cookies.get('csrftoken')
 			},
 			credentials: "include",
-		  };
-		  fetch('http://localhost:8000/social/all_posts/', requestOptions)
+		};
+		fetch('http://localhost:8000/social/all_posts/', requestOptions)
 			.then(response => response.json())
 			.then(json => this.setState({
-			  posts: json
+				posts: json
 			}))
 			.catch(error => console.log(error));
 	}
 
-	update() {
-		this.loadPosts()
+	requestUser() {
+		fetch('http://localhost:8000/users/api/auth/user/', {
+			method: 'GET',
+			credentials: 'include',
+			headers: {
+			},
+		}).then((response) => response.json())
+			.then(responseJson => {
+				if(!responseJson.is_staff) window.location.pathname = "/";
+			}).catch(error => console.error('Error:', error));
 	}
+
+	openComponent(name) {
+		switch (name) {
+			case "Report":
+				this.setState({ open: !this.state.open });
+				this.setState({ open1: false })
+				break;
+			case "Comments":
+				this.setState({ open: false, open1: !this.state.open1 });
+				break;
+			default:
+				this.setState({ open: false, open1: false });
+		}
+	};
 
 	send() {
 		this.ws.send(JSON.stringify({
@@ -73,11 +82,25 @@ export class Mod extends React.Component {
 	}
 
 	render() {
+		const { open, open1 } = this.state;
 		return (
-            
 			<div>
-				<NavBar></NavBar>
+
+
+				<div class="d-flex justify-content-center">
+					<button type="button" class="btn-navbar" onClick={() => { this.openComponent("Report") }}>
+						Moderar Publicaciones </button>
+					<button type="button" class="btn-navbar" onClick={() => { this.openComponent("Comments") }}>
+						Moderar Comentarios </button>
+				</div>
+
+				{open && <Report datos={this.state.posts} />}
+				<hr />
+				{open1 && <CommentsReport datos={this.state.posts} />}
+
+				<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 			</div>
-		);
+
+		)
 	}
 }
