@@ -73,19 +73,18 @@ export class Banner extends React.Component {
                                         <h3>Conoce nuestras promociones</h3>
                                     </div>
                                 </div>
-
+                                
                                 {this.state.promos.map((promo) => (
                                     <div className="carousel-item">
-                                        <div id="opacity_div"></div>
-                                        <div className="overlay-image">
-                                            <div class="d-flex justify-content-center">
-                                                <img src={promo.image} class="center" /></div>
-
-                                        </div>
-                                        <div className="carousel-caption d-none d-md-block">
+                                       <div className="card">
+                                       <img src={promo.image} className="img-fluid" />
+                                       <div className="carousel-caption info-carousel">
                                             <h1>{promo.title}</h1>
                                             <h5>{promo.text}</h5>
                                         </div>
+                                       </div>
+
+                                        
                                     </div>
                                 ))}
                             </div>
