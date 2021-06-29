@@ -3,6 +3,9 @@ import './style.scss';
 import React from 'react';
 import { Footer, Header } from '../landingPage';
 import { Pedidos } from './pedidos/pedidos';
+
+import { Banner } from './banner/banner';
+import { Moderadores } from './crearModerador/moderadores';
 import { Menu } from './menu';
 
 import ReactNotification from 'react-notifications-component'
@@ -200,11 +203,13 @@ export class Admin extends React.Component {
         pasteles: 1,
         user: "admin@admin.com"
       }],
-      atr: "-fecha_pedido"
+      atr: "-fecha_pedido",
+      id:0
     }
 
     this.send = this.send.bind(this);
     this.cargarPedidos = this.cargarPedidos.bind(this);
+    this.changeComponent = this.changeComponent.bind(this);
   }
 
   componentDidMount() {
@@ -277,14 +282,26 @@ export class Admin extends React.Component {
     this.ws.onerror = evt => { console.log(JSON.stringify(evt)) };
   }
 
+  changeComponent(id){
+    this.setState({
+      id:parseInt(id)
+    })
+  }
+
   render() {
     return (
       <div>
         <ReactNotification />
-        <Menu></Menu>
-        <Pedidos datos={this.state.pedidos}></Pedidos>
+        <div class="sidebar">
+        <Menu menu = {this.changeComponent}></Menu></div>
+        <div class="content">
+        {this.state.id == 0 && <Pedidos datos={this.state.pedidos}></Pedidos>}</div>
+        {this.state.id == 1 && <Banner></Banner>}
+        {this.state.id == 2 && <Moderadores></Moderadores>}
+        
       </div>
     );
   }
 
 }
+

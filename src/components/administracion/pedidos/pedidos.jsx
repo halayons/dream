@@ -40,7 +40,8 @@ export class Pedidos extends React.Component {
 			open: true,
 			value: " ",
 			sortName: undefined,
-			sortOrder: undefined
+			sortOrder: undefined,
+			current: ""
 		}
 
 		this.buttonFormatter = this.buttonFormatter.bind(this);
@@ -52,6 +53,8 @@ export class Pedidos extends React.Component {
 		this.estadoFormatter = this.estadoFormatter.bind(this)
 		this.aceptadoFormatter = this.aceptadoFormatter.bind(this);
 		this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
+		this.replaceModalItem = this.replaceModalItem.bind(this);
+		this.updateRow = this.updateRow.bind(this);
 	}
 
 	handleChange(event) {
@@ -64,14 +67,29 @@ export class Pedidos extends React.Component {
 		alert('Esta seguro?: ' + this.state.value);
 
 	}
+	replaceModalItem(index) {
+		this.setState({
+			requiredItem: index
+		});
+	}
 
 	buttonFormatter(cell, row) {
+
 		return (
 			<div>
 				<button button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-dismiss="modal" data-toggle="modal" data-target={'#' + row.idpedido + 'a'} className="ver">ver</button>
 				<Detallep row = {row}></Detallep>
 			</div>
 		);
+	}
+
+	updateRow(event) {
+		this.setState({current: parseInt(event.target.idpedido)})
+		// for (let i = 0; i < this.props.datos; i++)
+		// 	if (this.props.datos[i].idpedido == parseInt(event.target.idpedido)){
+		// 		console.log(this.props.datos[i])
+		// 		this.setState({ current: this.props.datos[i] })
+		// 	}
 	}
 
 	buttonSelect(cell, row) {
@@ -177,7 +195,7 @@ export class Pedidos extends React.Component {
 			.catch(error => console.log(error));
 	}
 
-	
+
 
 	render() {
 		const pagination = {
@@ -190,14 +208,14 @@ export class Pedidos extends React.Component {
 			showTotal: true,
 			alwaysShowAllBtns: true,
 			onPageChange: function (page, sizePerPage) {
-			  console.log('page', page);
-			  console.log('sizePerPage', sizePerPage);
+				console.log('page', page);
+				console.log('sizePerPage', sizePerPage);
 			},
 			onSizePerPageChange: function (page, sizePerPage) {
-			  console.log('page', page);
-			  console.log('sizePerPage', sizePerPage);
+				console.log('page', page);
+				console.log('sizePerPage', sizePerPage);
 			}
-		  };
+		};
 		const options = {
 			sortName: this.state.sortName,
 			sortOrder: this.state.sortOrder,
@@ -208,11 +226,11 @@ export class Pedidos extends React.Component {
 
 		if (this.props.datos.length > 0) {
 			table = (
-				<BootstrapTable data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
+				<BootstrapTable pagination={pagination} data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
 					<TableHeaderColumn isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
 						ID
 					</TableHeaderColumn>
-					<TableHeaderColumn dataField='fecha_pedido'  dataSort={true} dataFormat={this.dateFormatter} editable={false} >
+					<TableHeaderColumn dataField='fecha_pedido' dataSort={true} dataFormat={this.dateFormatter} editable={false} >
 						Fecha
 					</TableHeaderColumn>
 					<TableHeaderColumn dataField='user' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} editable={false}>
@@ -229,6 +247,7 @@ export class Pedidos extends React.Component {
 						Editar Estado
 					</TableHeaderColumn>
 				</BootstrapTable>
+
 			)
 		}
 
@@ -236,6 +255,7 @@ export class Pedidos extends React.Component {
 		return (
 			<div>
 				{table}
+				<Detallep datos={this.props.datos} current={this.state.current} />
 			</div>
 		);
 	}

@@ -8,6 +8,7 @@ import { Pedido } from "./components/Pedidos/Pedidos"
 import { Profile } from "./components/Profile/profile";
 import { Social } from "./components/social/index"
 import { Admin } from "./components/administracion/admin"
+
 import { ModPedido } from "./components/Pedidos/ModPedido";
 import { Notification } from "./components/notification/notification";
 
@@ -74,6 +75,7 @@ export class App extends React.Component {
         {window.location.pathname == "/profile" && <Profile modificar = {this.modificar}></Profile>}
         {window.location.pathname == "/social" && <Social></Social>}
         {window.location.pathname == "/admin" && <Admin></Admin>}
+        
         <Footer></Footer>
       </div>
 
