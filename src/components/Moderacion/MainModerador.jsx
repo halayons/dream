@@ -8,6 +8,8 @@ import Cookies from 'js-cookie';
 
 export class Mod extends React.Component {
 
+	ws = new WebSocket("ws://localhost:8000/ws/socialGeneral/")
+
 	constructor() {
 		super();
 
@@ -33,6 +35,11 @@ export class Mod extends React.Component {
 
 	componentDidMount() {
 		this.loadPosts()
+
+		this.ws.onopen = evt => this.send();
+		this.ws.onclose = evt => window.location.reload();
+		this.ws.onmessage = evt => this.loadPosts();
+		this.ws.onerror = evt => console.log(JSON.stringify(evt));
 	}
 
 	loadPosts() {
@@ -54,6 +61,15 @@ export class Mod extends React.Component {
 
 	update() {
 		this.loadPosts()
+	}
+
+	send() {
+		this.ws.send(JSON.stringify({
+			type: "subscribe",
+			id: new Date().getTime(),
+			action: 'list',
+			model: "social.Post"
+		}))
 	}
 
 	render() {
