@@ -68,7 +68,7 @@ export class Pedidos extends React.Component {
 	buttonFormatter(cell, row) {
 		return (
 			<div>
-				<button button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-dismiss="modal" data-toggle="modal" data-target={'#' + row.idpedido + 'a'} className="ver">ver</button>
+				<button button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-dismiss="modal" data-toggle="modal" data-target={'#'+'a' + row.idpedido}>ver</button>
 				<Detallep row = {row}></Detallep>
 			</div>
 		);
