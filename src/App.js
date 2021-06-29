@@ -10,6 +10,8 @@ import { Social } from "./components/social/index"
 import { Admin } from "./components/administracion/admin"
 import { ModPedido } from "./components/Pedidos/ModPedido";
 import { Notification } from "./components/notification/notification";
+import { Mod } from "./components/Moderacion/MainModerador"
+
 
 
 export class App extends React.Component {
@@ -50,11 +52,11 @@ export class App extends React.Component {
     });
   }
 
-  modificar(pastel){
+  modificar(pastel) {
     this.setState({
-      modPastel : pastel
+      modPastel: pastel
     })
-    window.location.pathname ="/modificarPastel/"; 
+    window.location.pathname = "/modificarPastel/";
   }
 
 
@@ -63,17 +65,18 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Notification notificationManager = {this.notificationMngr}/>
-        <Header notifications = {this.state.notification}></Header>
+        <Notification notificationManager={this.notificationMngr} />
+        <Header notifications={this.state.notification}></Header>
         {window.location.pathname == "/accounts/login/" && <LoginScreen></LoginScreen>}
         {window.location.pathname == "/accounts/signup/" && <LoginScreen></LoginScreen>}
         {window.location.pathname == "/accounts/password/reset/" && <LoginScreen></LoginScreen>}
         {window.location.pathname == "/crearPastel/" && <Pedido></Pedido>}
-        {window.location.pathname == "/modificarPastel/" && <ModPedido pastel = {this.state.modPastel}></ModPedido>}
+        {window.location.pathname == "/modificarPastel/" && <ModPedido pastel={this.state.modPastel}></ModPedido>}
         {window.location.pathname == "/" && <LandingPage></LandingPage>}
-        {window.location.pathname == "/profile" && <Profile modificar = {this.modificar}></Profile>}
+        {window.location.pathname == "/profile" && <Profile modificar={this.modificar}></Profile>}
         {window.location.pathname == "/social" && <Social></Social>}
         {window.location.pathname == "/admin" && <Admin></Admin>}
+        {window.location.pathname == "/mod" && < Mod > </Mod>}
         <Footer></Footer>
       </div>
 
