@@ -3,41 +3,47 @@ import logo from '../../../static/images/logo.png';
 
 export class Detallep extends React.Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {};
+    this.state = {};
 
-        
-    }
 
-    
-    onClose = (e) => {
-        this.props.onClose && this.props.onClose(e);
-    };
+  }
 
-    render() {
-        if (this.props.open) {
-            return null;
-        }
-       
-        
+  render() {
+    return (
+      <div className="modal fade" id={this.props.row.idpedido + 'a'}>
+        <section className="modal-dialog" >
+          <div className="modal-content">
+            <div className="modal-body ">
 
-        const componentClicked = () => {
-            alert('Evento onClick');
-        }
 
-        return (
-            <section className="modal-container" id="modal">
-                <div className="modal-content">
-                <img src={logo} class="img-logo" ></img>
-                    <h1>Pedido</h1>
-                    <h1>Foto</h1>         
-                        
-                    <button onClick={this.onClose}>Salir</button>
-                    
-                </div>
-            </section>
-        );
-    }
+              <div className="modal-header row justify-content-center">
+                <img src={logo} className=" row img-logo col-3" />
+              </div>
+
+
+              <h2>{this.props.row.idpedido}</h2>
+
+
+
+              <label className="btn">Foto</label>
+
+              <br />
+
+
+
+              <div className="modal-footer justify-content-center">
+                <button type="button" className="btn btn-outline-info" id="btnModal" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    );
+  }
+
 }
