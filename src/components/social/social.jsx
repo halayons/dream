@@ -3,6 +3,7 @@ import React from 'react';
 import { Feed } from './feed';
 import { CreatePost } from './createPost';
 import Cookies from 'js-cookie';
+import añadir from '../../static/images/anadir.png'
 
 
 export class Social extends React.Component {
@@ -34,7 +35,7 @@ export class Social extends React.Component {
 
 	componentDidMount() {
 		this.loadPosts();
-		this.getCakes();
+		
 		//this.ws.onopen = evt => this.send(); 
 		//this.ws.onclose = evt => window.location.reload(); 
 		//this.ws.onmessage = evt => this.loadPosts();
@@ -49,24 +50,7 @@ export class Social extends React.Component {
 			}))
 			.catch(error => console.log(error));
 	}
-	getCakes(){
-		
-		const requestOptions = {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-CSRFToken': Cookies.get('csrftoken')
-			},
-			credentials: "include"
-		};
-
-		fetch('http://localhost:8000/pasteles/', requestOptions)
-			.then(res => res.json())
-			.then(json => {
-				this.setState({pasteles: json})
-			})
-			.catch(error => console.log(error))
-	}
+	
 
 	update() {
 		this.loadPosts()
@@ -87,8 +71,28 @@ export class Social extends React.Component {
 			<div>
 				<CreatePost update={this.update} />
 				<Feed posts={this.state.posts} />
+				<CrearPedido></CrearPedido>
 
 			</div>
 		);
 	}
+}
+
+
+export class CrearPedido extends React.Component {
+	constructor() {
+		super();
+		this.state={
+
+		}
+	}
+	render(){
+		return( 
+			<div className="row">
+				<a className="col-3 col-sm-2 col-lg-1 btn-CrearPedido" href="/crearPastel/"><img className="img-fluid" src={añadir} alt="" /></a>
+			</div>
+		)
+	}
+
+
 }
