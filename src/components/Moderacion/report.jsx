@@ -108,7 +108,7 @@ export class Report extends React.Component {
 		};
 		return (
 			<div class="container bg-light">
-				<BootstrapTable data={this.props.datos} pagination options = {options}>
+				<BootstrapTable data={this.props.datos} headerStyle={ { background: '#7CD5D0' } }  pagination options = {options}>
 					<TableHeaderColumn isKey dataField='id' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }}>
 						ID
 					</TableHeaderColumn>

@@ -38,10 +38,9 @@ export class CommentsReport extends React.Component {
 	}  
 
 	fotoFormatter(cell, row) {
-        console.log(row)
         return (
-                <div class = "card col-lg-4">
-                    <img className=" img-post" src = {cell}  ></img>
+                <div class = "d-flex justify-content-center">
+                    <img className=" img-post-comments" src = {cell}  ></img>
                 </div>
         );
 	}
@@ -77,7 +76,7 @@ export class CommentsReport extends React.Component {
 		};
 		return (
 			<div class="container bg-light">
-				<BootstrapTable data={this.props.datos} pagination options = {options}>
+				<BootstrapTable data={this.props.datos} headerStyle={ { background: '#7CD5D0' } } pagination options = {options}>
 					<TableHeaderColumn isKey dataField='id' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }}>
 						ID
 					</TableHeaderColumn>

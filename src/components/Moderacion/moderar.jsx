@@ -1,5 +1,4 @@
 import React from "react";
-import logo from '../../static/images/logo.png';
 import Cookies from 'js-cookie';
 export class Moderar extends React.Component {
 
@@ -17,13 +16,13 @@ export class Moderar extends React.Component {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': Cookies.get('csrftoken')
+            'X-CSRFToken': Cookies.get('csrftoken'),
           },
           credentials: "include",
           body:JSON.stringify(this.state)
         };
-        console.log(requestOptions)
-        fetch('http://localhost:8000/social/mod_post/' + this.props.datos.id, requestOptions)
+
+        fetch('http://localhost:8000/social/mod_post/' + this.props.datos.id +'/', requestOptions)
           .then(response => response.json())
           .then(json => this.setState({
             status: !this.state.status

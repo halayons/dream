@@ -29,9 +29,7 @@ export class CommentsList extends React.Component {
 			}))
 			.catch(error => console.log(error));
     }
-
     render() {
-        console.log(this.state.comments)
         return (
             <div>{this.state.comments.map(comment => <Comment comment={comment}></Comment>)}</div>       
         )   
@@ -58,7 +56,7 @@ export class Comment extends React.Component {
             credentials: "include",
             body:JSON.stringify(this.state)
           };
-          fetch('http://localhost:8000/social/mod_com/' + this.props.comment.id, requestOptions)
+          fetch('http://localhost:8000/social/mod_com/' + this.props.comment.id + '/', requestOptions)
             .then(response => response.json())
             .then(json => this.setState({
               status: !this.state.status,
