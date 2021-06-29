@@ -52,8 +52,9 @@ export class HeaderUpdater extends React.Component {
     menuSelect(e){
         e.preventDefault();
         if(e.target.value =="Salir")this.logOut(e);
-        if(e.target.value =="Pasteles")window.location.pathname = "/social"
+        if(e.target.value =="Social")window.location.pathname = "/social"
         if(e.target.value =="Perfil")window.location.pathname = "/profile"
+        if(e.target.value =="Pastel")window.location.pathname = "/crearPastel/"
         if(e.target.value =="Inicio")window.location.pathname = "/"
     }
     logOut(e){
@@ -116,8 +117,9 @@ export class HeaderUpdater extends React.Component {
                             <select type="select" className=" arrow btn  badge " id="perfil" onClick={e=>this.menuSelect(e)}>
                                 <option select  className="btn-dark" value=""></option>
                                 <option className="btn btn-dark" value="Inicio">Inicio</option>
+                                <option className="btn btn-dark" value="Pastel">Crear Pastel</option>
+                                <option className="btn btn-dark" value="Social">Social</option>
                                 <option className="btn btn-dark" value="Perfil">Perfil</option>
-                                <option className="btn btn-dark" value="Pasteles">Pasteles</option>
                                 <option className="btn btn-dark" value="Salir" >Salir</option>
                             </select>
                         </div>
