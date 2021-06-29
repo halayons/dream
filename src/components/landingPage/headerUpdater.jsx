@@ -112,7 +112,7 @@ export class HeaderUpdater extends React.Component {
                         
                         </div>
                         <div className="col-lg-2 col-sm-4 col-4">
-                            <img className="img-fluid" src={this.state.userInfo.foto} />
+                            <img className="img-fluid rounded-circle" src={this.state.userInfo.foto} />
                         </div>
                         <div className="menubtn">
                             <span className=" btn badge btname-user">{this.state.userInfo.email}</span>
