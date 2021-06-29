@@ -49,6 +49,7 @@ export class Pedidos extends React.Component {
 		this.estadoFormatter = this.estadoFormatter.bind(this)
 		this.aceptadoFormatter = this.aceptadoFormatter.bind(this);
 		this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
+		this.replaceModalItem = this.replaceModalItem.bind(this);
 	}
 
 	handleChange(event) {
@@ -61,12 +62,17 @@ export class Pedidos extends React.Component {
 		alert('Esta seguro?: ' + this.state.value);
 
 	}
+	replaceModalItem(index) {
+		this.setState({
+		  requiredItem: index
+		});
+	  }
 
-	buttonFormatter(cell, row) {
+	buttonFormatter(cell, row,id) {
 		return (
 			<div>
-				<button className="ver" onClick={this.openModal}>ver</button>
-				<Detallep open={this.state.open} datos={row} onClose={this.openModal} />
+				<button type="button" className="col-lg-6 col-sm6 col-6 btn btn-register " data-toggle="modal" data-target="#ver" value="ver" data-backdrop="false" data-dismiss="modal" onClick={() => this.replaceModalItem(id)}>Ver</button>
+                    <Detallep datos={this.pedidos}/>
 			</div>
 		);
 	}
@@ -205,7 +211,7 @@ export class Pedidos extends React.Component {
 
 		if (this.props.datos.length > 0) {
 			table = (
-				<BootstrapTable data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
+				<BootstrapTable pagination={pagination} data={this.props.datos} options={options} cellEdit={{ mode: 'click', blurToSave: true, afterSaveCell: this.onAfterSaveCell }}>
 					<TableHeaderColumn isKey dataField='idpedido' dataSort={true} filter={{ type: 'TextFilter', delay: 200 }} >
 						ID
 					</TableHeaderColumn>
