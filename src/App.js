@@ -75,7 +75,7 @@ export class App extends React.Component {
         {window.location.pathname == "/modificarPastel/" && <ModPedido pastel={this.state.modPastel}></ModPedido>}
         {window.location.pathname == "/" && <LandingPage></LandingPage>}
         {window.location.pathname == "/profile" && <Profile modificar={this.modificar}></Profile>}
-        {window.location.pathname == "/social" && <Social></Social>}
+        {window.location.pathname == "/social" && <Social modificar={this.modificar}></Social>}
         {window.location.pathname == "/admin" && <Admin></Admin>}
         {window.location.pathname == "/mod" && < Mod > </Mod>}
         <Footer></Footer>

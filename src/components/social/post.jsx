@@ -22,6 +22,7 @@ export class Post extends React.Component {
 
 		this.onInputchange = this.onInputchange.bind(this);
         this.createComment = this.createComment.bind(this);
+		this.copiarPastel = this.copiarPastel.bind(this);
 	}
 
 	componentDidMount() {
@@ -128,6 +129,25 @@ export class Post extends React.Component {
 		}
 		
 	}
+	copiarPastel(){
+		let id = this.state.cake.id
+
+		const requestOptions = {
+            method: 'PUT',
+            headers: { 
+				'Content-Type': 'application/json',
+				'X-CSRFToken':Cookies.get('csrftoken')
+			},
+            credentials: "include",
+        };
+		fetch('http://localhost:8000/guardar_pastel/' + id + '/', requestOptions)
+        .then(res => res.json())
+        .then(json => {
+			alert(JSON.stringify(json))
+			this.props.modificar(this.state.cake)
+        })
+        .catch(error => console.log(error))   
+	}
 	
 	cargarComentarios(){
 		fetch("http://localhost:8000/social/comments/" + this.props.post.id+'/')
@@ -212,7 +232,7 @@ export class Post extends React.Component {
 											<img type="button" id={"likeId"+this.state.id} className="img-fluid  btn-outline-danger reacciones" src={like} alt="" onClick={e=>this.sendLike(e)}/>
 										</div>
 										<div className="  col-2 col-sm-2 col-lg-2">
-										<img type="button" className="img-fluid btn-outline-primary reacciones" src={share} alt="" />
+										<img type="button" className="img-fluid btn-outline-primary reacciones" src={share} onClick={this.copiarPastel} alt="" />
 										</div>
 								</div>
 								

@@ -37,10 +37,10 @@ export class Social extends React.Component {
 		this.requestUser();
 		this.loadPosts();
 		
-		//this.ws.onopen = evt => this.send(); 
-		//this.ws.onclose = evt => window.location.reload(); 
-		//this.ws.onmessage = evt => this.loadPosts();
-		//this.ws.onerror = evt => console.log(JSON.stringify(evt)); 
+		this.ws.onopen = evt => this.send(); 
+		this.ws.onclose = evt => window.location.reload(); 
+		this.ws.onmessage = evt => this.loadPosts();
+		this.ws.onerror = evt => console.log(JSON.stringify(evt)); 
 	}
 
 	requestUser() {
@@ -83,7 +83,7 @@ export class Social extends React.Component {
 		return (
 			<div>
 				<CreatePost update={this.update} />
-				<Feed posts={this.state.posts} />
+				<Feed modificar={this.props.modificar} posts={this.state.posts} />
 				<CrearPedido></CrearPedido>
 
 			</div>
