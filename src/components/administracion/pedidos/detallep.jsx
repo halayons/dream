@@ -2,13 +2,6 @@ import React from "react";
 import logo from '../../../static/images/logo.svg';
 
 export class Detallep extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      idpedido: 'sds',
-      datos: ''
-    }
-  }
 
   constructor(props) {
     super(props);

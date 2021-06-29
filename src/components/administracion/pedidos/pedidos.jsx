@@ -255,7 +255,7 @@ export class Pedidos extends React.Component {
 		return (
 			<div>
 				{table}
-				<Detallep datos={this.props.datos} current={this.state.current} />
+				{/* <Detallep datos={this.props.datos} current={this.state.current} /> */}
 			</div>
 		);
 	}
